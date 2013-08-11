@@ -15,12 +15,6 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:~/bin
 
-# ------------------------------------
-# TeX
-# ------------------------------------
-# export PATH=$PATH:/Applications/pTeX.app/teTeX/bin
-
-
 # ====================================
 # ENVIRON
 # ====================================
@@ -36,7 +30,7 @@ export LANG=ja_JP.UTF-8
 export EDITOR=/usr/local/bin/emacsclient
 
 # ====================================
-# LANGUAGE
+# ETC
 # ====================================
 
 # ------------------------------------
@@ -46,5 +40,8 @@ export EDITOR=/usr/local/bin/emacsclient
 # Version management (rbenv)
 eval "$(rbenv init -)"
 
-# PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+# ------------------------------------
+# Tmux-power-line
+# ------------------------------------
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
