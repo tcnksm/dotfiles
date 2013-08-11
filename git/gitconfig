@@ -58,7 +58,9 @@
   l1  = log --stat --abbrev-commit -n 1
 
   gr  = grep
-  gn  = grep -n 
+  gn  = grep -n
+
+  p   = git push
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this = !git init && git add . && git commit -m \"Initial commit\"
