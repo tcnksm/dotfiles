@@ -1,0 +1,64 @@
+[include]
+  path = .gitconfig.local
+
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+
+[core]
+  excludesfile = ~/.gitignore.global
+  editor = emacs
+
+[merge]
+  ff = false
+
+[pull]
+  rebase = true
+
+[push]
+  default = simple
+
+[alias]
+  s   = status
+  st  = status
+  ss  = status -s
+  sh  = show
+  so  = remote show origin
+
+  ad  = add
+  c   = commit
+  cma = commit --amend
+  cm  = commit -m
+
+  b   = branch -a
+  br  = branch -r
+
+  co  = checkout
+  master = checkout master
+
+  d   = diff
+  ds  = diff --staged
+  dn  = diff --name-only
+  dm  = diff master
+  d1  = diff HEAD~
+  d1 = diff HEAD~
+  d2 = diff HEAD~~
+  d3 = diff HEAD~~~
+  d4 = diff HEAD~~~~
+  d5 = diff HEAD~~~~~ 
+  
+
+  l   = log --graph -n 20
+  ll  = log --stat
+
+  gr  = grep
+  gn  = grep -n 
+
+  # http://blog.blindgaenger.net/advanced_git_aliases.html
+  this = !git init && git add . && git commit -m \"Initial commit\"
+  rmrm  = !git ls-files -z --deleted | xargs -0 git rm
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
+  
