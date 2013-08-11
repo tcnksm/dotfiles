@@ -22,7 +22,7 @@ alias gp='git push'
 
 
 # ------------------------------------
-# Own
+# Own definition
 # ------------------------------------
 alias rr='rm -f *~'
 alias u='cd ..'
@@ -32,18 +32,25 @@ alias uuuu='cd ../../../..'
 
 
 # ------------------------------------
-# Other commands
-# ------------------------------------
 # Emacs
+# ------------------------------------
 alias emacs='/usr/local/bin/emacs'
 alias e='/usr/local/bin/emacsclient'
 
-# tmux
+
+# ------------------------------------
+# Tmux
+# ------------------------------------
 alias tmux='tmux -2 -f ~/.tmux.conf'
 
-# TeX
+
+# ------------------------------------
+# Tex
+# ------------------------------------
 alias platex='platex --kanji=utf8'
 alias jbibtex='jbibtex --kanji=utf8'
 
-# Coloring codes
+# ------------------------------------
+# Pygmentize
+# ------------------------------------
 alias c='pygmentize -O style=monokai -f console256 -g'
