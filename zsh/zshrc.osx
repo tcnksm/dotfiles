@@ -1,0 +1,29 @@
+
+# ====================================
+# PATH
+# ====================================
+
+
+# ====================================
+# Alias
+# ====================================
+
+alias rm='rmtrash'
+alias rr='rmtrash *~'
+
+# show with color
+alias ls="ls -G"
+
+# show description of files
+alias ll="ls -lG"
+
+# show with hidden files
+alias la="ls -AG"
+
+# show directory with /, executable file with *,
+# simbolic link with @
+alias lf="ls -FG"
+
+# ====================================
+# Environment
+# ====================================	

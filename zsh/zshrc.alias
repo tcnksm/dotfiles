@@ -1,0 +1,47 @@
+# ------------------------------------
+# General
+# ------------------------------------
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+alias df='df -h'
+alias du='du -h'
+alias lv8='lv -Ou8'
+alias man='env LANG=ja_JP.UTF-8 /usr/bin/man'
+
+
+# ------------------------------------
+# Git
+# ------------------------------------
+alias gs='git status '
+alias gb='git branch '
+alias gd='git diff'
+alias go='git checkout '
+
+
+# ------------------------------------
+# Own
+# ------------------------------------
+alias rr='rm -f *~'
+alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+
+
+# ------------------------------------
+# Other commands
+# ------------------------------------
+# Emacs
+alias emacs='/usr/local/bin/emacs'
+alias e='/usr/local/bin/emacsclient'
+
+# tmux
+alias tmux='tmux -2 -f ~/.tmux.conf'
+
+# TeX
+alias platex='platex --kanji=utf8'
+alias jbibtex='jbibtex --kanji=utf8'
+
+# Coloring codes
+alias c='pygmentize -O style=monokai -f console256 -g'

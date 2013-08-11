@@ -1,0 +1,110 @@
+# ====================================
+# .zshrc
+# ====================================
+
+# ------------------------------------
+# Completion
+# ------------------------------------
+autoload -U compinit && compinit
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Compacked complete list display
+setopt list_packed
+
+# Coloring complete list display
+zstyle ':completion:*' list-colors ''
+
+# ------------------------------------
+# Terminal title
+# ------------------------------------
+case "${TERM}" in
+kterm*|xterm)
+    precmd() {
+        echo -ne "\033]0;deeeet@${HOST%%.*}:${PWD}\007"
+    }
+    ;;
+esac
+
+# ------------------------------------
+# Command History
+# ------------------------------------
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Ignore duplication command history list
+setopt hist_ignore_dups    
+
+# Share command history data
+setopt share_history        
+
+# Historical backward/forward search 
+# with linehead string binded to ^P/^N
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
+# ------------------------------------
+# Key bind (emacs)
+# ------------------------------------
+bindkey -e 
+
+# ------------------------------------
+# cd
+# ------------------------------------
+
+# cd by directory name
+setopt auto_cd
+
+# Auto directory pushd 
+# that you can get dirs list by cd -[tab]
+setopt auto_pushd
+
+# ------------------------------------
+# Correct miss typing command
+# ------------------------------------
+setopt correct
+
+
+# ------------------------------------
+# Oh-my-zsh settings
+# ------------------------------------
+ZSH_THEME="tc"
+plugins=(git)
+
+# [ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
+
+# ------------------------------------
+# Global settings
+# ------------------------------------
+
+[ -f ~/.zsh/zshrc.global ] && source ~/.zsh/zshrc.global
+
+# ------------------------------------
+# global alias Settings
+# ------------------------------------
+
+[ -f ~/.zsh/zshrc.alias ] && source ~/.zsh/zshrc.alias
+
+# ------------------------------------
+# Settings by OS
+# ------------------------------------
+case "${OSTYPE}" in
+    darwin*)
+	[ -f ~/.zsh/zshrc.osx ] && source ~/.zsh/zshrc.osx
+	;;
+
+    linux*)
+	[ -f ~/.zsh/zshrc.linux ] && source ~/.zsh/zshrc.linux	
+	;;
+esac
+
+# ------------------------------------
+# Local settings
+# ------------------------------------
+[ ! -f ~/.zsh/zshrc.local ] && touch ~/.zsh/zshrc.local
+[ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
