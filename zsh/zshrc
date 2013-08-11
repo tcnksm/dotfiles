@@ -73,10 +73,11 @@ setopt correct
 # ------------------------------------
 # Oh-my-zsh settings
 # ------------------------------------
+ZSH=~/.oh-my-zsh
 ZSH_THEME="tc"
-plugins=(git)
+plugins=(git ruby gem)
 
-# [ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
+[ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # ------------------------------------
 # Global settings
