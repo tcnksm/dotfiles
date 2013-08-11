@@ -60,7 +60,7 @@
   gr  = grep
   gn  = grep -n
 
-  p   = git push
+  p   = push
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this = !git init && git add . && git commit -m \"Initial commit\"
