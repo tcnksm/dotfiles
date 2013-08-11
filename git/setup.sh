@@ -5,6 +5,11 @@
 # 
 #
 
-ln -s $(PWD)/gitconfig ~/.gitconfig
-ln -s $(PWD)/gitignore.glo ~/.gitignore.glo
+for file in `ls`
+do
+    if [ ! -f ~/.$file -a ! "${file}" = "setup.sh" ]; then
+        ln -s $(PWD)/$file ~/.$file
+    fi 
+done
+
 

@@ -28,7 +28,9 @@
   sh  = show
   so  = remote show origin
 
+  a   = add
   ad  = add
+  au  = !git add -u && git status
   c   = commit
   cma = commit --amend
   cm  = commit -m
@@ -51,8 +53,9 @@
   d5 = diff HEAD~~~~~ 
   
 
-  l   = log --graph -n 20
-  ll  = log --stat
+  l   = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
+  ll  = log --stat --abbrev-commit
+  l1  = log --stat --abbrev-commit -n 1
 
   gr  = grep
   gn  = grep -n 
