@@ -53,7 +53,7 @@
 ;; [description]
 ;;     xmp: #=>
 ;; --------------------------------------------------
-(require 'rcodetools)
+(require 'rcodetools nil t)
 (define-key ruby-mode-map (kbd "\C-c \C-d") 'xmp)
 
 

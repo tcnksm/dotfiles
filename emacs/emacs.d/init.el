@@ -14,7 +14,7 @@
 	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 	    (normal-top-level-add-subdirs-to-load-path))))))
 
-(add-to-load-path "elisp" "conf" "public_repos")
+(add-to-load-path "elisp" "conf" "elpa")
 
 ;; -------------------------------------------------- 
 ;; init-loader.el
