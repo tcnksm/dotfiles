@@ -116,7 +116,7 @@
  
 (setq completion-ignore-case t)                  ; dont distinguish characutor case
 (setq read-file-name-completion-ignore-case t)   ; dont distinguish characutor case
-(partial-completion-mode t)                      ; partial complettion
+;; (partial-completion-mode t)                      ; partial complettion
 
 
 ;; --------------------------------------------------

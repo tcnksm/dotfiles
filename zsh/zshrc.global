@@ -38,6 +38,7 @@ export EDITOR=/usr/local/bin/emacsclient
 # ------------------------------------
 
 # Version management (rbenv)
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # ------------------------------------

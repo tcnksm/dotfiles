@@ -1,5 +1,5 @@
 [include]
-  path = .gitconfig.local
+  path = ~/.gitconfig.local
 
 [color]
   status = auto
@@ -9,7 +9,7 @@
   grep = auto
 
 [core]
-  excludesfile = .gitignore.global
+  excludesfile = ~/.gitignore.global
   editor = emacs
 
 [merge]
