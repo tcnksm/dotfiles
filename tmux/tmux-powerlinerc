@@ -18,9 +18,9 @@
 
 # battery.sh {
 	# How to display battery remaining. Can be {percentage, cute}.
-	export TMUX_POWERLINE_SEG_BATTERY_TYPE="cute"
+	export TMUX_POWERLINE_SEG_BATTERY_TYPE="percentage"
 	# How may hearts to show if cute indicators are used.
-	export TMUX_POWERLINE_SEG_BATTERY_NUM_HEARTS="6"
+	export TMUX_POWERLINE_SEG_BATTERY_NUM_HEARTS="10"
 # }
 
 # date.sh {
@@ -47,7 +47,7 @@
 
 # hostname.sh {
 	# Use short or long format for the hostname. Can be {"short, long"}.
-	export TMUX_POWERLINE_SEG_HOSTNAME_FORMAT="short"
+	export TMUX_POWERLINE_SEG_HOSTNAME_FORMAT="long"
 # }
 
 # mailcount.sh {
