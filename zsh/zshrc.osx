@@ -8,9 +8,6 @@
 # Alias
 # ====================================
 
-alias rm='rmtrash'
-alias rr='rmtrash *~'
-
 # show with color
 alias ls="ls -G"
 
@@ -23,6 +20,20 @@ alias la="ls -AG"
 # show directory with /, executable file with *,
 # simbolic link with @
 alias lf="ls -FG"
+
+# ------------------------------------
+# Rmtrash
+# ------------------------------------
+alias rm='rmtrash'
+alias rr='rmtrash *~'
+
+# ------------------------------------
+# Tmux
+# ------------------------------------
+if [ -n "$TMUX" ]; then
+  alias pbcopy="reattach-to-user-namespace pbcopy"
+  alias pbpaste="reattach-to-user-namespace pbpaste"
+fi
 
 # ====================================
 # Environment
