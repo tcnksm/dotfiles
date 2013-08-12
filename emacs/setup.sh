@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #
 # setup.sh by tc <nsd22843@gmail.com>
 # setup environment
 # 
 #
 
-ln -s $(PWD)/emacs.d ~/.emacs.d
+echo "ln -s `pwd`/emacs.d ~/.emacs.d"
+ln -s `pwd`/emacs.d ~/.emacs.d
 
