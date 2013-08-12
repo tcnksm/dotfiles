@@ -15,9 +15,9 @@
 ;; Color
 ;; --------------------------------------------------
 
-;; Solarized
-;; [install] git clone https://github.com/sellout/emacs-color-theme-solarized
-;; (load-theme 'solarized-light t) ;; emacs24
+;; Tomorrow
+;; M-x color-theme-sanityinc-tomorrow-eighties
+(require 'color-theme-sanityinc-tomorrow nil t)
 
 
 ;; --------------------------------------------------
@@ -126,7 +126,7 @@
 (show-paren-mode t)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
-(set-face-background 'show-paren-match-face "black") ; change emphasis color (now "khaki")
+(set-face-background 'show-paren-match-face "#393939") ; change emphasis color
 
 ;; --------------------------------------------------
 ;; recentf mode
@@ -159,7 +159,7 @@
 ;; (global-set-key (kbd "C-x C-c") 'anything-for-files)
 ;; (global-set-key (kbd "C-x C-z") 'anything-for-files)
 
-;; (defalias 'exit 'save-buffers-kill-emacs)
+(defalias 'exit 'save-buffers-kill-emacs)
 
 ;; --------------------------------------------------
 ;; server mode
