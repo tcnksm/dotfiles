@@ -8,8 +8,8 @@
 for file in `ls`
 do
     if [ ! -f ~/.$file -a ! "${file}" = "setup.sh" ]; then
-        echo "ln -s $(PWD)/$file ~/.$file"
-        ln -s $(PWD)/$file ~/.$file
+        echo "ln -s `pwd`/$file ~/.$file"
+        ln -s `pwd`/$file ~/.$file
     fi 
 done
 

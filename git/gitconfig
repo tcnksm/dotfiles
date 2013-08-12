@@ -9,7 +9,7 @@
   grep = auto
 
 [core]
-  excludesfile = ~/.gitignore.global
+  excludesfile = .gitignore.global
   editor = emacs
 
 [merge]
@@ -46,11 +46,10 @@
   dn  = diff --name-only
   dm  = diff master
   d1  = diff HEAD~
-  d1 = diff HEAD~
-  d2 = diff HEAD~~
-  d3 = diff HEAD~~~
-  d4 = diff HEAD~~~~
-  d5 = diff HEAD~~~~~ 
+  d2  = diff HEAD~~
+  d3  = diff HEAD~~~
+  d4  = diff HEAD~~~~
+  d5  = diff HEAD~~~~~ 
   
 
   l   = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'

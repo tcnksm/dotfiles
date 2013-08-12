@@ -34,8 +34,8 @@ alias uuuu='cd ../../../..'
 # ------------------------------------
 # Emacs
 # ------------------------------------
-alias emacs='/usr/local/bin/emacs'
-alias e='/usr/local/bin/emacsclient'
+# alias emacs='/usr/local/bin/emacs'
+# alias e='/usr/local/bin/emacsclient'
 
 
 # ------------------------------------
