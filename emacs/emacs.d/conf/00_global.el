@@ -142,6 +142,7 @@
 
 (savehist-mode 1)
 (setq history-length 3000)
+(setq savehist-file "~/.emacs.d/etc/.cache/history")
 
 
 ;; --------------------------------------------------
