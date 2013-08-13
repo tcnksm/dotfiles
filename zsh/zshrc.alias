@@ -13,6 +13,7 @@ alias man='env LANG=ja_JP.UTF-8 /usr/bin/man'
 # ------------------------------------
 # Git
 # ------------------------------------
+alias gi='git'
 alias gs='git status'
 alias au='git add -u; git status'
 alias gg='git status'
@@ -20,6 +21,7 @@ alias gb='git branch'
 alias gd='git diff'
 alias gp='git push'
 
+alias tt='tig'
 
 # ------------------------------------
 # Own definition
