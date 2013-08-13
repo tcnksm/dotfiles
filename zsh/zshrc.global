@@ -49,11 +49,14 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 # ------------------------------------
 # Functions
 # ------------------------------------
+
+# excuting after change directry
 chpwd() {
     ls_abbrev
     show_git_status
 }
 
+# ls which doesn't show too much file
 ls_abbrev() {
     # -C : Force multi-column output.
     # -F : Append indicator (one of */=>@|) to entries.
