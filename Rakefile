@@ -39,6 +39,29 @@ namespace :tmux do
   end
 end
 
+namespace :zsh do
+  ZSH_ROOT = File.join(File.dirname(__FILE__), "zsh")
+  DOT_FILES = %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
+  
+  desc "Create symblic link to $HOME/.zsh"
+  task :link => [File.join(HOME,".oh-my-zsh"), File.join(HOME,".zsh")] do
+    DOT_FILES.each do |f|
+      symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
+    end
+    symlink_ File.join(ZSH_ROOT, "zshrc"), File.join(HOME, ".zshrc")
+    symlink_ File.join(ZSH_ROOT, "oh-my-zsh-theme","tc.zsh-theme"), File.join(HOME,".oh-my-zsh","themes","tc.zsh-theme")
+  end
+  
+  desc "Download oh-my-zsh"
+  file File.join(HOME,".oh-my-zsh") do |f|
+    sh "git clone https://github.com/robbyrussell/oh-my-zsh.git #{f.name}"
+  end
+
+  file File.join(HOME, ".zsh") do |f|
+    mkdir f.name
+  end
+end
+
 def symlink_ file, dest
   symlink file, dest if not File.exist?(dest)
 end
