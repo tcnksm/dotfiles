@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 HOME = ENV["HOME"]
+OS = `uname`
 
 task :default => :all
-task :all => ["emacs:link", "git:link","tmux:link","zsh:link"]
+task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link"]
 
 namespace :emacs do
   desc "Create symbolic link to HOME"
@@ -61,6 +62,18 @@ namespace :zsh do
 
   file File.join(HOME, ".zsh") do |f|
     mkdir f.name
+  end
+end
+
+namespace :font do
+  FONT_ROOT  = File.join(File.dirname(__FILE__), "stuff", "fonts")
+  task :link do
+    case OS
+    when /^Darwin/
+      cp Dir.glob(FONT_ROOT + "/*\.*"), File.join(HOME, "Library","Fonts")
+    when /^Linux/
+      symlink_ FONT_ROOT, File.join(HOME, ".fonts")
+    end
   end
 end
 
