@@ -2,6 +2,8 @@
 
 HOME = ENV["HOME"]
 
+task :default => :all
+task :all => ["emacs:link", "git:link","tmux:link","zsh:link"]
 
 namespace :emacs do
   desc "Create symbolic link to HOME"
@@ -27,7 +29,7 @@ end
 namespace :tmux do
   TMUX_ROOT = File.join(File.dirname(__FILE__), "tmux")
   
-  desc "Create symblic link to $HOME"
+  desc "Create symblic link to HOME"
   task :link => File.join(HOME,".tmux-powerline") do
     same_name_symlinks TMUX_ROOT, "tmux.conf", "tmux-powerlinerc"
     symlink_ File.join(TMUX_ROOT,"tmux-powerline-theme.sh"), File.join(HOME, ".tmux-powerline/themes/mytheme.sh")
@@ -43,7 +45,7 @@ namespace :zsh do
   ZSH_ROOT = File.join(File.dirname(__FILE__), "zsh")
   DOT_FILES = %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
   
-  desc "Create symblic link to $HOME/.zsh"
+  desc "Create symblic link to HOME/.zsh"
   task :link => [File.join(HOME,".oh-my-zsh"), File.join(HOME,".zsh")] do
     DOT_FILES.each do |f|
       symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
