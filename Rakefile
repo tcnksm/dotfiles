@@ -18,7 +18,7 @@ namespace :git do
   
   desc "Create symbolic link to HOME"
   task :link => File.join(HOME,".gitconfig.local") do    
-    same_name_symlinks GIT_ROOT, "gitconfig", "gitignore.global"
+    same_name_symlinks GIT_ROOT, ["gitconfig", "gitignore.global"]
   end
 
   desc "Create copy of gitconfig.local"
@@ -32,7 +32,7 @@ namespace :tmux do
   
   desc "Create symblic link to HOME"
   task :link => File.join(HOME,".tmux-powerline") do
-    same_name_symlinks TMUX_ROOT, "tmux.conf", "tmux-powerlinerc"
+    same_name_symlinks TMUX_ROOT, ["tmux.conf", "tmux-powerlinerc"]
     symlink_ File.join(TMUX_ROOT,"tmux-powerline-theme.sh"), File.join(HOME, ".tmux-powerline/themes/mytheme.sh")
   end
   
@@ -77,11 +77,19 @@ namespace :font do
   end
 end
 
+namespace :etc do
+  ETC_ROOT = File.join(File.dirname(__FILE__), "etc")
+  DOT_FILES = Dir.glob("etc"+ "/*").map{|path| File.basename(path)}
+  task :link do
+    same_name_symlinks ETC_ROOT, DOT_FILES
+  end
+end
+
 def symlink_ file, dest
   symlink file, dest if not File.exist?(dest)
 end
 
-def same_name_symlinks root, *files
+def same_name_symlinks root, files
   files.each do |file|
     symlink_ File.join(root, file), File.join(HOME, "." + file)
   end
