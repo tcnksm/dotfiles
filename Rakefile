@@ -3,13 +3,19 @@
 HOME = ENV["HOME"]
 
 
+namespace :emacs do
+  desc "Create symbolic link to HOME"
+  task :link do
+    symlink_ File.join(File.dirname(__FILE__), "emacs.d"), File.join(HOME,".emacs.d")
+  end
+end
+
 namespace :git do
   GIT_ROOT = File.join(File.dirname(__FILE__), "git")
   
   desc "Create symbolic link to HOME"
-  task :link => File.join(HOME,".gitconfig.local") do
-    symlink_ File.join(GIT_ROOT,"gitconfig"), File.join(HOME, ".gitconfig")
-    symlink_ File.join(GIT_ROOT,"gitignore.global"), File.join(HOME, ".gitignore.global")
+  task :link => File.join(HOME,".gitconfig.local") do    
+    same_name_symlinks GIT_ROOT, "gitconfig", "gitignore.global"
   end
 
   desc "Create copy of gitconfig.local"
@@ -23,9 +29,8 @@ namespace :tmux do
   
   desc "Create symblic link to $HOME"
   task :link => File.join(HOME,".tmux-powerline") do
-    symlink_ File.join(TMUX_ROOT,"tmux.conf"), File.join(HOME, ".tmux.conf")    
+    same_name_symlinks TMUX_ROOT, "tmux.conf", "tmux-powerlinerc"
     symlink_ File.join(TMUX_ROOT,"tmux-powerline-theme.sh"), File.join(HOME, ".tmux-powerline/themes/mytheme.sh")
-    symlink_ File.join(TMUX_ROOT,"tmux-powerlinerc"), File.join(HOME, ".tmux-powerlinerc")
   end
   
   desc "Download tmux-powerline"
@@ -38,3 +43,8 @@ def symlink_ file, dest
   symlink file, dest if not File.exist?(dest)
 end
 
+def same_name_symlinks root, *files
+  files.each do |file|
+    symlink_ File.join(root, file), File.join(HOME, "." + file)
+  end
+end

@@ -67,7 +67,7 @@
 (defun smartchr-ruby ()
   (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
   (local-set-key (kbd "+") (smartchr '(" + " " += " "+")))
-  (local-set-key (kbd "-") (smartchr '(" - " " -= " "-")))
+  (local-set-key (kbd "-") (smartchr '("-" " - " " -= ")))
 
   (local-set-key (kbd ">") (smartchr '(" => " ">")))
   
