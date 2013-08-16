@@ -5,5 +5,10 @@ dotfiles
 
 This is my dotfiles. 
 
+## Install
+
+    rake
+
+
 
 
