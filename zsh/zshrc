@@ -86,10 +86,16 @@ plugins=(git ruby gem)
 [ -f ~/.zsh/zshrc.global ] && source ~/.zsh/zshrc.global
 
 # ------------------------------------
-# global alias Settings
+# Global alias Settings
 # ------------------------------------
 
 [ -f ~/.zsh/zshrc.alias ] && source ~/.zsh/zshrc.alias
+
+# ------------------------------------
+# Function 
+# ------------------------------------
+
+[ -f ~/.zsh/zshrc.function ] && source ~/.zsh/zshrc.function
 
 # ------------------------------------
 # Settings by OS

@@ -4,7 +4,7 @@
 # 
 
 
-readonly DOT_FILES=( zshrc.global zshrc.alias zshrc.osx zshrc.linux )
+readonly DOT_FILES=( zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux )
 
 mv ~/.zshrc ~/.zshrc.org
 ln -s `pwd`/zshrc ~/.zshrc
