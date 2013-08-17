@@ -26,6 +26,7 @@ alias tt='tig'
 # ------------------------------------
 # Own definition
 # ------------------------------------
+alias sss='source ~/.zshrc'
 alias rr='rm -f *~'
 alias u='cd ..'
 alias uu='cd ../..'
