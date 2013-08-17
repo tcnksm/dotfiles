@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+require 'rake/clean'
 
 HOME = ENV["HOME"]
 OS = `uname`
+
+task :cc do
+  TARGET = `find #{HOME} -maxdepth 1 -type l`.split(" ")
+  p TARGET
+end
 
 task :default => :all
 task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link"]
