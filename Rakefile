@@ -3,29 +3,20 @@ require 'rake/clean'
 
 HOME = ENV["HOME"]
 OS = `uname`
+
 GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
 ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
 ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
 TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
 FONT_ROOT  =  File.join(File.dirname(__FILE__), "stuff", "fonts")
 
-ZSH_DOT_FILES  =  %w#{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
+ZSH_DOT_FILES  =  %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
 ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
 
-GIT_ROOT  = File.join(File.dirname(__FILE__), "git")
-ZSH_ROOT  = File.join(File.dirname(__FILE__), "zsh")
-ETC_ROOT  = File.join(File.dirname(__FILE__), "etc")
-TMUX_ROOT = File.join(File.dirname(__FILE__), "tmux")
-FONT_ROOT = File.join(File.dirname(__FILE__), "stuff", "fonts")
-
-ZSH_DOT_FILES = %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
-ETC_DOT_FILES = Dir.glob("etc"+ "/*").map{|path| File.basename(path)}
-
-
-task :cc do
-  TARGET = `find #{HOME} -maxdepth 1 -type l`.split(" ")
-  p TARGET
-end
+CLEAN.concat(`find #{HOME} -maxdepth 1 -type l `.split(" "))
+CLEAN << File.join(HOME, ".zsh")
+CLEAN << File.join(HOME, ".tmux-powerline")
+CLEAN << File.join(HOME, ".oh-my-zsh")
 
 task :default => :all
 task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "etc:link"]
