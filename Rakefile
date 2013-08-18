@@ -4,13 +4,23 @@ require 'rake/clean'
 HOME = ENV["HOME"]
 OS = `uname`
 
+GIT_ROOT  = File.join(File.dirname(__FILE__), "git")
+ZSH_ROOT  = File.join(File.dirname(__FILE__), "zsh")
+ETC_ROOT  = File.join(File.dirname(__FILE__), "etc")
+TMUX_ROOT = File.join(File.dirname(__FILE__), "tmux")
+FONT_ROOT = File.join(File.dirname(__FILE__), "stuff", "fonts")
+
+ZSH_DOT_FILES = %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
+ETC_DOT_FILES = Dir.glob("etc"+ "/*").map{|path| File.basename(path)}
+
+
 task :cc do
   TARGET = `find #{HOME} -maxdepth 1 -type l`.split(" ")
   p TARGET
 end
 
 task :default => :all
-task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link"]
+task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "etc:link"]
 
 namespace :emacs do
   desc "Create symbolic link to HOME"
@@ -20,8 +30,6 @@ namespace :emacs do
 end
 
 namespace :git do
-  GIT_ROOT = File.join(File.dirname(__FILE__), "git")
-  
   desc "Create symbolic link to HOME"
   task :link => File.join(HOME,".gitconfig.local") do    
     same_name_symlinks GIT_ROOT, ["gitconfig", "gitignore.global"]
@@ -33,9 +41,7 @@ namespace :git do
   end
 end
 
-namespace :tmux do
-  TMUX_ROOT = File.join(File.dirname(__FILE__), "tmux")
-  
+namespace :tmux do  
   desc "Create symblic link to HOME"
   task :link => File.join(HOME,".tmux-powerline") do
     same_name_symlinks TMUX_ROOT, ["tmux.conf", "tmux-powerlinerc"]
@@ -49,12 +55,9 @@ namespace :tmux do
 end
 
 namespace :zsh do
-  ZSH_ROOT = File.join(File.dirname(__FILE__), "zsh")
-  DOT_FILES = %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
-  
   desc "Create symblic link to HOME/.zsh"
   task :link => [File.join(HOME,".oh-my-zsh"), File.join(HOME,".zsh")] do
-    DOT_FILES.each do |f|
+    ZSH_DOT_FILES.each do |f|
       symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
     end
     symlink_ File.join(ZSH_ROOT, "zshrc"), File.join(HOME, ".zshrc")
@@ -72,7 +75,7 @@ namespace :zsh do
 end
 
 namespace :font do
-  FONT_ROOT  = File.join(File.dirname(__FILE__), "stuff", "fonts")
+  desc "Create symbolic link"
   task :link do
     case OS
     when /^Darwin/
@@ -84,8 +87,6 @@ namespace :font do
 end
 
 namespace :etc do
-  ETC_ROOT = File.join(File.dirname(__FILE__), "etc")
-  DOT_FILES = Dir.glob("etc"+ "/*").map{|path| File.basename(path)}
   task :link do
     same_name_symlinks ETC_ROOT, DOT_FILES
   end
