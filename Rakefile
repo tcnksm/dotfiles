@@ -3,6 +3,14 @@ require 'rake/clean'
 
 HOME = ENV["HOME"]
 OS = `uname`
+GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
+ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
+ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
+TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
+FONT_ROOT  =  File.join(File.dirname(__FILE__), "stuff", "fonts")
+
+ZSH_DOT_FILES  =  %w#{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
+ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
 
 GIT_ROOT  = File.join(File.dirname(__FILE__), "git")
 ZSH_ROOT  = File.join(File.dirname(__FILE__), "zsh")
@@ -55,7 +63,7 @@ namespace :tmux do
 end
 
 namespace :zsh do
-  desc "Create symblic link to HOME/.zsh"
+  desc "Create symbolic link to HOME/.zsh"
   task :link => [File.join(HOME,".oh-my-zsh"), File.join(HOME,".zsh")] do
     ZSH_DOT_FILES.each do |f|
       symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
@@ -88,7 +96,7 @@ end
 
 namespace :etc do
   task :link do
-    same_name_symlinks ETC_ROOT, DOT_FILES
+    same_name_symlinks ETC_ROOT, ETC_DOT_FILES
   end
 end
 
