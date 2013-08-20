@@ -73,6 +73,10 @@
 (blink-cursor-mode 0)
 
 
+(cond
+ (window-system
+  (setq x-select-enable-clipboard t)))
+
 ;; --------------------------------------------------
 ;; Encoding
 ;; --------------------------------------------------
