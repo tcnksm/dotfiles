@@ -9,7 +9,9 @@
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 
 ;; --------------------------------------------------
 ;; ruby-electric.el
@@ -66,8 +68,8 @@
 (require 'smartchr nil t)
 
 (defun smartchr-ruby ()
-  (local-set-key (kbd "=") (smartchr '(" = " " == " "=")))
-  (local-set-key (kbd "+") (smartchr '(" + " " += " "+")))
+  (local-set-key (kbd "=") (smartchr '("=" " = " " == " " =~ ")))
+  (local-set-key (kbd "+") (smartchr '("+" " + " " += ")))
   (local-set-key (kbd "-") (smartchr '("-" " - " " -= ")))
 
   (local-set-key (kbd ">") (smartchr '(" => " ">")))
