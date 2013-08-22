@@ -65,3 +65,27 @@ function do_enter() {
 
 zle -N do_enter
 bindkey '^m' do_enter
+
+auto_telnet() {
+      local host=$1
+      local user=$2
+      local pass=$3
+
+      # expect コマンドを実行
+      expect -c "
+      # タイムアウト値の指定
+      set timeout 20
+      # spawnで新しいジョブ生成
+      spawn telnet $host
+
+      # login
+      expect login:
+      send \"$user\n\"
+      expect Password:
+      send \"$pass\n\"
+
+      # spawnジョブを通常の通信にする
+      interact
+      "
+      return 0
+}
