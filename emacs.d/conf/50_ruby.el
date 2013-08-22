@@ -14,6 +14,13 @@
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 
 ;; --------------------------------------------------
+;; ruby template file
+;; --------------------------------------------------
+(require 'web-mode nil t)
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+
+
+;; --------------------------------------------------
 ;; ruby-electric.el
 ;; [description] 括弧などを自動挿入
 ;; [install] (install-elisp https://raw.github.com/ruby/ruby/trunk/misc/ruby-electric.el)
