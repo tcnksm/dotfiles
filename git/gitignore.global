@@ -6,3 +6,11 @@
 *~
 .DS_Store
 .gitignore
+
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!**/*.xcodeproj/default.*
+
+*.xcworkspace/*
+!*.xcworkspace/contents.xcworkspacedata
+

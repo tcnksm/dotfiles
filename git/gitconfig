@@ -65,5 +65,6 @@
   this   = !git init && git add . && git commit -m \"Initial commit\"
   rr     = !git ls-files -z --deleted | xargs -0 git rm
   alias  = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
-  ignore = !([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+  ignore = !([ ! -e .gitignore ] && touch .gitignore) && echo $1 | echo >>.gitignore
+  github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
 
