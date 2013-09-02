@@ -40,6 +40,9 @@ alias uuuu='cd ../../../..'
 # ------------------------------------
 alias rs='rspec'
 alias ra='rake'
+alias b='bundle exec'
+alias bp='bundle package'
+alias bi='bundle install --path vendor/bundle'
 
 # ------------------------------------
 # Emacs
