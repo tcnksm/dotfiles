@@ -1,2 +1,3 @@
-emacs/emacs.d/elpa/archives/*
-emacs/emacs.d/etc/.cache/*
+emacs.d/elpa/archives/*
+emacs.d/etc/.cache/*
+!.gitkeep
