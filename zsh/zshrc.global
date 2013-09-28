@@ -42,6 +42,15 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
 # ------------------------------------
+# Go
+# ------------------------------------
+
+export GOROOT=/usr/local/bin/go
+export GOPATH=$HOME/.goenv
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+
+# ------------------------------------
 # Tmux-power-line
 # ------------------------------------
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
