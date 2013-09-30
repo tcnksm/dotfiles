@@ -21,6 +21,12 @@
 
 
 ;; --------------------------------------------------
+;; feature file for Turnip acceptance test
+;; --------------------------------------------------
+(require 'feature-mode nil t)
+(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+
+;; --------------------------------------------------
 ;; ruby-electric.el
 ;; [description] 括弧などを自動挿入
 ;; [install] (install-elisp https://raw.github.com/ruby/ruby/trunk/misc/ruby-electric.el)
@@ -75,12 +81,13 @@
 (require 'smartchr nil t)
 
 (defun smartchr-ruby ()
-  (local-set-key (kbd "=") (smartchr '("=" " = " " == " " =~ ")))
+  (local-set-key (kbd "=") (smartchr '("=" " = " " == " " =~ " "===")))
   (local-set-key (kbd "+") (smartchr '("+" " + " " += ")))
   (local-set-key (kbd "-") (smartchr '("-" " - " " -= ")))
 
-  (local-set-key (kbd ">") (smartchr '(" => " ">")))
-  
+  (local-set-key (kbd ">") (smartchr '(">" " => ")))
+
+  (local-set-key (kbd "\"") (smartchr '("\"`!!'\"" "\"")))
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
   (local-set-key (kbd "{") (smartchr '("{ `!!' }" "{\n`!!'\n}" "{")))
   (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
