@@ -177,7 +177,6 @@
 ;; Copy by mouse drag
 ;; --------------------------------------------------
 
-(setq x-select-enable-clipboard nil)
 (setq select-active-regions nil)
 (setq mouse-drag-copy-region t)
 (setq x-select-enable-primary t)
