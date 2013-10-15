@@ -13,10 +13,20 @@ FONT_ROOT  =  File.join(File.dirname(__FILE__), "stuff", "fonts")
 ZSH_DOT_FILES  =  %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
 ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
 
-CLEAN.concat(`find #{HOME} -maxdepth 1 -type l `.split(" "))
-CLEAN << File.join(HOME, ".zsh")
-CLEAN << File.join(HOME, ".tmux-powerline")
-CLEAN << File.join(HOME, ".oh-my-zsh")
+cleans = [
+          ".emacs.d",
+          ".zsh",
+          ".zshrc",
+          ".oh-my-zsh",
+          ".tmux.conf",
+          ".tmux-powerline",
+          ".tmux-powerlinerc",
+          ".gitconfig",
+          ".gitignore.global",
+          ".gemrc",
+         ]
+
+CLEAN.concat(cleans.map{|c| File.join(HOME,c)})
 
 task :default => :all
 task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "etc:link"]
@@ -24,6 +34,8 @@ task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "etc
 namespace :emacs do
   desc "Create symbolic link to HOME"
   task :link do
+    org = File.join(HOME, ".emacs.d")
+    mv org, File.join(HOME, ".emacd.d.org") if File.exist?(org) && !File.symlink?(org) 
     symlink_ File.join(File.dirname(__FILE__), "emacs.d"), File.join(HOME,".emacs.d")
   end
 end
@@ -59,6 +71,9 @@ namespace :zsh do
     ZSH_DOT_FILES.each do |f|
       symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
     end
+    
+    org = File.join(HOME, ".zshrc")
+    mv org, File.join(HOME, ".zshrc.org") if File.exist?(org) && !File.symlink?(org)
     symlink_ File.join(ZSH_ROOT, "zshrc"), File.join(HOME, ".zshrc")
     symlink_ File.join(ZSH_ROOT, "oh-my-zsh-theme","tc.zsh-theme"), File.join(HOME,".oh-my-zsh","themes","tc.zsh-theme")
   end
