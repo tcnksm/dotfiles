@@ -35,7 +35,7 @@ namespace :emacs do
   desc "Create symbolic link to HOME"
   task :link do
     org = File.join(HOME, ".emacs.d")
-    mv org, File.join(HOME, ".emacd.d.org") if File.exist?(org) && !File.symlink?(org) 
+    mv org, File.join(HOME, ".emacs.d.org") if File.exist?(org) && !File.symlink?(org) 
     symlink_ File.join(File.dirname(__FILE__), "emacs.d"), File.join(HOME,".emacs.d")
   end
 end
