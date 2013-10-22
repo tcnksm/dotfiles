@@ -64,13 +64,6 @@ alias tmux='tmux -2 -f ~/.tmux.conf'
 alias tmux-copy='tmux save-buffer - | pbcopy'
 alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
 
-
-# ------------------------------------
-# Tex
-# ------------------------------------
-alias platex='platex --kanji=utf8'
-alias jbibtex='jbibtex --kanji=utf8'
-
 # ------------------------------------
 # Pygmentize
 # ------------------------------------
