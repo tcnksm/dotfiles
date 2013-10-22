@@ -41,6 +41,15 @@ export EDITOR=/usr/local/bin/emacsclient
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
+# ------------------------------------
+# node.js
+# ------------------------------------
+
+# Version management (nodebrew)
+if [[ -f ~/.nodebrew/nodebrew ]]; then
+    export PATH=$HOME/.nodebrew/current/bin:$PATH
+    nodebrew use stable
+fi
 
 # ------------------------------------
 # Tmux-power-line
