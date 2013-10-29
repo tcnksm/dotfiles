@@ -41,10 +41,10 @@
 ;; - M-x install-elisp
 ;; - M-x auto-install-from-url
 ;; -------------------------------------------------- 
-(when (require 'auto-install nil t)
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  (auto-install-update-emacswiki-package-name t)
-  (auto-install-compatibility-setup))
+;; (when (require 'auto-install nil t)
+;;   (setq auto-install-directory "~/.emacs.d/elisp/")
+;;   (auto-install-update-emacswiki-package-name t)
+;;   (auto-install-compatibility-setup))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
