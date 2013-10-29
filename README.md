@@ -10,9 +10,6 @@ Just type `rake` or `rake all`.
 #### Uninstall
 Just type `rake clean`.
 
-#### Screen shot
-![shot](stuff/images/screen_shot.png)
-
 
 
 
