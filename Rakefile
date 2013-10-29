@@ -8,6 +8,7 @@ GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
 ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
 ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
 TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
+SLATE_ROOT =  File.join(File.dirname(__FILE__), "slate")
 FONT_ROOT  =  File.join(File.dirname(__FILE__), "stuff", "fonts")
 
 ZSH_DOT_FILES  =  %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
@@ -24,12 +25,14 @@ cleans = [
           ".gitconfig",
           ".gitignore.global",
           ".gemrc",
+          ".slate",
+          ".slate.js"
          ]
 
 CLEAN.concat(cleans.map{|c| File.join(HOME,c)})
 
 task :default => :all
-task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "etc:link"]
+task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "slate:link","etc:link"]
 
 namespace :emacs do
   desc "Create symbolic link to HOME"
@@ -85,6 +88,13 @@ namespace :zsh do
 
   file File.join(HOME, ".zsh") do |f|
     mkdir f.name
+  end
+end
+
+namespace :slate do
+  desc "Create symbolic link"
+  task :link do
+    same_name_symlinks SLATE_ROOT, ["slate", "slate.js"] if OS =~ /^Darwin/
   end
 end
 

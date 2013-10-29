@@ -1,0 +1,25 @@
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Layout
+
+# Resize Bindings
+bind right:alt       resize +10% +0
+bind left:alt        resize -10% +0
+bind up:alt          resize +0   -10%
+bind down:alt        resize +0   +10%
+
+# Throw Bindings
+bind f:alt         throw 0 resize
+
+# Push Binding
+bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
+bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
+
+# Focus
+bind right:cmd    focus right
+bind left:cmd     focus left
+bind up:cmd       focus behind
+bind down:cmd     focus behind
