@@ -4,24 +4,15 @@ S.bind("r:alt", function(win) {
     S.operation("relaunch").run()
 })
 
-var launch_and_focus = function (target) {
-    return function (win) {
-        var apps = [];
-        S.eachApp(function (app) { apps.push(app.name()); });
-        if (! _.find(apps, function (name) { return name === target; })) {
-            win.doOperation(
-                S.operation('shell', {
-                    command: "/usr/bin/open -a " + target,
-                    waithFoeExit: true
-                })
-            );
-        }
-        win.doOperation(S.operation('focus', { app: target }));
-    };
-};
+S.bind("return:alt", function(win) {
+    S.shell("usr/bin/open -n -a iTerm")
+})
 
+S.bind('i:alt', function (win) {
+    win.doOperation(S.operation('focus', { app: 'iTerm' }));
+});
 
-S.bind('i:alt', launch_and_focus('iTerm'));
-S.bind('c:alt', launch_and_focus('Google Chrome'));
-
+S.bind('c:alt', function (win) {
+    win.doOperation(S.operation('focus', { app: 'Google Chrome' }));
+});
 
