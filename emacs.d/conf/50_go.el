@@ -34,7 +34,7 @@
 ;; --------------------------------------------------
 ;; Complete
 ;; --------------------------------------------------
-(add-to-list 'load-path "$GOPATH/src/github.com/nsf/gocode/emacs")
+(add-to-list 'load-path "~/dev/go/src/github.com/nsf/gocode/emacs/")
 (require 'go-autocomplete nil t)
 (require 'auto-complete-config nil t)
 
@@ -42,7 +42,7 @@
 ;; --------------------------------------------------
 ;; Flymake
 ;; --------------------------------------------------
-(add-to-list 'load-path "$GOPATH/src/github.com/dougm/goflymake")
+(add-to-list 'load-path "~/dev/go/src/github.com/dougm/goflymake")
 (require 'go-flymake nil t)
 
 
@@ -60,13 +60,14 @@
 (require 'smartchr nil t)
 
 (defun smartchr-go ()
-  (local-set-key (kbd "+") (smartchr '("+" " + " " += ")))
-  (local-set-key (kbd "-") (smartchr '("-" " - " " -= ")))
+  (local-set-key (kbd "+") (smartchr '("+" " + " " += " " ++ ")))
+  (local-set-key (kbd "-") (smartchr '("-" " - " " -= " " -- ")))
   (local-set-key (kbd "=") (smartchr '("=" " = " " := ")))
   (local-set-key (kbd ";") (smartchr '("; " ";")))
-  
+  (local-set-key (kbd ">") (smartchr '(" > " " -> " ">")))
+  (local-set-key (kbd "<") (smartchr '(" < " " <- " "<")))  
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
-  (local-set-key (kbd "{") (smartchr '("{ `!!' }" "{\n`!!'\n}" "{")))
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{\n`!!'\n}" "{")))
   (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
   )
 

@@ -24,6 +24,8 @@ alias push='git push'
 
 alias tt='tig'
 
+alias gist='gist -p'
+
 # ------------------------------------
 # Own definition
 # ------------------------------------
