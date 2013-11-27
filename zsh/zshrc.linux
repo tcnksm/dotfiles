@@ -20,6 +20,18 @@ alias open='xdg-open'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
+
+# ====================================
+# Language
+# ====================================
+
+# -----------------------------------
+# Go
+# -----------------------------------
+export PATH=$PATH:/usr/local/go/bin
+GOPATH=~/dev/local/go
+export PATH=$PATH:$GOPATH/bin
+
 # ====================================
 # Environment
 # ====================================	
