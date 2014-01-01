@@ -5,9 +5,9 @@ update
 upgrade
 
 # Add Repository
-tap homebrew/versions
-tap phinze/homebrew-cask
-tap homebrew/binary
+tap homebrew/versions || true
+tap phinze/homebrew-cask || true
+tap homebrew/binary || true
 
 # Packages
 
@@ -25,6 +25,8 @@ install proctools
 install markdown
 install tree
 install nkf
+install openssl
+install readline
 install imagemagick
 install brew-cask
 install packer

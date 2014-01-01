@@ -89,3 +89,5 @@ auto_telnet() {
       "
       return 0
 }
+
+function gi() { curl http://gitignore.io/api/\$@ ;}
