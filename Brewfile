@@ -5,9 +5,9 @@ update
 upgrade
 
 # Add Repository
-tap homebrew/versions || true
-tap phinze/homebrew-cask || true
-tap homebrew/binary || true
+tap homebrew/versions
+tap phinze/homebrew-cask
+tap homebrew/binary
 
 # Packages
 

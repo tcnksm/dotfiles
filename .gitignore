@@ -1,3 +1,4 @@
 emacs.d/elpa/archives/*
 emacs.d/etc/.cache/*
 !.gitkeep
+.ruby-version
