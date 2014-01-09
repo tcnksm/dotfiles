@@ -91,3 +91,10 @@ auto_telnet() {
 }
 
 function gi() { curl http://gitignore.io/api/$@ ;}
+
+function chgic() {
+      mv  ~/.gitconfig.local     ~/gitconfig.local
+      mv  ~/.tmp.gitconfig.local ~/.gitconfig.local
+      mv  ~/gitconfig.local      ~/.tmp.gitconfig.local
+      cat ~/.gitconfig.local
+}
