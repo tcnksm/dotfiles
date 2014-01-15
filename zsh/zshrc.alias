@@ -55,7 +55,7 @@ alias bi='bundle install --path vendor/bundle --binstubs .bundle/bin'
 # Emacs
 # ------------------------------------
 # alias emacs='/usr/local/bin/emacs'
-# alias e='/usr/local/bin/emacsclient'
+alias e='emacsclient'
 
 
 # ------------------------------------

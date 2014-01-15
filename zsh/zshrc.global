@@ -1,10 +1,3 @@
-# 
-# .zprofile
-# 
-# Written by deeeet <nsd22843@gmail.com>
-#
-#
-
 # ====================================
 # PATH 
 # ====================================
@@ -29,8 +22,29 @@ export LANG=ja_JP.UTF-8
 # ------------------------------------
 export EDITOR=/usr/local/bin/emacsclient
 
+
 # ====================================
-# ETC
+# TOOL
+# ====================================
+
+# ------------------------------------
+# z
+# ------------------------------------
+
+# Version management (nodebrew)
+if [[ -d ~/.zjump ]]; then
+   _Z_CMD=j
+   source "$HOME/.zjump/z.sh"
+else
+   echo "[Warning] z is not installed" 1>&2
+   # git clone https://github.com/rupa/z.git ~/.zjump
+fi
+
+
+
+
+# ====================================
+# LANGAGE
 # ====================================
 
 # ------------------------------------
@@ -38,8 +52,13 @@ export EDITOR=/usr/local/bin/emacsclient
 # ------------------------------------
 
 # Version management (rbenv)
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
+if [ -d ~/.rbenv ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init - zsh)"
+else
+    echo "[Warning] rbenv is not installed" 1>&2
+fi
+
 
 # ------------------------------------
 # node.js
@@ -49,7 +68,10 @@ eval "$(rbenv init - zsh)"
 if [[ -f ~/.nodebrew/nodebrew ]]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
     nodebrew use stable
+else
+    echo "[Warning] nodebrew is not installed" 1>&2
 fi
+
 
 # ------------------------------------
 # Tmux-power-line
