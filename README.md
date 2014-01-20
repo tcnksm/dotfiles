@@ -16,9 +16,12 @@ Just type `rake clean`.
 
 2014.01.20
 
-- expand region
+- highlight
+    - `C-]` set color
+    - `M-]` delete all highlight
+- expand region (not work ruby
     - `C-j`
-- multiple cursors
+- multiple cursors (not work ruby
     - `C-c C-p` select above
     - `C-c C-n` select below
     - `C-c C-c` select all
