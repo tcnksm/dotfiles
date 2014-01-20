@@ -16,6 +16,12 @@ Just type `rake clean`.
 
 2014.01.20
 
+- expand region
+    - `C-j`
+- multiple cursors
+    - `C-c C-p` select above
+    - `C-c C-n` select below
+    - `C-c C-c` select all
 - other-window
     - `C-t`
 - magit
