@@ -72,7 +72,6 @@
 
 (blink-cursor-mode 0)
 
-
 (cond
  (window-system
   (setq x-select-enable-clipboard t)))
@@ -156,12 +155,12 @@
 
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
+(global-set-key (kbd "C-c C-u") 'cua-set-rectangle-mark) ;; or C-RET
 
 ;; --------------------------------------------------
 ;; Don't use C-x C-c
 ;; --------------------------------------------------
 ;; (global-set-key (kbd "C-x C-c") 'anything-for-files)
-;; (global-set-key (kbd "C-x C-z") 'anything-for-files)
 
 (defalias 'exit 'save-buffers-kill-emacs)
 
