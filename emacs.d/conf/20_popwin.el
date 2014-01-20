@@ -9,6 +9,7 @@
 ;; Show in popup
 ;; -------------------------------------------------
 (push "*Backtrace*" popwin:special-display-config)
+(push '("*git-gutter:diff*" :noselect t) popwin:special-display-config)
 
 
 ;; -------------------------------------------------
