@@ -42,7 +42,6 @@
 ;; --------------------------------------------------
 ;; Mode line
 ;; --------------------------------------------------
-
 (size-indication-mode t)           ; show file size
 (setq display-time-24hr-fomat t)   ; set time 24 fomat
 (setq display-time-day-and-date t) ; display day and date
@@ -54,7 +53,6 @@
 ;; --------------------------------------------------
 ;; Display
 ;; --------------------------------------------------
-
 (show-paren-mode 1)
 (global-linum-mode 0)                                    ; show line number at left side 
 (menu-bar-mode -1)                                       ; do not show 'menu bar'
@@ -69,7 +67,6 @@
 ;; --------------------------------------------------
 ;; Cursor
 ;; --------------------------------------------------
-
 (blink-cursor-mode 0)
 
 (cond
@@ -79,7 +76,6 @@
 ;; --------------------------------------------------
 ;; Encoding
 ;; --------------------------------------------------
-
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
 (setq default-buffer-file-coding-system 'utf-8)
@@ -92,7 +88,6 @@
 ;; --------------------------------------------------
 ;; Backup file
 ;; --------------------------------------------------
-
 (setq make-backup-files nil)            ; do not create backup file
 (setq delete-auto-savefiles t)          ; delete auto sage file when closing
 (setq auto-save-list-file-prefix nil)   ; do not create auto-save-list
@@ -108,7 +103,6 @@
 ;; --------------------------------------------------
 ;; indent
 ;; --------------------------------------------------
-
 (setq-default indent-tabs-mode nil)
 (custom-set-variables '(tab-width 4))
 
@@ -116,7 +110,6 @@
 ;; --------------------------------------------------
 ;; completion
 ;; --------------------------------------------------
- 
 (setq completion-ignore-case t)                  ; dont distinguish characutor case
 (setq read-file-name-completion-ignore-case t)   ; dont distinguish characutor case
 ;; (partial-completion-mode t)                      ; partial complettion
@@ -125,16 +118,13 @@
 ;; --------------------------------------------------
 ;; paren mode
 ;; --------------------------------------------------
-
 (show-paren-mode t)
 (setq show-paren-delay 0)
-(setq show-paren-style 'expression)
-(set-face-background 'show-paren-match-face "#393939") ; change emphasis color
+(setq show-paren-style 'expression)set-face-background 'show-paren-match-face "#393939") ; change emphasis color
 
 ;; --------------------------------------------------
 ;; recentf mode
 ;; --------------------------------------------------
-
 (recentf-mode t)
 (setq recentf-max-menu-items 10)            ; max display
 (setq recentf-max-saved-items 3000)         ; max save
@@ -142,7 +132,6 @@
 ;; --------------------------------------------------
 ;; Save hist mode
 ;; --------------------------------------------------
-
 (savehist-mode 1)
 (setq history-length 3000)
 (setq savehist-file "~/.emacs.d/etc/.cache/history")
@@ -150,12 +139,18 @@
 
 ;; --------------------------------------------------
 ;; Cua mode
-;; [reference] http://dev.ariel-networks.com/articles/emacs/part5/
 ;; --------------------------------------------------
-
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 (global-set-key (kbd "C-c C-u") 'cua-set-rectangle-mark) ;; or C-RET
+
+
+;; --------------------------------------------------
+;; Uniquify
+;; --------------------------------------------------
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
 
 ;; --------------------------------------------------
 ;; Don't use C-x C-c

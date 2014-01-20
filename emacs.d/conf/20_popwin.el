@@ -5,6 +5,11 @@
 (setq display-buffer-function 'popwin:display-buffer)
 (setq popwin:popup-window-position 'bottom)
 
+;; -------------------------------------------------
+;; Show in popup
+;; -------------------------------------------------
+(push "*Backtrace*" popwin:special-display-config)
+
 
 ;; -------------------------------------------------
 ;; direx (show directory tree)
