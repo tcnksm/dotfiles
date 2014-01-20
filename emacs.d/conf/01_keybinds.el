@@ -38,5 +38,7 @@
 ;; Grep
 (global-set-key "\M-C-g" 'grep)
 
+;; Chnage window
+(global-set-key "\C-t" 'other-window)
 
 
