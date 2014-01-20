@@ -16,6 +16,13 @@ Just type `rake clean`.
 
 2014.01.20
 
+- other-window
+    - `C-t`
+- magit
+    - `C-c g s`, git status
+        - `s` -> staging
+        - `c` -> commit
+        - `P` -> push
 - git
     - `C-c g =`, check diff
 - github
