@@ -1,6 +1,10 @@
 ;; ==================================================
 ;; GIT settting
 ;; ==================================================
+(require 'magit nil t)
+
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g l") 'magit-log)
 
 ;; --------------------------------------------------
 ;; GitHub
@@ -17,9 +21,6 @@
 (require 'git-gutter nil t)
 (global-git-gutter-mode t)
 
-;; --------------------------------------------------
-;; Keybind
-;; --------------------------------------------------
 (global-set-key (kbd "C-c g =") 'git-gutter:popup-hunk)
 (global-set-key (kbd "C-c g p") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-c g n") 'git-gutter:next-hunk)
