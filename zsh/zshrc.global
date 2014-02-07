@@ -40,8 +40,10 @@ else
    # git clone https://github.com/rupa/z.git ~/.zjump
 fi
 
-
-
+# ------------------------------------
+# Heroku toolbelt
+# ------------------------------------
+export PATH="/usr/local/heroku/bin:$PATH"
 
 # ====================================
 # LANGAGE
@@ -72,6 +74,31 @@ else
     echo "[Warning] nodebrew is not installed" 1>&2
 fi
 
+# ------------------------------------
+# Java
+# ------------------------------------
+
+# Version management (jenv)
+if [[ -f ~/.jenv/bin/jenv-init.sh ]]; then
+   source ~/.jenv/bin/jenv-init.sh
+   source ~/.jenv/commands/completion.sh
+   if [[ -d $HOME/.jenv/candidates/java ]]; then
+       mkdir -p $HOME/.jenv/candidates/java
+   fi
+else         
+   echo "[Warning] jenv is not installed" 1>&2
+fi
+
+# ------------------------------------
+# gvm
+# ------------------------------------
+
+# Version management (gvm)
+if [[ -f ~/.gvm/bin/gvm-init.sh ]]; then
+   source ~/.gvm/bin/gvm-init.sh
+else         
+   echo "[Warning] gvm is not installed" 1>&2
+fi
 
 # ------------------------------------
 # Tmux-power-line
