@@ -32,6 +32,11 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/dev/local/go
 export PATH=$PATH:$GOPATH/bin
 
+# -----------------------------------
+# java
+# -----------------------------------
+export PATH=$HOME/bin/jdk1.7.0_51/bin:$PATH
+
 # ====================================
 # Environment
 # ====================================	

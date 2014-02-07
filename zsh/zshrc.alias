@@ -65,7 +65,13 @@ alias tmux='tmux -2 -f ~/.tmux.conf'
 alias tmux-copy='tmux save-buffer - | pbcopy'
 alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
 
+# -------------------------------------
+# IntelliJ
+# -------------------------------------
+alias idea="~/bin/idea-IC-133.696/bin/idea.sh"
+
 # ------------------------------------
 # Pygmentize
 # ------------------------------------
 alias c='pygmentize -O style=monokai -f console256 -g'
+
