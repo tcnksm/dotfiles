@@ -25,6 +25,7 @@ alias tt='tig'
 
 alias gist='gist -p'
 
+alias g="gitsh"
 # ------------------------------------
 # Own definition
 # ------------------------------------
