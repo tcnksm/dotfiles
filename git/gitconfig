@@ -39,6 +39,7 @@
   br  = branch -r
 
   co  = checkout
+  cb  = checkout -b
   master = checkout master
 
   d   = diff
@@ -63,6 +64,7 @@
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this   = !git init && git add . && git commit -m \"Initial commit\"
+  cmb    = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\";}; f"
   rr     = !git ls-files -z --deleted | xargs -0 git rm
   alias  = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
   ignore = !([ ! -e .gitignore ] && touch .gitignore) && echo $1 | echo >>.gitignore
