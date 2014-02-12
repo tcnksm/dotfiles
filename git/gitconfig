@@ -70,3 +70,4 @@
   ignore = "!ignore () { echo $1 >> .gitignore;}; ignore"
   github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
   now    = rev-parse --abbrev-ref HEAD  
+  e      = !exit
