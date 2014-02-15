@@ -64,7 +64,7 @@
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this   = !git init && git add . && git commit -m \"Initial commit\"
-  cmb    = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\";}; f"
+  cmb    = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\" $2;}; f"
   rr     = !git ls-files -z --deleted | xargs -0 git rm
   alias  = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
   ignore = "!ignore () { echo $1 >> .gitignore;}; ignore"
