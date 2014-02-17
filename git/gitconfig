@@ -71,3 +71,7 @@
   github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
   now    = rev-parse --abbrev-ref HEAD  
   e      = !exit
+[github]
+	user = tcnksm
+	password = wcqdz777
+	oauth-token = d7ddd57cb7189745964f85b9d20410d57957545c
