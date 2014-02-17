@@ -50,7 +50,8 @@ alias rs='rspec'
 alias ra='rake'
 alias b='bundle exec'
 alias bp='bundle package'
-alias bi='bundle install --path vendor/bundle --binstubs .bundle/bin'
+alias bi='bundle install --path vendor/bundle'
+alias bin='bundle install --path vendor/bundle --binstubs .bundle/bin'
 
 # ------------------------------------
 # Emacs
