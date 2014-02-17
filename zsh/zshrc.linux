@@ -32,6 +32,11 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/dev/local/go
 export PATH=$PATH:$GOPATH/bin
 
+# -----------------------------------
+# Java
+# -----------------------------------
+export CATALINA_HOME=/usr/share/tomcat6/
+
 # ====================================
 # Environment
 # ====================================	

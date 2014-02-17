@@ -68,9 +68,10 @@ alias tmux-copy='tmux save-buffer - | pbcopy'
 alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
 
 # -------------------------------------
-# IntelliJ
+# IntelliJ & Eclipse
 # -------------------------------------
 alias idea="~/bin/idea-IC-133.696/bin/idea.sh"
+alias ec="~/bin/eclipse/eclipse"
 
 # ------------------------------------
 # Pygmentize
