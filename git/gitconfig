@@ -21,6 +21,9 @@
 [push]
   default = simple
 
+[grep]
+  lineNumber = true
+
 [alias]
   s   = status
   st  = status

@@ -6,6 +6,7 @@ OS = `uname`
 
 GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
 ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
+ATOM_ROOT   =  File.join(File.dirname(__FILE__), "atom")
 ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
 TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
 SLATE_ROOT =  File.join(File.dirname(__FILE__), "slate")
@@ -16,6 +17,7 @@ ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
 
 cleans = [
           ".emacs.d",
+          ".atom",
           ".zsh",
           ".zshrc",
           ".oh-my-zsh",
@@ -32,7 +34,7 @@ cleans = [
 CLEAN.concat(cleans.map{|c| File.join(HOME,c)})
 
 task :default => :all
-task :all => ["emacs:link", "git:link","tmux:link","zsh:link", "font:link", "slate:link","etc:link"]
+task :all => ["emacs:link", "atom:link", "git:link","tmux:link","zsh:link", "font:link", "slate:link","etc:link"]
 
 namespace :emacs do
   desc "Create symbolic link to HOME"
@@ -40,6 +42,13 @@ namespace :emacs do
     org = File.join(HOME, ".emacs.d")
     mv org, File.join(HOME, ".emacs.d.org") if File.exist?(org) && !File.symlink?(org) 
     symlink_ File.join(File.dirname(__FILE__), "emacs.d"), File.join(HOME,".emacs.d")
+  end
+end
+
+namespace :atom do
+  desc "Create symbolic link"
+  task :link do
+    symlink_ ATOM_ROOT, File.join(HOME, ".atom")
   end
 end
 

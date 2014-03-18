@@ -35,6 +35,12 @@ if [ -n "$TMUX" ]; then
   alias pbpaste="reattach-to-user-namespace pbpaste"
 fi
 
+# ------------------------------------
+# Packer (should be deleted)
+# ------------------------------------
+export PATH=$HOME/bin/packer:$PATH
+
+
 # ====================================
 # Environment
 # ====================================	
