@@ -68,6 +68,7 @@ cask install alfred        || true
 cask install sourcetree    || true
 cask install evernote      || true
 cask install kobito        || true
+cask install sublime-text  || true
 cask install virtualbox    || true
 cask install vagrant       || true
 cask install slate         || true

@@ -1,4 +1,6 @@
 emacs.d/elpa/archives/*
 emacs.d/etc/.cache/*
+atom/storage/*
 !.gitkeep
-.ruby-version
+.ruby-versionstrage
+strage
