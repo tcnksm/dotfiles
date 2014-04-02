@@ -1,0 +1,27 @@
+{
+  "name": "highlight-line",
+  "main": "./lib/highlight-line-view",
+  "version": "0.5.5",
+  "description": "Highlights the current line in the editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richrace/highlight-line"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/richrace/highlight-line/issues"
+  },
+  "homepage": "https://github.com/richrace/highlight-line",
+  "readme": "# Highlight Line Package\n\nHighlights the current line in the editor; really simple.\n\n![screenshot](http://i.imgur.com/fa32Wtr.png)\n\nNow also supports multi-line selections!\n\n![screenshot](http://i.imgur.com/Y3sstsF.gif)\n\nYou can now also underline the the current lines thanks to\n[@sniperbat](https://github.com/sniperbat). This isn't enabled by default, and\nyou can edit the colour and type of line.\n\n![screenshot](http://i.imgur.com/lIYBxQX.png)\n\n\nI've added some basic options to change the colour and opacity for the line.\nAlso, It's now possible to Enable and Disable the line.\n\n## Todo\n\n- Add menu and hotkey mappings for enabling/disabling the highlight.\n",
+  "readmeFilename": "README.md",
+  "_id": "highlight-line@0.5.5",
+  "dist": {
+    "shasum": "dc3cd955c062ce55c7779ad787c2c1c163b84225"
+  },
+  "_resolved": "/var/folders/hk/t6xpt_j974gfnv_nd3t79x3h2b8vpv/T/d-11432-57065-1k4zi2x/package.tgz",
+  "_from": "/var/folders/hk/t6xpt_j974gfnv_nd3t79x3h2b8vpv/T/d-11432-57065-1k4zi2x/package.tgz"
+}
