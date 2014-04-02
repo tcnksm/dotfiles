@@ -18,3 +18,7 @@
     '.svn'
     '.DS_Store'
   ]
+'gist-it':
+  'newGistsDefaultToPrivate': true
+'autocomplete-plus':
+  'liveCompletion': true

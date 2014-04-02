@@ -5,3 +5,4 @@ atom/storage/*
 .ruby-versionstrage
 strage
 atom/.node-gyp
+atom/gist-it.token
