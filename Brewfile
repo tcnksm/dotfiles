@@ -1,42 +1,76 @@
 # Make sure using latest Homebrew
-update
+update || true
 
 # Update already-installed formula
-upgrade
+upgrade || true
 
 # Add Repository
-tap homebrew/versions
-tap phinze/homebrew-cask
-tap homebrew/binary
+tap homebrew/versions    || true
+tap phinze/homebrew-cask || true
+tap homebrew/binary      || true
+tap thoughtbot/formulae  || true
 
 # Packages
 
-install zsh
-install git
-install gist
-install tig
-install emacs
-install rmtrash
-install coreutils
-install rmtrash
-install wget
-install tmux
-install proctools
-install markdown
-install tree
-install nkf
-install openssl
-install readline
-install imagemagick
-install brew-cask
-install packer
+## Shell
+install zsh   || true
 
-# .dmg
-cask install google-chrome
-cask install evernote
-cask install kobito
-cask install virtualbox
-cask install vagrant
+## Editor
+install emacs || true
+
+## Git
+install git   || true
+install hub   || true
+install gitsh || true
+install gist  || true
+install tig   || true
+install gibo  || true
+
+## Utils
+install rmtrash   || true
+install coreutils || true
+install rmtrash   || true
+install wget      || true
+install curl      || true
+install proctools || true
+install tree      || true
+install openssl   || true
+install readline  || true
+install tmux      || true
+install markdown  || true
+install nkf       || true
+
+## Languages
+install rbenv      || true
+install ruby-build || true
+install go         || true
+install python3    || true
+
+## DevOps
+install docker      || true
+install boot2docker || true
+install packer      || true
+
+## Heroku
+install heroku-toolbelt || true
+
+## Image
+install imagemagick || true
+
+# Casks 
+install brew-cask
+cask install google-chrome || true
+cask install iterm2        || true
+cask install dropbox       || true
+cask install hipchat       || true
+cask install yorufukurou   || true
+cask install alfred        || true
+cask install sourcetree    || true
+cask install evernote      || true
+cask install kobito        || true
+cask install virtualbox    || true
+cask install vagrant       || true
+cask install slate         || true
 
 # Remove outdated versions
 cleanup
