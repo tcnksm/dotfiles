@@ -4,3 +4,4 @@ atom/storage/*
 !.gitkeep
 .ruby-versionstrage
 strage
+atom/.node-gyp
