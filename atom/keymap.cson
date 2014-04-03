@@ -18,15 +18,21 @@
 #
 
 '.editor':
-  # Save
+
+  # Save(Emacs)
   'ctrl-x ctrl-s': 'core:save'
+
+  # Comment out(Emacs)
+  'ctrl-x ctrl-x': 'editor:toggle-line-comments'
+
 
 'body':
 
-  # Split pane
+  # Paste(Emacs)
+  'ctrl-y': 'core:paste'
+
+  # Pane
   'ctrl-x 0': 'pane:close'
   'ctrl-x 2': 'pane:split-down'
   'ctrl-x 3': 'pane:split-right'
-
-  # Move pane
   'ctrl-r ctrl-r': 'pane:show-next-item'
