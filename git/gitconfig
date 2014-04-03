@@ -9,7 +9,7 @@
   grep = auto
 
 [core]
-  excludesfile = ~/.gitignore.global
+	excludesfile = /Users/taichi.nakashima/.gitignore.global
   editor = emacs
 
 [merge]
@@ -75,3 +75,15 @@
   ignore = "!ignore () { echo $1 >> .gitignore;}; ignore"
   github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
   now    = rev-parse --abbrev-ref HEAD  
+[user]
+	name = tcnksm
+	email = nsd22843@gmail.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.8.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

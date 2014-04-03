@@ -72,6 +72,6 @@ cask install sublime-text  || true
 cask install virtualbox    || true
 cask install vagrant       || true
 cask install slate         || true
-
+cask install dash          || true
 # Remove outdated versions
 cleanup
