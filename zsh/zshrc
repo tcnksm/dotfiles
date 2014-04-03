@@ -116,4 +116,3 @@ esac
 # ------------------------------------
 [ ! -f ~/.zsh/zshrc.local ] && touch ~/.zsh/zshrc.local
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
-
