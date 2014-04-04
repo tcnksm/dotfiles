@@ -31,6 +31,9 @@
   # Paste(Emacs)
   'ctrl-y': 'core:paste'
 
+  # Quit Application(Emacs)
+  'ctrl-x ctrl-c': 'application:quit'
+
   # Pane
   'ctrl-x 0': 'pane:close'
   'ctrl-x 2': 'pane:split-down'
