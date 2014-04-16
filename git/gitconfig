@@ -54,19 +54,23 @@
   d2  = diff HEAD~~
   d3  = diff HEAD~~~
   d4  = diff HEAD~~~~
-  d5  = diff HEAD~~~~~ 
-  
+  d5  = diff HEAD~~~~~
+
 
   l   = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
   ll  = log --stat --abbrev-commit
   l1  = log --stat --abbrev-commit -n 1
+
 
   gr  = grep
   gn  = grep -n
 
   p   = push
   pb  = !git push -u origin $(git branch -a | grep '^*' | cut -b 3-);
-  
+  pom = push -u origin master
+
+  td  = !git for-each-ref --sort=taggerdate refs/tags | tail -n 1
+
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this   = !git init && git add . && git commit -m \"Initial commit\"
   cmb    = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\" $2;}; f"
@@ -74,13 +78,14 @@
   alias  = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
   ignore = "!ignore () { echo $1 >> .gitignore;}; ignore"
   github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
-  now    = rev-parse --abbrev-ref HEAD  
+  now    = rev-parse --abbrev-ref HEAD
+
 [user]
 	name = tcnksm
 	email = nsd22843@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.8.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

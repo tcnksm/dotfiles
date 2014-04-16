@@ -35,6 +35,7 @@ install curl      || true
 install proctools || true
 install tree      || true
 install openssl   || true
+install libyaml   || true
 install readline  || true
 install tmux      || true
 install markdown  || true
