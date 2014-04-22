@@ -69,7 +69,7 @@
   pb  = !git push -u origin $(git branch -a | grep '^*' | cut -b 3-);
   pom = push -u origin master
 
-  td  = !git for-each-ref --sort=taggerdate refs/tags | tail -n 1
+  td  = !git for-each-ref --sort=taggerdate refs/tags
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this   = !git init && git add . && git commit -m \"Initial commit\"

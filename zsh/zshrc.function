@@ -26,12 +26,12 @@ ls_abbrev() {
             fi
             ;;
     esac
- 
+
     local ls_result
     ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
- 
+
     local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
- 
+
     if [ $ls_lines -gt 5 ]; then
         echo "$ls_result" | head -n 3
     else
@@ -76,11 +76,9 @@ auto_telnet() {
       # タイムアウト値の指定
       set timeout 20
       # spawnで新しいジョブ生成
-      spawn telnet $host
+      spawn telnet -l $user $host
 
       # login
-      expect login:
-      send \"$user\n\"
       expect Password:
       send \"$pass\n\"
 
