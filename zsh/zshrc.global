@@ -96,6 +96,7 @@ fi
 # Version management (gvm)
 if [[ -f ~/.gvm/bin/gvm-init.sh ]]; then
    source ~/.gvm/bin/gvm-init.sh
+   export PATH="$HOME/.gvm/gradle/current/bin:$PATH"
 else         
    echo "[Warning] gvm is not installed" 1>&2
 fi
