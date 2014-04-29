@@ -6,7 +6,7 @@ OS = `uname`
 
 GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
 ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
-ATOM_ROOT   =  File.join(File.dirname(__FILE__), "atom")
+ATOM_ROOT  =  File.join(File.dirname(__FILE__), "atom")
 ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
 TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
 SLATE_ROOT =  File.join(File.dirname(__FILE__), "slate")
@@ -22,8 +22,6 @@ cleans = [
           ".zshrc",
           ".oh-my-zsh",
           ".tmux.conf",
-          ".tmux-powerline",
-          ".tmux-powerlinerc",
           ".gitconfig",
           ".gitignore.global",
           ".gemrc",
@@ -66,14 +64,8 @@ end
 
 namespace :tmux do  
   desc "Create symblic link to HOME"
-  task :link => File.join(HOME,".tmux-powerline") do
-    same_name_symlinks TMUX_ROOT, ["tmux.conf", "tmux-powerlinerc"]
-    symlink_ File.join(TMUX_ROOT,"tmux-powerline-theme.sh"), File.join(HOME, ".tmux-powerline/themes/mytheme.sh")
-  end
-  
-  desc "Download tmux-powerline"
-  file File.join(HOME,".tmux-powerline") do |f|
-    sh "git clone https://github.com/erikw/tmux-powerline.git #{f.name}"
+  task :link do
+    same_name_symlinks TMUX_ROOT, ["tmux.conf"]
   end
 end
 

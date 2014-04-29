@@ -14,10 +14,9 @@
 ;; --------------------------------------------------
 ;; Color
 ;; --------------------------------------------------
-
 ;; Tomorrow
 ;; M-x color-theme-sanityinc-tomorrow-eighties
-(require 'color-theme-sanityinc-tomorrow nil t)
+(require 'color-theme-sanityinc-tomorrow-night nil t)
 
 
 ;; --------------------------------------------------
