@@ -13,15 +13,9 @@
     'atom-dark-ui'
     'atom-dark-syntax'
   ]
-  'ignoredNames': [
-    '.git'
-    '.svn'
-    '.DS_Store'
-  ]
 'gist-it':
   'newGistsDefaultToPrivate': true
-'autocomplete-plus':
-  'liveCompletion': true
+'autocomplete-plus': {}
 'dash':
   'grammars':
     'ActionScript': [
@@ -436,3 +430,4 @@
       'chef'
       'ansible'
     ]
+'markdown-preview': {}
