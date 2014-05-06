@@ -24,8 +24,9 @@
 ;; Keybind
 ;; --------------------------------------------------
 (defun go-keybind ()
-  (local-set-key (kbd "M-j")      'godef-jump)      ;; Jump to definition
-  (local-set-key (kbd "\C-c")     'go-import-add)   ;; Import package
+  (local-set-key (kbd "M-j")     'godef-jump)      ;; Jump to definition
+  (local-set-key (kbd "M-p")     'go-import-add)   ;; Import package
+  (local-set-key (kbd "M-r")     'go-remove-unused-imports) ;;  Remove unused package
   )
 
 (add-hook 'go-mode-hook 'go-keybind)
@@ -54,6 +55,12 @@
 
 
 ;; --------------------------------------------------
+;; go lint
+;; --------------------------------------------------
+(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(require 'golint nil t)
+
+;; --------------------------------------------------
 ;; smartchr
 ;; --------------------------------------------------
 
@@ -62,11 +69,11 @@
 (defun smartchr-go ()
   (local-set-key (kbd "+") (smartchr '("+" " + " " += " " ++ ")))
   (local-set-key (kbd "-") (smartchr '("-" " - " " -= " " -- ")))
-  (local-set-key (kbd "=") (smartchr '("=" " = " " := ")))
+  (local-set-key (kbd "=") (smartchr '("=" " = " " := " " != " " == ")))
   (local-set-key (kbd ";") (smartchr '("; " ";")))
   (local-set-key (kbd ">") (smartchr '(" > " " -> " ">")))
   (local-set-key (kbd "<") (smartchr '(" < " " <- " "<")))  
-  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+  (local-set-key (kbd "(") (smartchr '("(`!!')" "()`!!'" "(")))
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{\n`!!'\n}" "{")))
   (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
   )

@@ -1,9 +1,5 @@
 
-// relaunch slate
-S.bind("r:alt", function(win) {
-    S.operation("relaunch").run()
-})
-
+// open iTerm
 S.bind("return:alt", function(win) {
     S.shell("usr/bin/open -n -a iTerm")
 })
