@@ -92,3 +92,7 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[github]
+	user = tcnksm
+	password = wcqdz777
+	oauth-token = 9e01c36d0598ef5c40d720a687be3679f00c22bd

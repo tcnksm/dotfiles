@@ -1,5 +1,5 @@
 # ====================================
-# PATH 
+# PATH
 # ====================================
 
 # ------------------------------------
@@ -85,7 +85,7 @@ if [[ -f ~/.jenv/bin/jenv-init.sh ]]; then
    if [[ -d $HOME/.jenv/candidates/java ]]; then
        mkdir -p $HOME/.jenv/candidates/java
    fi
-else         
+else
    echo "[Warning] jenv is not installed" 1>&2
 fi
 
@@ -97,12 +97,22 @@ fi
 if [[ -f ~/.gvm/bin/gvm-init.sh ]]; then
    source ~/.gvm/bin/gvm-init.sh
    export PATH="$HOME/.gvm/gradle/current/bin:$PATH"
-else         
+else
    echo "[Warning] gvm is not installed" 1>&2
+fi
+
+# ------------------------------------
+# zaw, https://github.com/zsh-users/zaw
+# ------------------------------------
+
+# Version management (jenv)
+if [[ -f ~/.zaw/zaw.zsh ]]; then
+   source ~/.zaw/zaw.zsh
+else
+   echo "[Warning] zaw is not installed" 1>&2
 fi
 
 # ------------------------------------
 # Tmux-power-line
 # ------------------------------------
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-

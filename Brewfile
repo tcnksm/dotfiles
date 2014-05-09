@@ -27,6 +27,8 @@ install tig   || true
 install gibo  || true
 
 ## Utils
+install autoconf  || true
+install automake  || true
 install rmtrash   || true
 install coreutils || true
 install rmtrash   || true
@@ -78,6 +80,7 @@ cask install vagrant       || true
 cask install slate         || true
 cask install dash          || true
 cask install Cyberduck     || true
+cask install eclipse-ide   || true
 
 # Remove outdated versions
 cleanup

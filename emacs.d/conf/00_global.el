@@ -26,7 +26,7 @@
 ;; English
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
-                    :height 300) ; font, font size
+                    :height 150) ; font, font size
 
 ;; Japanese
 (set-default-font "VL Gothic-11")
@@ -66,7 +66,7 @@
 ;; --------------------------------------------------
 ;; Cursor
 ;; --------------------------------------------------
-(blink-cursor-mode 0)
+(blink-cursor-mode 1)
 
 (cond
  (window-system
