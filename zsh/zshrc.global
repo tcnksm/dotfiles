@@ -30,15 +30,13 @@ export EDITOR=/usr/local/bin/emacsclient
 # ------------------------------------
 # z
 # ------------------------------------
-
-# Version management (nodebrew)
-if [[ -d ~/.zjump ]]; then
-   _Z_CMD=j
-   source "$HOME/.zjump/z.sh"
-else
-   echo "[Warning] z is not installed" 1>&2
-   # git clone https://github.com/rupa/z.git ~/.zjump
-fi
+# if [[ -d ~/.zjump ]]; then
+#    _Z_CMD=j
+#    source "$HOME/.zjump/z.sh"
+# else
+#    echo "[Warning] z is not installed" 1>&2
+#    # git clone https://github.com/rupa/z.git ~/.zjump
+# fi
 
 # ------------------------------------
 # Heroku toolbelt
@@ -52,13 +50,19 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # ------------------------------------
 # Ruby
 # ------------------------------------
+# if [ -d ~/.rbenv ]; then
+#     export PATH="$HOME/.rbenv/bin:$PATH"
+#     eval "$(rbenv init - zsh)"
+# else
+#     echo "[Warning] rbenv is not installed" 1>&2
+# fi
 
-# Version management (rbenv)
-if [ -d ~/.rbenv ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init - zsh)"
+if [ -d /usr/local/share/chruby ]; then
+    source /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/auto.sh
+    RUBIES+=(~/.rbenv/versions/*)
 else
-    echo "[Warning] rbenv is not installed" 1>&2
+    echo "[Warning] chruby is not installed" 1>&2
 fi
 
 
@@ -105,7 +109,6 @@ fi
 # zaw, https://github.com/zsh-users/zaw
 # ------------------------------------
 
-# Version management (jenv)
 if [[ -f ~/.zaw/zaw.zsh ]]; then
    source ~/.zaw/zaw.zsh
 else
@@ -116,3 +119,9 @@ fi
 # Tmux-power-line
 # ------------------------------------
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
+
+# ------------------------------------
+# direnv
+# ------------------------------------
+eval "$(direnv hook zsh)"

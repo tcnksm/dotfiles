@@ -116,5 +116,4 @@ esac
 # ------------------------------------
 [ ! -f ~/.zsh/zshrc.local ] && touch ~/.zsh/zshrc.local
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+
