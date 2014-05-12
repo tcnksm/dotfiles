@@ -36,12 +36,12 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # Ignore duplication command history list
-setopt hist_ignore_dups    
+setopt hist_ignore_dups
 
 # Share command history data
-setopt share_history        
+setopt share_history
 
-# Historical backward/forward search 
+# Historical backward/forward search
 # with linehead string binded to ^P/^N
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -52,7 +52,7 @@ bindkey "^N" history-beginning-search-forward-end
 # ------------------------------------
 # Key bind (emacs)
 # ------------------------------------
-bindkey -e 
+bindkey -e
 
 # ------------------------------------
 # cd
@@ -61,7 +61,7 @@ bindkey -e
 # cd by directory name
 setopt auto_cd
 
-# Auto directory pushd 
+# Auto directory pushd
 # that you can get dirs list by cd -[tab]
 setopt auto_pushd
 
@@ -93,7 +93,7 @@ plugins=(git ruby gem)
 [ -f ~/.zsh/zshrc.alias ] && source ~/.zsh/zshrc.alias
 
 # ------------------------------------
-# Function 
+# Function
 # ------------------------------------
 
 [ -f ~/.zsh/zshrc.function ] && source ~/.zsh/zshrc.function
@@ -107,7 +107,7 @@ case "${OSTYPE}" in
 	;;
 
     linux*)
-	[ -f ~/.zsh/zshrc.linux ] && source ~/.zsh/zshrc.linux	
+	[ -f ~/.zsh/zshrc.linux ] && source ~/.zsh/zshrc.linux
 	;;
 esac
 
