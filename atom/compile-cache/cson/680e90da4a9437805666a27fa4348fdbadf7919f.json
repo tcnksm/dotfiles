@@ -1,1 +1,0 @@
-{".editor":{"ctrl-x ctrl-s":"core:save","ctrl-x ctrl-x":"editor:toggle-line-comments"},"body":{"ctrl-y":"core:paste","ctrl-x ctrl-c":"application:quit","ctrl-x 0":"pane:close","ctrl-x 2":"pane:split-down","ctrl-x 3":"pane:split-right","ctrl-r ctrl-r":"pane:show-next-item"}}

@@ -20,7 +20,7 @@ export LANG=ja_JP.UTF-8
 # ------------------------------------
 # EDITOR
 # ------------------------------------
-export EDITOR=/usr/local/bin/emacsclient
+export EDITOR=emacs
 
 
 # ====================================
@@ -50,12 +50,12 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # ------------------------------------
 # Ruby
 # ------------------------------------
-# if [ -d ~/.rbenv ]; then
-#     export PATH="$HOME/.rbenv/bin:$PATH"
-#     eval "$(rbenv init - zsh)"
-# else
-#     echo "[Warning] rbenv is not installed" 1>&2
-# fi
+if [ -d ~/.rbenv ]; then
+     export PATH="$HOME/.rbenv/bin:$PATH"
+     eval "$(rbenv init - zsh)"
+ else
+     echo "[Warning] rbenv is not installed" 1>&2
+ fi
 
 if [ -d /usr/local/share/chruby ]; then
     source /usr/local/share/chruby/chruby.sh
