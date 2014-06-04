@@ -13,6 +13,10 @@ Just type `rake` or `rake all`.
 
 Just type `rake clean`.
 
+## ToDo
+
+- `git submodule`
+- `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git`
 
 ## Recent Changes
 
