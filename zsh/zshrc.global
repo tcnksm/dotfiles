@@ -22,7 +22,6 @@ export LANG=ja_JP.UTF-8
 # ------------------------------------
 export EDITOR=emacs
 
-
 # ====================================
 # TOOL
 # ====================================
@@ -37,6 +36,14 @@ export EDITOR=emacs
 #    echo "[Warning] z is not installed" 1>&2
 #    # git clone https://github.com/rupa/z.git ~/.zjump
 # fi
+
+# ------------------------------------
+# bd
+# ------------------------------------
+
+if [[ -f ~/.bd.zsh ]]; then
+  source ~/.bd.zsh
+fi
 
 # ------------------------------------
 # Heroku toolbelt
@@ -55,16 +62,7 @@ if [ -d ~/.rbenv ]; then
      eval "$(rbenv init - zsh)"
  else
      echo "[Warning] rbenv is not installed" 1>&2
- fi
-
-if [ -d /usr/local/share/chruby ]; then
-    source /usr/local/share/chruby/chruby.sh
-    source /usr/local/share/chruby/auto.sh
-    RUBIES+=(~/.rbenv/versions/*)
-else
-    echo "[Warning] chruby is not installed" 1>&2
 fi
-
 
 # ------------------------------------
 # node.js
@@ -124,8 +122,3 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 # direnv
 # ------------------------------------
 eval "$(direnv hook zsh)"
-
-# ------------------------------------
-# jj
-# ------------------------------------
-source $GOPATH/src/github.com/tcnksm/jj_/jj.sh

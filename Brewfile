@@ -43,6 +43,7 @@ install tmux      || true
 install markdown  || true
 install nkf       || true
 install ag        || true
+install reattach-to-user-namespace || true
 
 ## Languages
 install rbenv            || true

@@ -6,9 +6,11 @@ This is my dotfiles.
 ## Usage
 
 ### Install
+
 Just type `rake` or `rake all`.
 
 ### Uninstall
+
 Just type `rake clean`.
 
 
@@ -37,7 +39,7 @@ Just type `rake clean`.
 - github
     - `C-c o f`, github from file
     - `C-c o c`, github from commit
-    - `C-c o i`, github from issue    
+    - `C-c o i`, github from issue
 - iSearch by region word
 - kill-buffer
     - `C-x k`
@@ -50,8 +52,3 @@ Just type `rake clean`.
     - `C-S-z`
 - popwin & direx
     - `C-x C-d`
-
-
-
-
-

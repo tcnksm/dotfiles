@@ -76,7 +76,7 @@ setopt correct
 # ------------------------------------
 ZSH=~/.oh-my-zsh
 ZSH_THEME="tc"
-plugins=(git ruby gem)
+plugins=(git ruby gem zsh-syntax-highlighting)
 
 [ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
 
@@ -116,4 +116,3 @@ esac
 # ------------------------------------
 [ ! -f ~/.zsh/zshrc.local ] && touch ~/.zsh/zshrc.local
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
-
