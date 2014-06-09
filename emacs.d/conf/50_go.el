@@ -11,7 +11,7 @@
 ;; --------------------------------------------------
 ;; Using command instal by go get
 ;; --------------------------------------------------
-(add-to-list 'exec-path (expand-file-name "~/dev/go/bin"))
+(add-to-list 'exec-path (expand-file-name "~/bin"))
 
 
 ;; --------------------------------------------------
@@ -35,7 +35,7 @@
 ;; --------------------------------------------------
 ;; Complete
 ;; --------------------------------------------------
-(add-to-list 'load-path "~/dev/go/src/github.com/nsf/gocode/emacs/")
+(add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs/")
 (require 'go-autocomplete nil t)
 (require 'auto-complete-config nil t)
 
@@ -43,7 +43,7 @@
 ;; --------------------------------------------------
 ;; Flymake
 ;; --------------------------------------------------
-(add-to-list 'load-path "~/dev/go/src/github.com/dougm/goflymake")
+(add-to-list 'load-path "~/src/github.com/dougm/goflymake")
 (require 'go-flymake nil t)
 
 

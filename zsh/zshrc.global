@@ -29,13 +29,13 @@ export EDITOR=emacs
 # ------------------------------------
 # z
 # ------------------------------------
-# if [[ -d ~/.zjump ]]; then
-#    _Z_CMD=j
-#    source "$HOME/.zjump/z.sh"
-# else
-#    echo "[Warning] z is not installed" 1>&2
-#    # git clone https://github.com/rupa/z.git ~/.zjump
-# fi
+if [[ -d ~/.zjump ]]; then
+   _Z_CMD=j
+   source "$HOME/.zjump/z.sh"
+else
+   echo "[Warning] z is not installed" 1>&2
+   # git clone https://github.com/rupa/z.git ~/.zjump
+fi
 
 # ------------------------------------
 # bd
@@ -63,6 +63,12 @@ if [ -d ~/.rbenv ]; then
  else
      echo "[Warning] rbenv is not installed" 1>&2
 fi
+
+# ------------------------------------
+# Go
+# ------------------------------------
+export GOPATH=${HOME}
+export PATH=$PATH:~/bin
 
 # ------------------------------------
 # node.js

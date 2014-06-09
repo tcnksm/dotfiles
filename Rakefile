@@ -4,13 +4,14 @@ require 'rake/clean'
 HOME = ENV["HOME"]
 OS = `uname`
 
-GIT_ROOT   =  File.join(File.dirname(__FILE__), "git")
-ZSH_ROOT   =  File.join(File.dirname(__FILE__), "zsh")
-ATOM_ROOT  =  File.join(File.dirname(__FILE__), "atom")
-ETC_ROOT   =  File.join(File.dirname(__FILE__), "etc")
-TMUX_ROOT  =  File.join(File.dirname(__FILE__), "tmux")
-SLATE_ROOT =  File.join(File.dirname(__FILE__), "slate")
-FONT_ROOT  =  File.join(File.dirname(__FILE__), "stuff", "fonts")
+GIT_ROOT    =  File.join(File.dirname(__FILE__), "git")
+ZSH_ROOT    =  File.join(File.dirname(__FILE__), "zsh")
+ATOM_ROOT   =  File.join(File.dirname(__FILE__), "atom")
+ETC_ROOT    =  File.join(File.dirname(__FILE__), "etc")
+TMUX_ROOT   =  File.join(File.dirname(__FILE__), "tmux")
+SLATE_ROOT  =  File.join(File.dirname(__FILE__), "slate")
+PERCOL_ROOT =  File.join(File.dirname(__FILE__), "percol")
+FONT_ROOT   =  File.join(File.dirname(__FILE__), "stuff", "fonts")
 
 ZSH_DOT_FILES  =  %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
 ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
@@ -26,7 +27,8 @@ cleans = [
           ".gitignore.global",
           ".gemrc",
           ".slate",
-          ".slate.js"
+          ".slate.js",
+          ".percol.d"
          ]
 
 CLEAN.concat(cleans.map{|c| File.join(HOME,c)})
@@ -47,6 +49,13 @@ namespace :atom do
   desc "Create symbolic link"
   task :link do
     symlink_ ATOM_ROOT, File.join(HOME, ".atom")
+  end
+end
+
+namespace :percol do
+  desc "Create symbolic link"
+  task :link do
+    symlink_ PERCOL_ROOT, File.join(HOME, ".percol.d")
   end
 end
 
