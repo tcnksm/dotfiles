@@ -22,10 +22,10 @@ alias p='git push'
 alias gp='git push'
 alias push='git push'
 
-
 alias tt='tig'
 alias gist='gist -p'
 alias g="gitsh"
+
 
 # ------------------------------------
 # Own definition
@@ -36,12 +36,6 @@ alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias uuuu='cd ../../../..'
-
-# ------------------------------------
-# Sakura vps
-# ------------------------------------
-
-alias sakura="ssh -p 61203 taichi@133.242.140.185"
 
 
 # ------------------------------------
@@ -54,10 +48,11 @@ alias bp='bundle package'
 alias bi='bundle install --path vendor/bundle'
 alias bin='bundle install --path vendor/bundle --binstubs .bundle/bin'
 
+
 # ------------------------------------
 # Emacs
 # ------------------------------------
-# alias emacs='/usr/local/bin/emacs'
+alias emacs='/usr/local/bin/emacs -nw'
 alias e='emacsclient'
 
 
@@ -76,14 +71,19 @@ alias ec="~/bin/eclipse/eclipse"
 
 # ------------------------------------
 # Pygmentize
+# $ sudo pip install pygments
 # ------------------------------------
 alias c='pygmentize -O style=monokai -f console256 -g'
+
+# ------------------------------------
+# Sakura VPS
+# ------------------------------------
+alias sakura="ssh -p 61203 taichi@133.242.140.185"
 
 # ------------------------------------
 # Vagrant
 # ------------------------------------
 alias vs='vagrant global-status'
-
 
 # ------------------------------------
 # Docker
@@ -131,4 +131,3 @@ dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/[
 boot2docker-port() {
   VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$1,tcp,,$1,,$1"
 }
-
