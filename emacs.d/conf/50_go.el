@@ -22,11 +22,13 @@
 
 ;; --------------------------------------------------
 ;; Keybind
+;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; --------------------------------------------------
 (defun go-keybind ()
   (local-set-key (kbd "M-j")     'godef-jump)      ;; Jump to definition
   (local-set-key (kbd "M-p")     'go-import-add)   ;; Import package
   (local-set-key (kbd "M-r")     'go-remove-unused-imports) ;;  Remove unused package
+  (local-set-key (kbd "M-'")     'go-play-region) ;;  Remove unused package
   )
 
 (add-hook 'go-mode-hook 'go-keybind)
@@ -34,18 +36,20 @@
 
 ;; --------------------------------------------------
 ;; Complete
+;; $ go get code.google.com/p/rog-go/exp/cmd/godef
+;; $ go get -u github.com/nsf/gocode
 ;; --------------------------------------------------
-(add-to-list 'load-path "~/src/github.com/nsf/gocode/emacs/")
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/"))
 (require 'go-autocomplete nil t)
 (require 'auto-complete-config nil t)
 
 
 ;; --------------------------------------------------
 ;; Flymake
+;; $ go get github.com/dougm/goflymake
 ;; --------------------------------------------------
-(add-to-list 'load-path "~/src/github.com/dougm/goflymake")
+(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 (require 'go-flymake nil t)
-
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
@@ -56,9 +60,11 @@
 
 ;; --------------------------------------------------
 ;; go lint
+;; $ go get -u github.com/golang/lint/golint
 ;; --------------------------------------------------
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint nil t)
+
 
 ;; --------------------------------------------------
 ;; smartchr

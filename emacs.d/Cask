@@ -1,0 +1,116 @@
+(source gnu)
+(source melpa)
+
+;; ==================================================
+;; Default
+;; ==================================================
+
+(depends-on "bind-key")
+(depends-on "cask")
+(depends-on "dash")
+(depends-on "drag-stuff")
+(depends-on "exec-path-from-shell")
+(depends-on "expand-region")
+(depends-on "f")
+(depends-on "flycheck")
+(depends-on "flycheck-cask")
+(depends-on "htmlize")
+(depends-on "idle-highlight-mode")
+(depends-on "magit")
+(depends-on "multiple-cursors")
+(depends-on "nyan-mode")
+(depends-on "pallet")
+(depends-on "popwin")
+(depends-on "prodigy")
+(depends-on "projectile")
+(depends-on "s")
+(depends-on "smartparens")
+(depends-on "smex")
+(depends-on "use-package")
+(depends-on "web-mode")
+(depends-on "yasnippet")
+
+;; ==================================================
+;; General
+;; ==================================================
+
+;; --------------------------------------------------
+;; Color
+;; --------------------------------------------------
+(depends-on "color-theme-sanityinc-tomorrow")
+
+
+;; ==================================================
+;; Util
+;; ==================================================
+
+;; --------------------------------------------------
+;; Auto-complete
+;; --------------------------------------------------
+(depends-on "auto-complete")
+
+;; --------------------------------------------------
+;; Helm
+;; --------------------------------------------------
+(depends-on "helm")
+
+;; --------------------------------------------------
+;; undo
+;; --------------------------------------------------
+(depends-on "undo-tree")
+(depends-on "undohist")
+
+;; --------------------------------------------------
+;; direx
+;; --------------------------------------------------
+(depends-on "direx")
+
+;; --------------------------------------------------
+;; Git
+;; --------------------------------------------------
+(depends-on "git-commit-mode")
+(depends-on "git-rebase-mode")
+(depends-on "git-gutter")
+(depends-on "helm-open-github")
+
+;; --------------------------------------------------
+;; etc
+;; --------------------------------------------------
+(depends-on "smartrep")
+(depends-on "popup")
+(depends-on "highlight-symbol")
+
+;; ==================================================
+;; Language
+;; ==================================================
+
+;; --------------------------------------------------
+;; Golang
+;; --------------------------------------------------
+(depends-on "go-mode")
+(depends-on "go-eldoc")
+(depends-on "go-autocomplete")
+
+;; --------------------------------------------------
+;; Ruby
+;; --------------------------------------------------
+(depends-on "ruby-mode")
+(depends-on "ruby-block")
+(depends-on "ruby-electric")
+(depends-on "ruby-end")
+(depends-on "flymake-ruby")
+
+;; --------------------------------------------------
+;; Configuration language
+;; --------------------------------------------------
+(depends-on "feature-mode") ;; Cucumber
+(depends-on "yaml-mode")
+
+;; --------------------------------------------------
+;; etc
+;; --------------------------------------------------
+(depends-on "markdown-mode")
+(depends-on "haml-mode")
+(depends-on "scss-mode")
+
+
