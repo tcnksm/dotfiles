@@ -1,0 +1,52 @@
+{
+  "name": "go-plus",
+  "description": "Adds `gofmt`, `goimports`, `go vet`, `golint`, `go build` and `go test` functionality for the go language.",
+  "keywords": [
+    "go",
+    "golang",
+    "gofmt",
+    "format",
+    "fmt",
+    "goimports",
+    "gocode",
+    "vet",
+    "go fmt",
+    "go vet"
+  ],
+  "version": "1.1.4",
+  "main": "./lib/go-plus",
+  "license": "Apache-2.0",
+  "engines": {
+    "atom": ">0.70.0",
+    "node": "*"
+  },
+  "author": {
+    "name": "Joe Fitzgerald",
+    "email": "jfitzgerald@gopivotal.com",
+    "url": "http://github.com/joefitzgerald"
+  },
+  "homepage": "https://atom.io/packages/go-plus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joefitzgerald/go-plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joefitzgerald/go-plus/issues"
+  },
+  "dependencies": {
+    "atom-message-panel": ">=1.0.0",
+    "emissary": "1.x",
+    "fs-plus": "2.x",
+    "glob": "3.x",
+    "temp": ">=0.7.0",
+    "underscore-plus": "1.x"
+  },
+  "readme": "# go-plus – Improved Go Experience In Atom\n\n[![Build Status](https://travis-ci.org/joefitzgerald/go-plus.svg?branch=master)](https://travis-ci.org/joefitzgerald/go-plus)\n\nYou can install `go-plus` by opening Atom, going to `Preferences` > `Packages`, and searching for `go-plus`. Alternatively, run `apm install go-plus` in your terminal.\n\nThis package adds extra Atom functionality for the go language:\n\n* Formatting source using `gofmt`\n* Formatting and managing imports using `goimports` (change the `Gofmt Path`\n  preference to target `goimports`)\n* Code quality inspection using `go vet`\n* Linting using `golint`\n* Syntax checking using `go build` and `go test`\n* Display of test coverage using `go test -coverprofile`\n\n### Example\n\n![A screenshot of go-plus in action](http://cl.ly/image/392z2L0f0E41/go-plus-example.gif)\n\n### Defaults\n\nThe preferences for this package default to values that match the way `go` is\ninstalled on OS X using the package installer:\n\n* `go` is installed at `/usr/local/go`\n* `go` executables are found at `/usr/local/go/bin`\n\nAdditionally `format on save` and `vet on save` are enabled by default. `syntax\ncheck on save`, `lint on save` and `run coverage on save` are disabled by default. You can override these defaults by\nupdating the `go-plus` preferences.\n\n### GOPATH\n\nLove it or hate it, `GOPATH` is very important in `go` land.\n\nSyntax checking requires a valid `GOPATH` for the files you are checking. You\ncan set your `GOPATH` using one of two mechanisms:\n\n* Using the environment: set the `$GOPATH` environment variable to the correct\n  value\n* Using `go-plus` preferences: set the `Go Path` preference\n\nThe environment (if set) is preferred over the `Go Path` preference by default.\nYou can change this by updating the `Environment Overrides Configuration`\npreference.\n\nThe most common reason `GOPATH` might not be set in the environment is due to the\nway OS X launches processes. When you launch Atom via processes created by\n`launchd` (e.g. using Finder, the Dock, or Spotlight) it likely will not have\naccess to your `$GOPATH` if you set it in your shell initialization files (e.g.\n`.bash_profile`, `.bashrc`, `.zshrc`, etc).\n\nConsider launching Atom via your shell – using the Atom Shell Commands – where\nAtom should inherit your environment. Alternatively, try one of the suggestions\nat http://apple.stackexchange.com/a/87283 to set the `GOPATH` for processes\nlaunched by `launchd` (and their children, which will include Atom).\n\nSetting the `Go Path` preference will ensure that you have a sensible fallback\nfor GOPATH if you have launched Atom without the `$GOPATH` environment variable\nset.\n\nIf both the `Go Path` preference and the `$GOPATH` environment variable are\nempty, `go-plus` will display a warning and will not perform `go build` / `go\ntest` powered syntax checking.\n\n### Planned Features\n\nThe following features will be added soon:\n\n* `gocode` integration ([#2](https://github.com/joefitzgerald/go-plus/issues/2))\n* `go oracle` / `godef` integration ([#11](https://github.com/joefitzgerald/go-plus/issues/11))\n* `godoc` integration ([#12](https://github.com/joefitzgerald/go-plus/issues/12))\n* ... and others: https://github.com/joefitzgerald/go-plus/issues\n\n### Contributors\n\n* Scott Barron [@rubyist](https://github.com/rubyist)\n    * Gofmt integration (https://github.com/atom/language-go/pull/3)\n    * Display test coverage (https://github.com/joefitzgerald/go-plus/pull/27)\n* Matt Aimonetti [@mattetti](https://github.com/mattetti) - Syntax checking (https://github.com/atom/language-go/pull/11)\n\n### Contributing\n\nContributions are greatly appreciated. Please fork this repository, make your\nchanges, and open a pull request. See [Contributing](https://github.com/joefitzgerald/go-plus/wiki/Contributing) for detailed instructions.\n",
+  "readmeFilename": "README.md",
+  "_id": "go-plus@1.1.4",
+  "dist": {
+    "shasum": "eff1b793994c15314725c592e9e429582cdc3839"
+  },
+  "_resolved": "/var/folders/hk/t6xpt_j974gfnv_nd3t79x3h2b8vpv/T/d-114520-97393-9ls9fp/package.tgz",
+  "_from": "/var/folders/hk/t6xpt_j974gfnv_nd3t79x3h2b8vpv/T/d-114520-97393-9ls9fp/package.tgz"
+}

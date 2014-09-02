@@ -1,6 +1,10 @@
 [include]
   path = ~/.gitconfig.local
 
+[user]
+  name = tcnksm
+  email = nsd22843@gmail.com
+
 [color]
   status = auto
   diff = auto

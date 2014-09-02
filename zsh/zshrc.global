@@ -70,6 +70,11 @@ fi
 export GOPATH=${HOME}
 export PATH=$PATH:~/bin
 
+# For godoc
+export GOROOT=`go env GOROOT`
+export PATH=$PATH:$GOROOT/bin
+
+
 # ------------------------------------
 # node.js
 # ------------------------------------
@@ -128,4 +133,3 @@ PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -
 # direnv
 # ------------------------------------
 eval "$(direnv hook zsh)"
-

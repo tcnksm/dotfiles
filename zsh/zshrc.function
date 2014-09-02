@@ -128,7 +128,7 @@ bindkey '^S' percol-src
 function percol-doc () {
     local selected_dir=$(ghq list --full-path | percol --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
-        BUFFER="docc --browser ${selected_dir}"
+        BUFFER="docc ${selected_dir}"
         zle accept-line
     fi
     zle clear-screen
@@ -148,3 +148,17 @@ function percol-jump () {
 
 zle -N percol-jump
 bindkey '^J' percol-jump
+
+function percol-git-recent-all-branches () {
+    local selected_branch=$(git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads refs/remotes | \
+        perl -pne 's{^refs/(heads|remotes)/}{}' | \
+        percol --query "$LBUFFER")
+    if [ -n "$selected_branch" ]; then
+        BUFFER="git checkout -t ${selected_branch}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+
+zle -N percol-git-recent-all-branches
+bindkey '^B' percol-git-recent-all-branches

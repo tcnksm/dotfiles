@@ -1,4 +1,4 @@
-{$, SelectListView, EditorView} = require "atom"
+{$, $$, View} = require "atom"
 _ = require "underscore-plus"
 
 Keys =
@@ -6,49 +6,111 @@ Keys =
   Enter: 13
   Tab: 9
 
-class SimpleSelectListView extends SelectListView
-  eventsAttached: false
+class SimpleSelectListView extends View
   maxItems: 10
   @content: ->
-    @div class: "select-list", =>
-      @input class: "fake-input", outlet: "fakeInput"
-      @div class: "error-message", outlet: "error"
-      @div class: "loading", outlet: "loadingArea", =>
-        @span class: "loading-message", outlet: "loading"
-        @span class: "badge", outlet: "loadingBadge"
+    @div class: "select-list popover-list", =>
+      @input class: "hidden-input", outlet: "hiddenInput"
       @ol class: "list-group", outlet: "list"
 
-  ###
-   * Overrides default initialization
-  ###
+  # Private: Listens to events, delegates them to instance methods
   initialize: ->
-    @on "core:move-up", (e) =>
-      @selectPreviousItemView()
+    # Core events for keyboard handling
+    @on "autocomplete-plus:confirm", => @confirmSelection()
 
-    @on "core:move-down", =>
-      @selectNextItemView()
+    # List mouse events
+    @list.on "mousedown", "li", (e) =>
+      e.preventDefault()
+      e.stopPropagation()
 
+      @selectItemView $(e.target).closest("li")
+
+    @list.on "mouseup", "li", (e) =>
+      e.preventDefault()
+      e.stopPropagation()
+
+      if $(e.target).closest("li").hasClass "selected"
+        @confirmSelection()
+
+  # Private: Selects the previous item view
+  selectPreviousItemView: ->
+    view = @getSelectedItemView().prev()
+    unless view.length
+      view = @list.find "li:last"
+    @selectItemView view
+
+    return false
+
+  # Private: Selects the next item view
+  selectNextItemView: ->
+    view = @getSelectedItemView().next()
+    unless view.length
+      view = @list.find "li:first"
+    @selectItemView view
+
+    return false
+
+  # Private: Sets the items, displays the list
+  #
+  # items - {Array} of items to display
+  setItems: (items=[]) ->
+    @items = items
+    @populateList()
+
+  # Private: Unselects all views, selects the given view
+  #
+  # view - the {jQuery} view to be selected
+  selectItemView: (view) ->
+    return unless view.length
+
+    @list.find(".selected").removeClass "selected"
+    view.addClass "selected"
+    @scrollToItemView view
+
+  # Private: Sets the scroll position to match the given view's position
+  #
+  # view - the {jQuery} view to scroll to
+  scrollToItemView: (view) ->
+    scrollTop = @list.scrollTop()
+    desiredTop = view.position().top + scrollTop
+    desiredBottom = desiredTop + view.outerHeight()
+
+    if desiredTop < scrollTop
+      @list.scrollTop desiredTop
+    else
+      @list.scrollBottom desiredBottom
+
+  # Private: Get the currently selected item view
+  #
+  # Returns the selected {jQuery} view
+  getSelectedItemView: ->
+    @list.find "li.selected"
+
+  # Private: Get the currently selected item (*not* the view)
+  #
+  # Returns the selected {Object}
+  getSelectedItem: ->
+    @getSelectedItemView().data "select-list-item"
+
+  # Private: Confirms the currently selected item or cancels the list view
+  # if no item has been selected
+  confirmSelection: ->
+    item = @getSelectedItem()
+    if item?
+      @confirmed item
+    else
+      @cancel()
+
+  # Private: Focuses the hidden input, starts listening to keyboard events
   setActive: ->
-    @fakeInput.focus()
+    @active = true
+    @hiddenInput.focus()
 
-    unless @eventsAttached
-      @eventsAttached = true
-
-      @fakeInput.keydown (e) =>
-        switch e.keyCode
-          when Keys.Enter, Keys.Tab
-            @confirmSelection()
-          when Keys.Escape
-            @cancel()
-
-        if e.keyCode in _.values(Keys)
-          return false
-
+  # Private: Re-builds the list with the current items
   populateList: ->
     return unless @items?
 
     @list.empty()
-    @setError null
     for i in [0...Math.min(@items.length, @maxItems)]
       item = @items[i]
       itemView = @viewForItem item
@@ -57,11 +119,22 @@ class SimpleSelectListView extends SelectListView
 
     @selectItemView @list.find "li:first"
 
-  cancel: ->
-    @list.empty()
-    @cancelling = true
-    @detach()
-    @cancelling = false
+  # Private: Creates a view for the given item
+  #
+  # word - the item
+  #
+  # Returns the {jQuery} view for the item
+  viewForItem: ({word}) ->
+    $$ ->
+      @li =>
+        @span word
 
+  # Private: Clears the list, detaches the element
+  cancel: ->
+    return unless @active
+
+    @active = false
+    @list.empty()
+    @detach()
 
 module.exports = SimpleSelectListView

@@ -1,483 +1,448 @@
+require "./spec-helper"
 {$, EditorView, WorkspaceView} = require 'atom'
+_ = require "underscore-plus"
 AutocompleteView = require '../lib/autocomplete-view'
 Autocomplete = require '../lib/autocomplete'
-
-###
-  Needs to be updated to the new package
-###
+TestProvider = require "./lib/test-provider"
 
 describe "Autocomplete", ->
-  [activationPromise] = []
+  [activationPromise, completionDelay] = []
 
   beforeEach ->
+    # Create a fake workspace and open a sample file
     atom.workspaceView = new WorkspaceView
-    atom.workspaceView.openSync('sample.js')
+    atom.workspaceView.openSync "sample.js"
     atom.workspaceView.simulateDomAttachment()
-    activationPromise = atom.packages.activatePackage('autocomplete')
+
+    # Set to live completion
+    atom.config.set "autocomplete-plus.enableAutoActivation", true
+    atom.config.set "autocomplete-plus.fileBlacklist", ".*, *.md"
+
+    # Set the completion delay
+    completionDelay = 100
+    atom.config.set "autocomplete-plus.autoActivationDelay", completionDelay
+    completionDelay += 100 # Rendering delay
+
+    # Spy on AutocompleteView#initialize
+    spyOn(AutocompleteView.prototype, "initialize").andCallThrough()
+
+    # Activate the package
+    activationPromise = atom.packages.activatePackage "autocomplete-plus"
 
   describe "@activate()", ->
-    it "activates autocomplete on all existing and future editors (but not on autocomplete's own mini editor)", ->
-      spyOn(AutocompleteView.prototype, 'initialize').andCallThrough()
-
-      expect(AutocompleteView.prototype.initialize).not.toHaveBeenCalled()
-
-      leftEditor = atom.workspaceView.getActiveView()
-      rightEditor = leftEditor.splitRight()
-
-      leftEditor.trigger 'autocomplete:attach'
+    it "activates autocomplete and initializes AutocompleteView instances", ->
+      expect(AutocompleteView.prototype.initialize).toHaveBeenCalled()
+      editor = atom.workspaceView.getActiveView()
 
       waitsForPromise ->
         activationPromise
 
       runs ->
-        expect(leftEditor.find('.autocomplete')).toExist()
-        expect(rightEditor.find('.autocomplete')).not.toExist()
-        expect(AutocompleteView.prototype.initialize).toHaveBeenCalled()
-
-        autoCompleteView = leftEditor.find('.autocomplete').view()
-        autoCompleteView.trigger 'core:cancel'
-        expect(leftEditor.find('.autocomplete')).not.toExist()
-
-        rightEditor.trigger 'autocomplete:attach'
-        expect(rightEditor.find('.autocomplete')).toExist()
+        expect(editor.find(".autocomplete-plus")).not.toExist()
 
   describe "@deactivate()", ->
-    it "removes all autocomplete views and doesn't create new ones when new editors are opened", ->
-      atom.workspaceView.getActiveView().trigger "autocomplete:attach"
+    it "removes all autocomplete views", ->
+      [editorView] = []
 
       waitsForPromise ->
         activationPromise
 
       runs ->
-        expect(atom.workspaceView.getActiveView().find('.autocomplete')).toExist()
-        atom.packages.deactivatePackage('autocomplete')
-        expect(atom.workspaceView.getActiveView().find('.autocomplete')).not.toExist()
-        atom.workspaceView.getActiveView().splitRight()
-        atom.workspaceView.getActiveView().trigger "autocomplete:attach"
-        expect(atom.workspaceView.getActiveView().find('.autocomplete')).not.toExist()
+        editorView = atom.workspaceView.getActiveView()
+        editor = editorView.getEditor()
+        buffer = editor.getBuffer()
 
-describe "AutocompleteView", ->
-  [autocomplete, editorView, editor, miniEditor] = []
+        # Trigger an autocompletion
+        editor.moveCursorToBottom()
+        editor.insertText("A")
 
-  beforeEach ->
-    atom.workspaceView = new WorkspaceView
-    editorView = new EditorView(editor: atom.project.openSync('sample.js'))
-    {editor} = editorView
-    autocomplete = new AutocompleteView(editorView)
-    miniEditor = autocomplete.filterEditorView
+        advanceClock completionDelay
 
-  describe 'autocomplete:attach event', ->
-    it "shows autocomplete view and focuses its mini-editor", ->
-      editorView.attachToDom()
-      expect(editorView.find('.autocomplete')).not.toExist()
+        expect(editorView.find(".autocomplete-plus")).toExist()
 
-      editorView.trigger "autocomplete:attach"
-      expect(editorView.find('.autocomplete')).toExist()
-      expect(autocomplete.editor.isFocused).toBeFalsy()
-      expect(autocomplete.filterEditorView.isFocused).toBeTruthy()
+        # Deactivate the package
+        atom.packages.deactivatePackage "autocomplete-plus"
+        expect(editorView.find(".autocomplete-plus")).not.toExist()
 
-    describe "when no text is selected", ->
-      it 'autocompletes word when there is only a prefix', ->
-        editor.getBuffer().insert([10,0] ,"extra:s:extra")
-        editor.setCursorBufferPosition([10,7])
-        autocomplete.attach()
+  describe "Providers", ->
+    describe "registerProviderForEditorView", ->
+      it "registers the given provider for the given editor view", ->
+        autocomplete = null
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,11]
-        expect(editor.getSelection().getBufferRange()).toEqual [[10,7], [10,11]]
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-        expect(autocomplete.list.find('li').length).toBe 2
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText('shift')
-        expect(autocomplete.list.find('li:eq(1)')).toHaveText('sort')
+          autocompleteView = autocomplete.autocompleteViews[0]
+          expect(autocompleteView.providers[1]).toBe testProvider
 
-      it 'autocompletes word when there is only a suffix', ->
-        editor.getBuffer().insert([10,0] ,"extra:n:extra")
-        editor.setCursorBufferPosition([10,6])
-        autocomplete.attach()
+    describe "registerMultipleIdenticalProvidersForEditorView", ->
+      it "registers the given provider once when called multiple times for the given editor view", ->
+        autocomplete = null
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:function:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,13]
-        expect(editor.getSelection().getBufferRange()).toEqual [[10,6], [10,13]]
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
+          autocomplete.registerProviderForEditorView testProvider, editorView
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-        expect(autocomplete.list.find('li').length).toBe 2
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText('function')
-        expect(autocomplete.list.find('li:eq(1)')).toHaveText('return')
+          autocompleteView = autocomplete.autocompleteViews[0]
+          expect(autocompleteView.providers[1]).toBe testProvider
+          expect(_.size(autocompleteView.providers)).toBe 2
 
-      it 'autocompletes word when there is a single prefix and suffix match', ->
-        editor.getBuffer().insert([8,43] ,"q")
-        editor.setCursorBufferPosition([8,44])
-        autocomplete.attach()
+    describe "unregisterProviderFromEditorView", ->
+      it "unregisters the provider from all editor views", ->
+        autocomplete = null
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
 
-        expect(editor.lineForBufferRow(8)).toBe "    return sort(left).concat(pivot).concat(quicksort(right));"
-        expect(editor.getCursorBufferPosition()).toEqual [8,52]
-        expect(editor.getSelection().getBufferRange().isEmpty()).toBeTruthy()
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-        expect(autocomplete.list.find('li').length).toBe 0
+          autocompleteView = autocomplete.autocompleteViews[0]
+          expect(autocompleteView.providers[1]).toBe testProvider
 
-      it "shows all words when there is no prefix or suffix", ->
-        editor.setCursorBufferPosition([10, 0])
-        autocomplete.attach()
+          autocomplete.unregisterProvider testProvider
+          expect(autocompleteView.providers[1]).not.toExist
 
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText('0')
-        expect(autocomplete.list.find('li:eq(1)')).toHaveText('1')
-        expect(autocomplete.list.find('li').length).toBe 22
+    describe "a registered provider", ->
+      autocomplete = null
+      it "calls buildSuggestions()", ->
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
 
-      it "autocompletes word and replaces case of prefix with case of word", ->
-        editor.getBuffer().insert([10,0] ,"extra:SO:extra")
-        editor.setCursorBufferPosition([10,8])
-        autocomplete.attach()
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          {editor} = editorView
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:sort:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,10]
-        expect(editor.getSelection().isEmpty()).toBeTruthy()
+          spyOn(testProvider, "buildSuggestions").andCallThrough()
 
-      describe "when `autocomplete.includeCompletionsFromAllBuffers` is true", ->
-        it "shows words from all open buffers", ->
-          atom.config.set('autocomplete.includeCompletionsFromAllBuffers', true)
-          atom.project.openSync('sample.txt')
-          editor.getBuffer().insert([10,0] ,"extra:SO:extra")
-          editor.setCursorBufferPosition([10,8])
-          autocomplete.attach()
+          editorView.attachToDom()
 
-          expect(autocomplete.list.find('li').length).toBe 2
-          expect(autocomplete.list.find('li:eq(0)')).toHaveText('Some')
-          expect(autocomplete.list.find('li:eq(1)')).toHaveText('sort')
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
 
-    describe "when text is selected", ->
-      it 'autocompletes word when there is only a prefix', ->
-        editor.getBuffer().insert([10,0] ,"extra:sort:extra")
-        editor.setSelectedBufferRange [[10,7], [10,10]]
-        autocomplete.attach()
+          expect(testProvider.buildSuggestions).toHaveBeenCalled()
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,11]
-        expect(editor.getSelection().getBufferRange().isEmpty()).toBeTruthy()
+      autocomplete = null
+      it "calls confirm()", ->
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
 
-        expect(autocomplete.list.find('li').length).toBe 0
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          {editor} = editorView
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-      it 'autocompletes word when there is only a suffix', ->
-        editor.getBuffer().insert([10,0] ,"extra:current:extra")
-        editor.setSelectedBufferRange [[10,6],[10,12]]
-        autocomplete.attach()
+          spyOn(testProvider, "confirm").andCallThrough()
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:concat:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,11]
-        expect(editor.getSelection().getBufferRange()).toEqual [[10,6],[10,11]]
+          editorView.attachToDom()
 
-        expect(autocomplete.list.find('li').length).toBe 7
-        expect(autocomplete.list.find('li:contains(current)')).not.toExist()
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
 
-      it 'autocompletes word when there is a prefix and suffix', ->
-        editor.setSelectedBufferRange [[5,7],[5,12]]
-        autocomplete.attach()
+          autocompleteView = autocomplete.autocompleteViews[0]
+          autocompleteView.trigger "autocomplete-plus:confirm"
 
-        expect(editor.lineForBufferRow(5)).toBe "      concat = items.shift();"
-        expect(editor.getCursorBufferPosition()).toEqual [5,12]
-        expect(editor.getSelection().getBufferRange().isEmpty()).toBeTruthy()
+          expect(testProvider.confirm).toHaveBeenCalled()
 
-        expect(autocomplete.list.find('li').length).toBe 0
+  describe "AutocompleteView", ->
+    [autocomplete, editorView, editor] = []
 
-      it 'replaces selection with selected match, moves the cursor to the end of the match, and removes the autocomplete menu', ->
-        editor.getBuffer().insert([10,0] ,"extra:sort:extra")
-        editor.setSelectedBufferRange [[10,7], [10,9]]
-        autocomplete.attach()
+    describe "when auto-activation is enabled", ->
+      beforeEach ->
+        atom.config.set "autocomplete-plus.enableAutoActivation", true
+        atom.workspaceView = new WorkspaceView
+        editorView = new EditorView editor: atom.project.openSync("sample.js")
+        {editor} = editorView
+        autocomplete = new AutocompleteView editorView
 
-        expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-        expect(editor.getCursorBufferPosition()).toEqual [10,11]
-        expect(editor.getSelection().isEmpty()).toBeTruthy()
-        expect(editorView.find('.autocomplete')).not.toExist()
+      describe "on changed events", ->
+        it "should attach when finding suggestions", ->
+          editorView.attachToDom()
+          expect(editorView.find(".autocomplete-plus")).not.toExist()
 
-    describe "when the editor is scrolled to the right", ->
-      it "does not scroll it to the left", ->
-        editorView.width(300)
-        editorView.height(300)
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
+          expect(editorView.find(".autocomplete-plus")).toExist()
+
+          # Check suggestions
+          suggestions = ["function", "if", "left", "shift"]
+          editorView.find(".autocomplete li span").each (index, item) ->
+            $item = $(item)
+            expect($item.text()).toEqual suggestions[index]
+
+        it "should not attach when not finding suggestions", ->
+          editorView.attachToDom()
+          expect(editorView.find(".autocomplete-plus")).not.toExist()
+
+          # Trigger an autocompletion
+          editor.moveCursorToBottom()
+          editor.insertText("x")
+          advanceClock completionDelay
+          expect(editorView.find(".autocomplete-plus")).not.toExist()
+
+      describe "accepting suggestions", ->
+        describe "when pressing enter while suggestions are visible", ->
+          it "inserts the word and moves the cursor to the end of the word", ->
+            editorView.attachToDom()
+            expect(editorView.find(".autocomplete-plus")).not.toExist()
+
+            # Trigger an autocompletion
+            triggerAutocompletion editor
+            advanceClock completionDelay
+
+            # Accept suggestion
+            autocomplete.trigger "autocomplete-plus:confirm"
+
+            # Check for result
+            expect(editor.getBuffer().getLastLine()).toEqual "function"
+
+            # Check for cursor position
+            bufferPosition = editor.getCursorBufferPosition()
+            expect(bufferPosition.row).toEqual 13
+            expect(bufferPosition.column).toEqual 8
+
+          it "hides the suggestions", ->
+            editorView.attachToDom()
+            expect(editorView.find(".autocomplete-plus")).not.toExist()
+
+            # Trigger an autocompletion
+            editor.moveCursorToBottom()
+            editor.moveCursorToBeginningOfLine()
+            editor.insertText("f")
+            advanceClock completionDelay
+            expect(editorView.find(".autocomplete-plus")).toExist()
+
+            # Accept suggestion
+            autocomplete.trigger "autocomplete-plus:confirm"
+
+            expect(editorView.find(".autocomplete-plus")).not.toExist()
+
+      describe "select-previous event", ->
+        it "selects the previous item in the list", ->
+          editorView.attachToDom()
+
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
+
+          expect(editorView.find(".autocomplete-plus li:eq(0)")).toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(1)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(2)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(3)")).not.toHaveClass("selected")
+
+          # Select previous item
+          autocomplete.trigger "autocomplete-plus:select-previous"
+
+          expect(editorView.find(".autocomplete-plus li:eq(0)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(1)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(2)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(3)")).toHaveClass("selected")
+
+      describe "select-next event", ->
+        it "selects the next item in the list", ->
+          editorView.attachToDom()
+
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
+
+          expect(editorView.find(".autocomplete-plus li:eq(0)")).toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(1)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(2)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(3)")).not.toHaveClass("selected")
+
+          # Select next item
+          autocomplete.trigger "autocomplete-plus:select-next"
+
+          expect(editorView.find(".autocomplete-plus li:eq(0)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(1)")).toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(2)")).not.toHaveClass("selected")
+          expect(editorView.find(".autocomplete-plus li:eq(3)")).not.toHaveClass("selected")
+
+      describe "when a suggestion is clicked", ->
+        it "should select the item and confirm the selection", ->
+          editorView.attachToDom()
+
+          # Trigger an autocompletion
+          triggerAutocompletion editor
+          advanceClock completionDelay
+
+          # Get the second item
+          item = editorView.find(".autocomplete-plus li:eq(1)")
+
+          # Click the item, expect list to be hidden and
+          # text to be added
+          item.mousedown()
+          expect(item).toHaveClass "selected"
+          item.mouseup()
+
+          expect(editorView.find(".autocomplete-plus")).not.toExist()
+          expect(editor.getBuffer().getLastLine()).toEqual item.text()
+
+      describe "Positioning", ->
+        beforeEach ->
+          editorView.attachToDom()
+          setEditorHeightInLines editorView, 13
+          editorView.resetDisplay() # Ensures the editor only has 13 lines visible
+
+        describe "when the autocomplete view fits below the cursor", ->
+          it "adds the autocomplete view to the editor below the cursor", ->
+            editor.setCursorBufferPosition [1, 2]
+            editor.insertText "f"
+            advanceClock completionDelay
+            expect(editorView.find(".autocomplete-plus")).toExist()
+
+            # Check position
+            cursorPixelPosition = editorView.pixelPositionForScreenPosition editor.getCursorScreenPosition()
+            expect(parseInt autocomplete.css("top")).toBe cursorPixelPosition.top + editorView.lineHeight
+            expect(autocomplete.position().left).toBe cursorPixelPosition.left
+
+        describe "when the autocomplete view does not fit below the cursor", ->
+          it "adds the autocomplete view to the editor above the cursor", ->
+            # Trigger autocompletion
+            editor.setCursorScreenPosition [11, 0]
+            editor.insertText "t"
+            advanceClock completionDelay
+            expect(editorView.find(".autocomplete-plus")).toExist()
+
+            # Check position
+            cursorPixelPosition = editorView.pixelPositionForScreenPosition editor.getCursorScreenPosition()
+            expect(parseInt autocomplete.css("top")).toBe cursorPixelPosition.top
+            expect(autocomplete.position().left).toBe cursorPixelPosition.left
+
+      describe ".cancel()", ->
+        it "unbinds autocomplete event handlers for move-up and move-down", ->
+          triggerAutocompletion editor, false
+          autocomplete.cancel()
+
+          editorView.trigger "core:move-down"
+          expect(editor.getCursorBufferPosition().row).toBe 1
+
+          editorView.trigger "core:move-up"
+          expect(editor.getCursorBufferPosition().row).toBe 0
+
+      # TODO: Move this to a separate fuzzyprovider spec
+      it "adds words to the wordlist after they have been written", ->
         editorView.attachToDom()
-        editor.setCursorBufferPosition([6, 6])
-        previousScrollLeft = editorView.scrollLeft()
-        autocomplete.attach()
-        expect(editorView.scrollLeft()).toBe previousScrollLeft
+        editor.insertText "somethingNew"
+        editor.insertText " "
 
-  describe 'core:confirm event', ->
-    describe "where there are matches", ->
-      describe "where there is no selection", ->
-        it "closes the menu and moves the cursor to the end", ->
-          editor.getBuffer().insert([10,0] ,"extra:sh:extra")
-          editor.setCursorBufferPosition([10,8])
-          autocomplete.attach()
+        provider = autocomplete.providers[0];
+        expect(provider.wordList.indexOf("somethingNew")).not.toEqual(-1)
 
-          expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-          expect(editor.getCursorBufferPosition()).toEqual [10,11]
-          expect(editor.getSelection().isEmpty()).toBeTruthy()
-          expect(editorView.find('.autocomplete')).not.toExist()
+      it "sets the width of the view to be wide enough to contain the longest completion without scrolling (+ 15 pixels)", ->
+        editorView.attachToDom()
+        editor.insertText('thisIsAReallyReallyReallyLongCompletion ')
+        editor.moveCursorToBottom()
+        editor.insertNewline()
+        editor.insertText "t"
+        advanceClock completionDelay
+        expect(autocomplete.list.prop('scrollWidth') + 15).toBe autocomplete.list.width()
 
-  describe 'core:cancel event', ->
-    describe "when there are no matches", ->
-      it "closes the menu without changing the buffer", ->
-        editor.getBuffer().insert([10,0] ,"xxx")
-        editor.setCursorBufferPosition [10, 3]
-        autocomplete.attach()
-        expect(autocomplete.error).toHaveText "No matches found"
+      it "includes completions for the scope's completion preferences", ->
+        waitsForPromise ->
+          atom.packages.activatePackage('language-css')
 
-        miniEditor.trigger "core:cancel"
+        runs ->
+          cssEditorView = new EditorView(editor: atom.project.openSync('css.css'))
+          cssEditor = cssEditorView.editor
+          autocomplete = new AutocompleteView(cssEditorView)
 
-        expect(editor.lineForBufferRow(10)).toBe "xxx"
-        expect(editor.getCursorBufferPosition()).toEqual [10,3]
-        expect(editor.getSelection().isEmpty()).toBeTruthy()
-        expect(editorView.find('.autocomplete')).not.toExist()
+          cssEditorView.attachToDom()
+          cssEditor.moveCursorToEndOfLine()
+          cssEditor.insertText "o"
+          cssEditor.insertText "u"
+          cssEditor.insertText "t"
 
-    it 'does not replace selection, removes autocomplete view and returns focus to editor', ->
-      editor.getBuffer().insert([10,0] ,"extra:so:extra")
-      editor.setSelectedBufferRange [[10,7], [10,8]]
-      originalSelectionBufferRange = editor.getSelection().getBufferRange()
+          advanceClock completionDelay
 
-      autocomplete.attach()
-      editor.setCursorBufferPosition [0, 0] # even if selection changes before cancel, it should work
-      miniEditor.trigger "core:cancel"
+          expect(cssEditorView.find(".autocomplete-plus")).toExist()
 
-      expect(editor.lineForBufferRow(10)).toBe "extra:so:extra"
-      expect(editor.getSelection().getBufferRange()).toEqual originalSelectionBufferRange
-      expect(editorView.find('.autocomplete')).not.toExist()
+          expect(autocomplete.list.find("li").length).toBe 10
+          expect(autocomplete.list.find("li:eq(0)")).toHaveText "outline"
+          expect(autocomplete.list.find("li:eq(1)")).toHaveText "outline-color"
+          expect(autocomplete.list.find("li:eq(2)")).toHaveText "outline-width"
+          expect(autocomplete.list.find("li:eq(3)")).toHaveText "outline-style"
 
-    it "does not clear out a previously confirmed selection when canceling with an empty list", ->
-      editor.getBuffer().insert([10, 0], "ort\n")
-      editor.setCursorBufferPosition([10, 0])
+    describe "Hotkey Activation", ->
+      beforeEach ->
+        atom.config.set "autocomplete-plus.enableAutoActivation", false
+        atom.workspaceView = new WorkspaceView
+        editorView = new EditorView editor: atom.project.openSync("sample.js")
+        {editor} = editorView
+        autocomplete = new AutocompleteView editorView
 
-      autocomplete.attach()
-      miniEditor.trigger 'core:confirm'
-      expect(editor.lineForBufferRow(10)).toBe 'quicksort'
+      it "does not show suggestions after a delay", ->
+        triggerAutocompletion editor
+        advanceClock completionDelay
+        expect(editorView.find(".autocomplete-plus")).not.toExist()
 
-      editor.setCursorBufferPosition([11, 0])
-      autocomplete.attach()
-      miniEditor.trigger 'core:cancel'
-      expect(editor.lineForBufferRow(10)).toBe 'quicksort'
+        editorView.trigger "autocomplete-plus:activate"
+        expect(editorView.find(".autocomplete-plus")).toExist()
 
-    it "restores the case of the prefix to the original value", ->
-      editor.getBuffer().insert([10,0] ,"extra:S:extra")
-      editor.setCursorBufferPosition([10,7])
-      autocomplete.attach()
+    describe "File blacklist", ->
+      beforeEach ->
+        atom.workspaceView = new WorkspaceView
+        editorView = new EditorView editor: atom.project.openSync("blacklisted.md")
+        {editor} = editorView
+        autocomplete = new AutocompleteView editorView
 
-      expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-      expect(editor.getCursorBufferPosition()).toEqual [10,11]
-      autocomplete.trigger 'core:cancel'
-      expect(editor.lineForBufferRow(10)).toBe "extra:S:extra"
-      expect(editor.getCursorBufferPosition()).toEqual [10,7]
+      it "should not show autocompletion for files that match the blacklist", ->
+        editorView.attachToDom()
 
-    it "restores the original buffer contents even if there was an additional operation after autocomplete attached (regression)", ->
-      editor.getBuffer().insert([10,0] ,"extra:s:extra")
-      editor.setCursorBufferPosition([10,7])
-      autocomplete.attach()
+        editor.insertText "a"
+        advanceClock completionDelay
 
-      editor.getBuffer().append('hi')
-      expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-      autocomplete.trigger 'core:cancel'
-      expect(editor.lineForBufferRow(10)).toBe "extra:s:extra"
+        expect(editorView.find(".autocomplete-plus")).not.toExist()
 
-      editor.redo()
-      expect(editor.lineForBufferRow(10)).toBe "extra:s:extra"
+    describe "HTML label support", ->
+      [autocompleteView, autocomplete] = []
 
-  describe 'move-up event', ->
-    it "highlights the previous match and replaces the selection with it", ->
-      editor.getBuffer().insert([10,0] ,"extra:t:extra")
-      editor.setCursorBufferPosition([10,6])
-      autocomplete.attach()
+      it "should allow HTML in labels", ->
+        waitsForPromise ->
+          activationPromise
+            .then (pkg) =>
+              autocomplete = pkg.mainModule
+              autocompleteView = autocomplete.autocompleteViews[0]
 
-      miniEditor.trigger "core:move-up"
-      expect(editor.lineForBufferRow(10)).toBe "extra:sort:extra"
-      expect(autocomplete.find('li:eq(0)')).not.toHaveClass('selected')
-      expect(autocomplete.find('li:eq(1)')).not.toHaveClass('selected')
-      expect(autocomplete.find('li:eq(7)')).toHaveClass('selected')
+        runs ->
+          editorView = atom.workspaceView.getActiveView()
+          editor = editorView.getEditor()
 
-      miniEditor.trigger "core:move-up"
-      expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-      expect(autocomplete.find('li:eq(0)')).not.toHaveClass('selected')
-      expect(autocomplete.find('li:eq(7)')).not.toHaveClass('selected')
-      expect(autocomplete.find('li:eq(6)')).toHaveClass('selected')
+          # Register the test provider
+          testProvider = new TestProvider(editorView)
+          autocomplete.registerProviderForEditorView testProvider, editorView
 
-  describe 'move-down event', ->
-    it "highlights the next match and replaces the selection with it", ->
-      editor.getBuffer().insert([10,0] ,"extra:s:extra")
-      editor.setCursorBufferPosition([10,7])
-      autocomplete.attach()
+          editorView.attachToDom()
+          editor.moveCursorToBottom()
+          editor.insertText "o"
 
-      miniEditor.trigger "core:move-down"
-      expect(editor.lineForBufferRow(10)).toBe "extra:sort:extra"
-      expect(autocomplete.find('li:eq(0)')).not.toHaveClass('selected')
-      expect(autocomplete.find('li:eq(1)')).toHaveClass('selected')
+          advanceClock completionDelay
 
-      miniEditor.trigger "core:move-down"
-      expect(editor.lineForBufferRow(10)).toBe "extra:shift:extra"
-      expect(autocomplete.find('li:eq(0)')).toHaveClass('selected')
-      expect(autocomplete.find('li:eq(1)')).not.toHaveClass('selected')
-
-  describe "when a match is clicked in the match list", ->
-    it "selects and confirms the match", ->
-      editor.getBuffer().insert([10,0] ,"t")
-      editor.setCursorBufferPosition([10, 0])
-      autocomplete.attach()
-
-      matchToSelect = autocomplete.list.find('li:eq(1)')
-      matchToSelect.mousedown()
-      expect(matchToSelect).toMatchSelector('.selected')
-      matchToSelect.mouseup()
-
-      expect(autocomplete.parent()).not.toExist()
-      expect(editor.lineForBufferRow(10)).toBe matchToSelect.text()
-
-  describe "when the mini-editor receives keyboard input", ->
-    beforeEach ->
-      editorView.attachToDom()
-
-    describe "when text is removed from the mini-editor", ->
-      it "reloads the match list based on the mini-editor's text", ->
-        editor.getBuffer().insert([10,0], "t")
-        editor.setCursorBufferPosition([10,0])
-        autocomplete.attach()
-
-        expect(autocomplete.list.find('li').length).toBe 8
-        miniEditor.textInput('c')
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.list.find('li').length).toBe 3
-        miniEditor.editor.backspace()
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.list.find('li').length).toBe 8
-
-    describe "when the text contains only word characters", ->
-      it "narrows the list of completions with the fuzzy match algorithm", ->
-        editor.getBuffer().insert([10,0] ,"t")
-        editor.setCursorBufferPosition([10,0])
-        autocomplete.attach()
-
-        expect(autocomplete.list.find('li').length).toBe 8
-        miniEditor.textInput('i')
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.list.find('li').length).toBe 4
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText 'pivot'
-        expect(autocomplete.list.find('li:eq(0)')).toHaveClass 'selected'
-        expect(autocomplete.list.find('li:eq(1)')).toHaveText 'right'
-        expect(autocomplete.list.find('li:eq(2)')).toHaveText 'shift'
-        expect(autocomplete.list.find('li:eq(3)')).toHaveText 'quicksort'
-        expect(editor.lineForBufferRow(10)).toEqual 'pivot'
-
-        miniEditor.textInput('o')
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.list.find('li').length).toBe 2
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText 'pivot'
-        expect(autocomplete.list.find('li:eq(1)')).toHaveText 'quicksort'
-
-    describe "when a non-word character is typed in the mini-editor", ->
-      it "immediately confirms the current completion choice and inserts that character into the buffer", ->
-        editor.getBuffer().insert([10,0] ,"t")
-        editor.setCursorBufferPosition([10,0])
-        autocomplete.attach()
-
-        miniEditor.textInput('iv')
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.list.find('li:eq(0)')).toHaveText 'pivot'
-
-        miniEditor.textInput(' ')
-        window.advanceClock(autocomplete.inputThrottle)
-        expect(autocomplete.parent()).not.toExist()
-        expect(editor.lineForBufferRow(10)).toEqual 'pivot '
-
-  describe 'when the mini-editor loses focus before the selection is confirmed', ->
-    it "cancels the autocomplete", ->
-      editorView.attachToDom()
-      autocomplete.attach()
-      spyOn(autocomplete, "cancel")
-
-      editorView.focus()
-
-      expect(autocomplete.cancel).toHaveBeenCalled()
-
-  describe ".attach()", ->
-    beforeEach ->
-      editorView.attachToDom()
-      setEditorHeightInLines(editorView, 13)
-      editorView.resetDisplay() # Ensures the editor only has 13 lines visible
-
-    describe "when the autocomplete view fits below the cursor", ->
-      it "adds the autocomplete view to the editor below the cursor", ->
-        editor.setCursorBufferPosition [1, 2]
-        cursorPixelPosition = editorView.pixelPositionForScreenPosition(editor.getCursorScreenPosition())
-        autocomplete.attach()
-        expect(editorView.find('.autocomplete')).toExist()
-
-        expect(autocomplete.position().top).toBe cursorPixelPosition.top + editorView.lineHeight
-        expect(autocomplete.position().left).toBe cursorPixelPosition.left
-
-    describe "when the autocomplete view does not fit below the cursor", ->
-      it "adds the autocomplete view to the editor above the cursor", ->
-        editor.setCursorScreenPosition([11, 0])
-        editor.insertText('t ')
-        editor.setCursorScreenPosition([11, 0])
-        cursorPixelPosition = editorView.pixelPositionForScreenPosition(editor.getCursorScreenPosition())
-        autocomplete.attach()
-
-        expect(autocomplete.parent()).toExist()
-        autocompleteBottom = autocomplete.position().top + autocomplete.outerHeight()
-        expect(autocompleteBottom).toBe cursorPixelPosition.top
-        expect(autocomplete.position().left).toBe cursorPixelPosition.left
-
-      it "updates the position when the list is filtered and the height of the list decreases", ->
-        editor.setCursorScreenPosition([11, 0])
-        editor.insertText('s')
-        editor.setCursorScreenPosition([11, 0])
-        cursorPixelPosition = editorView.pixelPositionForScreenPosition(editor.getCursorScreenPosition())
-        autocomplete.attach()
-
-        expect(autocomplete.parent()).toExist()
-        autocompleteBottom = autocomplete.position().top + autocomplete.outerHeight()
-        expect(autocompleteBottom).toBe cursorPixelPosition.top
-        expect(autocomplete.position().left).toBe cursorPixelPosition.left
-
-        miniEditor.textInput('sh')
-        window.advanceClock(autocomplete.inputThrottle)
-
-        expect(autocomplete.parent()).toExist()
-        autocompleteBottom = autocomplete.position().top + autocomplete.outerHeight()
-        expect(autocompleteBottom).toBe cursorPixelPosition.top
-        expect(autocomplete.position().left).toBe cursorPixelPosition.left
-
-  describe ".cancel()", ->
-    it "clears the mini-editor and unbinds autocomplete event handlers for move-up and move-down", ->
-      autocomplete.attach()
-      miniEditor.setText('foo')
-
-      autocomplete.cancel()
-      expect(miniEditor.getText()).toBe ''
-
-      editorView.trigger 'core:move-down'
-      expect(editor.getCursorBufferPosition().row).toBe 1
-
-      editorView.trigger 'core:move-up'
-      expect(editor.getCursorBufferPosition().row).toBe 0
-
-  it "sets the width of the view to be wide enough to contain the longest completion without scrolling", ->
-    editorView.attachToDom()
-    editor.insertText('thisIsAReallyReallyReallyLongCompletion ')
-    editor.moveCursorToBottom()
-    editor.insertNewline()
-    editor.insertText('t')
-    autocomplete.attach()
-    expect(autocomplete.list.prop('scrollWidth')).toBe autocomplete.list.width()
-
-  it "includes completions for the scope's completion preferences", ->
-    waitsForPromise ->
-      atom.packages.activatePackage('language-css')
-
-    runs ->
-      cssEditorView = new EditorView(editor: atom.project.openSync('css.css'))
-      cssEditor = cssEditorView.editor
-      autocomplete = new AutocompleteView(cssEditorView)
-
-      cssEditorView.attachToDom()
-      cssEditor.moveCursorToEndOfLine()
-      cssEditor.insertText(' out')
-      cssEditor.moveCursorToEndOfLine()
-
-      autocomplete.attach()
-      expect(autocomplete.list.find('li').length).toBe 4
-      expect(autocomplete.list.find('li:eq(0)')).toHaveText 'outline'
-      expect(autocomplete.list.find('li:eq(1)')).toHaveText 'outline-color'
-      expect(autocomplete.list.find('li:eq(2)')).toHaveText 'outline-style'
-      expect(autocomplete.list.find('li:eq(3)')).toHaveText 'outline-width'
+          expect(autocompleteView.list.find("li:eq(0) .label")).toHaveHtml "<span style=\"color: red\">ohai</span>"
