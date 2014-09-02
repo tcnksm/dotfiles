@@ -1,10 +1,12 @@
+;; ==================================================
+;; Source
+;; ==================================================
 (source gnu)
 (source melpa)
 
 ;; ==================================================
 ;; Default
 ;; ==================================================
-
 (depends-on "bind-key")
 (depends-on "cask")
 (depends-on "dash")
@@ -54,6 +56,7 @@
 ;; --------------------------------------------------
 (depends-on "helm")
 
+
 ;; --------------------------------------------------
 ;; undo
 ;; --------------------------------------------------
@@ -79,6 +82,8 @@
 (depends-on "smartrep")
 (depends-on "popup")
 (depends-on "highlight-symbol")
+(depends-on "pcache")
+(depends-on "logito")
 
 ;; ==================================================
 ;; Language
@@ -105,6 +110,7 @@
 ;; --------------------------------------------------
 (depends-on "feature-mode") ;; Cucumber
 (depends-on "yaml-mode")
+(depends-on "dockerfile-mode" :git "https://github.com/spotify/dockerfile-mode")
 
 ;; --------------------------------------------------
 ;; etc
@@ -112,5 +118,3 @@
 (depends-on "markdown-mode")
 (depends-on "haml-mode")
 (depends-on "scss-mode")
-
-
