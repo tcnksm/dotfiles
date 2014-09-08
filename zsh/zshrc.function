@@ -135,7 +135,7 @@ function percol-doc () {
 }
 
 zle -N percol-doc
-bindkey '^O' percol-doc
+bindkey '^o' percol-doc
 
 function percol-jump () {
     local jump_dir=$(j | cut -d'/' -f2-| percol --query "$LBUFFER")

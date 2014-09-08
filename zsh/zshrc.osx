@@ -37,4 +37,5 @@ fi
 # ------------------------------------
 # boot2docker
 # ------------------------------------
-export DOCKER_HOST=tcp://localhost:4243
+export DOCKER_HOST=tcp://:2375
+#export DOCKER_HOST=tcp://localhost:4243

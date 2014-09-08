@@ -4,7 +4,7 @@
 [user]
   name = tcnksm
   email = nsd22843@gmail.com
-
+  
 [color]
   status = auto
   diff = auto
@@ -89,6 +89,11 @@
 
 [ghq]
     root = ~/src
+
+[ghq "alias"]
+    g = get
+    l = look
+    ls = list
 
 [docc]
     cmd = more
