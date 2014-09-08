@@ -12,6 +12,7 @@
 (global-set-key (kbd "C-x r")   'helm-recentf)
 (global-set-key (kbd "C-x C-z") 'helm-resume)
 (global-set-key (kbd "C-x C-g") 'helm-do-grep)
+(global-set-key (kbd "C-c C-s") 'helm-ghq)
 
 ;; -------------------------------------------------
 ;; Keybind (while executing helm)
@@ -31,4 +32,4 @@
 ;; Etc
 ;; -------------------------------------------------
 (setq helm-ff-auto-update-initial-value nil)
-
+(add-to-list 'helm-for-files-preferred-list 'helm-source-ghq)
