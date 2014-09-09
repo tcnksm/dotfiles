@@ -12,6 +12,9 @@
   interactive = auto
   grep = auto
 
+[core]
+  editor = /usr/local/bin/emacsclient -n --alternate-editor /usr/local/bin/emacs
+  
 [merge]
   ff = false
 
