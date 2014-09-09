@@ -29,7 +29,7 @@ export EDITOR='/usr/local/bin/emacs -nw'
 # ------------------------------------
 # Emacs Cask
 # ------------------------------------
-export PATH="/Users/taichi.nakashima/.cask/bin:$PATH"
+export PATH=~/.cask/bin:$PATH
 
 # ------------------------------------
 # z
