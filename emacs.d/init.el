@@ -14,7 +14,7 @@
 	(if (fboundp 'normal-top-level-add-subdirs-to-load-path)
 	    (normal-top-level-add-subdirs-to-load-path))))))
 
-(add-to-load-path "elisp" "conf" ".cask/24.3.1/elpa/helm-20140901.59")
+(add-to-load-path "elisp" "conf")
 
 ;; --------------------------------------------------
 ;; Cask
