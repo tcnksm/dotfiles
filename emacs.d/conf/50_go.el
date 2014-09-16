@@ -65,6 +65,12 @@
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint nil t)
 
+;; --------------------------------------------------
+;; go-direx
+;; go get -u github.com/jstemmer/gotags
+;; --------------------------------------------------
+(require 'go-direx nil t) ;; Don't need to require, if you install by package.el
+(define-key go-mode-map (kbd "C-c C-j") 'go-direx-pop-to-buffer)
 
 ;; --------------------------------------------------
 ;; smartchr

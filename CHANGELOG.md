@@ -7,8 +7,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- [helm-ghq](https://github.com/masutaka/emacs-helm-ghq): `C-c C-s`
+- [helm-ghq](https://github.com/masutaka/emacs-helm-ghq): `\C-c \C-s`
 - [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+- [go-direx](https://github.com/syohex/emacs-go-direx): `\C-c \C-j`
 
 ### Changed
 

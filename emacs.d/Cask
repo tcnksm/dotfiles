@@ -95,6 +95,7 @@
 (depends-on "go-mode")
 (depends-on "go-eldoc")
 (depends-on "go-autocomplete")
+(depends-on "go-direx")
 
 ;; --------------------------------------------------
 ;; Ruby
