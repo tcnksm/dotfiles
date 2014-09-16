@@ -162,3 +162,15 @@ function percol-git-recent-all-branches () {
 
 zle -N percol-git-recent-all-branches
 bindkey '^B' percol-git-recent-all-branches
+
+function percol-ssh () {
+    local selected_host=$(grep ^alias ~/.one-command-login/login.bashrc | grep ssh | cut -d= -f 1 | cut -d" " -f 2| percol --query "$LBUFFER")
+    if [ -n "$selected_host" ]; then
+        BUFFER="${selected_host}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+
+zle -N percol-ssh
+bindkey '^G' percol-ssh
