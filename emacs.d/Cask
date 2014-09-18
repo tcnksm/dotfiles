@@ -119,3 +119,5 @@
 (depends-on "markdown-mode")
 (depends-on "haml-mode")
 (depends-on "scss-mode")
+(depends-on "coffee-mode")
+
