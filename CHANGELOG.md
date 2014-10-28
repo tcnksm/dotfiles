@@ -3,6 +3,21 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+## 2014-11
+
+### Added
+
+- Alias of HTTP status (refered [Jxck/dotfiles](https://github.com/Jxck/dotfiles/blob/master/zsh/.http_status))
+
+### Changed
+
+- Nothing
+
+### Removed
+
+- Nothing
+
+
 ## 2014-09
 
 ### Added
