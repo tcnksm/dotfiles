@@ -37,9 +37,9 @@ fi
 # ------------------------------------
 # boot2docker
 # ------------------------------------
-export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
-#export DOCKER_HOST=tcp://:2375
-#export DOCKER_HOST=tcp://localhost:4243
+if [ "`boot2docker status`" = "running" ]; then
+    $(boot2docker shellinit)
+fi
 
 # ------------------------------------
 # Packer
