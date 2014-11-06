@@ -61,13 +61,13 @@ namespace :zsh do
       mv File.join(HOME, ".zshrc"), File.join(HOME, ".zshrc.org")
     end
 
-    symlink_ File.join(PWD, "zshrc"), File.join(HOME, ".zshrc")      
+    symlink_ File.join(PWD, "zsh/zshrc"), File.join(HOME, ".zshrc")      
   end
 end
 
 namespace :git do
   desc "Create symbolic link to HOME"
-  task :link => File.join(HOME,".gitconfig.local") do    
+  task :link do    
     same_name_symlinks File.join(PWD, "git"), ["gitconfig", "gitignore.global"]
   end
 end
