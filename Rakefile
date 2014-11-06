@@ -36,7 +36,7 @@ task :setup => [
               "git:link",
               "tmux:link",
               "zsh:link",
-              "slate:link",
+              "percol:link",
               "etc:link"]
 
 namespace :emacs do
@@ -83,13 +83,6 @@ namespace :percol do
   desc "Create symbolic link"
   task :link do
     symlink_ File.join(PWD, "percol.d"), File.join(HOME, ".percol.d")
-  end
-end
-
-namespace :slate do
-  desc "Create symbolic link"
-  task :link do
-    same_name_symlinks File.join(PWD, "slate"), ["slate", "slate.js"] if OS =~ /^Darwin/
   end
 end
 
