@@ -18,7 +18,7 @@ $ cd ~/.dotfile
 $ ./brewfile.sh
 ```
 
-To enable dotfiles:
+To enable dotfiles (Make synbolic link to `$HOME` directory):
 
 ```bash
 $ cd ~/.dotfiles
