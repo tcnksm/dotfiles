@@ -1,4 +1,4 @@
-Change Log
+ChangeLog
 ====
 
 All notable changes to this project will be documented in this file.
@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- `brewfile.sh` - bashscript to install binaries and App, fonts
 - Alias of HTTP status (refered [Jxck/dotfiles](https://github.com/Jxck/dotfiles/blob/master/zsh/.http_status))
 
 ### Changed
@@ -15,6 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
+- `Brewfile`
 - Fonts
 - Atom (I will be back to emacs)
 
