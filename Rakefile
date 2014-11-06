@@ -11,15 +11,11 @@ ETC_ROOT    =  File.join(File.dirname(__FILE__), "etc")
 TMUX_ROOT   =  File.join(File.dirname(__FILE__), "tmux")
 SLATE_ROOT  =  File.join(File.dirname(__FILE__), "slate")
 PERCOL_ROOT =  File.join(File.dirname(__FILE__), "percol")
-FONT_ROOT   =  File.join(File.dirname(__FILE__), "stuff", "fonts")
 
-ZSH_DOT_FILES  =  %w{ zshrc.global zshrc.function zshrc.alias zshrc.osx zshrc.linux }
 ETC_DOT_FILES  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
 
 cleans = [
           ".emacs.d",
-          ".atom",
-          ".zsh",
           ".zshrc",
           ".oh-my-zsh",
           ".tmux.conf",
@@ -39,16 +35,26 @@ task :all => ["emacs:link", "atom:link", "git:link","tmux:link","zsh:link", "fon
 namespace :emacs do
   desc "Create symbolic link to HOME"
   task :link do
-    org = File.join(HOME, ".emacs.d")
-    mv org, File.join(HOME, ".emacs.d.org") if File.exist?(org) && !File.symlink?(org) 
+    
+    # If .emacs.d is already exist, backup it
+    if File.exist?(File.join(HOME, ".emacs.d")) && !File.symlink?(File.join(HOME, ".emacs.d")) 
+      mv File.join(HOME, ".emacs.d"), File.join(HOME, ".emacs.d.org")
+    end
+    
     symlink_ File.join(File.dirname(__FILE__), "emacs.d"), File.join(HOME,".emacs.d")
   end
 end
 
-namespace :atom do
-  desc "Create symbolic link"
+namespace :zsh do
+  desc "Create symbolic link to HOME/.zshrc"
   task :link do
-    symlink_ ATOM_ROOT, File.join(HOME, ".atom")
+
+    # If `.zshrc` is already exist, backup it
+    if File.exist?(File.join(HOME, ".zshrc")) && !File.symlink?(File.join(HOME, ".zshrc"))
+      mv File.join(HOME, ".zshrc"), File.join(HOME, ".zshrc.org")
+    end
+
+    symlink_ File.join(ZSH_ROOT, "zshrc"), File.join(HOME, ".zshrc")      
   end
 end
 
@@ -78,45 +84,10 @@ namespace :tmux do
   end
 end
 
-namespace :zsh do
-  desc "Create symbolic link to HOME/.zsh"
-  task :link => [File.join(HOME,".oh-my-zsh"), File.join(HOME,".zsh")] do
-    ZSH_DOT_FILES.each do |f|
-      symlink_ File.join(ZSH_ROOT,f), File.join(HOME, ".zsh", f)
-    end
-    
-    org = File.join(HOME, ".zshrc")
-    mv org, File.join(HOME, ".zshrc.org") if File.exist?(org) && !File.symlink?(org)
-    symlink_ File.join(ZSH_ROOT, "zshrc"), File.join(HOME, ".zshrc")
-    symlink_ File.join(ZSH_ROOT, "oh-my-zsh-theme","tc.zsh-theme"), File.join(HOME,".oh-my-zsh","themes","tc.zsh-theme")
-  end
-  
-  desc "Download oh-my-zsh"
-  file File.join(HOME,".oh-my-zsh") do |f|
-    sh "git clone https://github.com/robbyrussell/oh-my-zsh.git #{f.name}"
-  end
-
-  file File.join(HOME, ".zsh") do |f|
-    mkdir f.name
-  end
-end
-
 namespace :slate do
   desc "Create symbolic link"
   task :link do
     same_name_symlinks SLATE_ROOT, ["slate", "slate.js"] if OS =~ /^Darwin/
-  end
-end
-
-namespace :font do
-  desc "Create symbolic link"
-  task :link do
-    case OS
-    when /^Darwin/
-      cp Dir.glob(FONT_ROOT + "/*\.*"), File.join(HOME, "Library","Fonts")
-    when /^Linux/
-      symlink_ FONT_ROOT, File.join(HOME, ".fonts")
-    end
   end
 end
 
