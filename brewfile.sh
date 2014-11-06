@@ -6,7 +6,12 @@ fi
 
 # Update homebrew recipes
 brew update
-brew upgrade
+
+# Upgrade all
+printf "Upgrade? [Y/n]: " && read ANS
+if [ "${ANS}" = "Y" ]; then
+    brew upgrade
+fi
 
 # Add Repository
 brew tap homebrew/dupes
