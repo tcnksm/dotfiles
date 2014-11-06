@@ -1,9 +1,4 @@
 # ====================================
-# PATH
-# ====================================
-
-
-# ====================================
 # Alias
 # ====================================
 
@@ -37,8 +32,10 @@ fi
 # ------------------------------------
 # boot2docker
 # ------------------------------------
-if [ "`boot2docker status`" = "running" ]; then
-    $(boot2docker shellinit)
+if test $(which boot2docker > /dev/null); then
+   if [ "`boot2docker status`" = "running" ]; then
+       $(boot2docker shellinit)
+   fi
 fi
 
 # ------------------------------------
