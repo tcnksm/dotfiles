@@ -15,8 +15,8 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Nothing
-
+- Fonts
+- Atom (I will be back to emacs)
 
 ## 2014-09
 
