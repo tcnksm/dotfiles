@@ -5,7 +5,10 @@ if test ! $(which brew); then
 fi
 
 # Update homebrew recipes
-brew update
+printf "Update recipes? [Y/n]: " && read ANS
+if [ "${ANS}" = "Y" ]; then
+    brew update
+fi
 
 # Upgrade all
 printf "Upgrade? [Y/n]: " && read ANS
@@ -37,6 +40,7 @@ packages=(
 
     # Editor
     emacs
+    cask
 
     # Multiplexe
     tmux
