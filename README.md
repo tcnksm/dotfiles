@@ -8,7 +8,7 @@ Your dotfiles are how you personalize your system. These are mine.
 Checkout this repository:
 
 ```bash
-$ git clone https://github.com/tcnksm/dotfiles ~/dotfiles
+$ git clone https://github.com/tcnksm/dotfiles ~/.dotfiles
 ```
 
 To install OSX applications:
