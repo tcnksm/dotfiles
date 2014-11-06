@@ -16,7 +16,6 @@ fi
 # Add Repository
 brew tap homebrew/dupes
 brew tap homebrew/versions   
-brew tap phinze/homebrew-cask
 brew tap homebrew/binary     
 brew tap thoughtbot/formulae
 brew tap caskroom/fonts
@@ -72,8 +71,8 @@ packages=(
     rbenv            
     ruby-build       
     go               
-    python3          
-    haskell-platform 
+    python3
+    ghc
     scala                
 )
 
