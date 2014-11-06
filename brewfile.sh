@@ -69,7 +69,8 @@ packages=(
     readline  
     markdown  
     nkf       
-    ag        
+    ag
+    direnv
 
     # Languages
     rbenv            
