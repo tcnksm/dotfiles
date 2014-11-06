@@ -5,25 +5,15 @@ Your dotfiles are how you personalize your system. These are mine.
 
 ## Install
 
-Checkout this repository:
+Run this:
 
 ```bash
 $ git clone https://github.com/tcnksm/dotfiles ~/.dotfiles
-```
-
-To install OSX applications:
-
-```bash
-$ cd ~/.dotfile
-$ ./brewfile.sh
-```
-
-To enable dotfiles (Make synbolic link to `$HOME` directory):
-
-```bash
 $ cd ~/.dotfiles
-$ rake setup
+$ ./bootstrap.sh
 ```
+
+This script will install Homebrew packages and Emacs Casks. And every dotfiles are linked to `$HOME` directory. 
 
 ## Author
 
