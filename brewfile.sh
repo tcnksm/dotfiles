@@ -101,6 +101,7 @@ apps=(
 
     # etc ...
     google-drive
+    karabiner
     sketch  
     slate
 )
