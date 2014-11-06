@@ -4,6 +4,9 @@
 [user]
   name = tcnksm
   email = nsd22843@gmail.com
+
+[credential]
+  helper = osxkeychain          
   
 [color]
   status = auto
