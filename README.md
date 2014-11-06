@@ -1,18 +1,18 @@
-dotfiles
+tcnksm does dotfiles [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/tcnksm/dotfiles/blob/master/LICENCE)
 ====
 
-This is my dotfiles.
+Your dotfiles are how you personalize your system. These are mine.
 
-## Setup
+## Install
 
-To set-up all dotfiles in `$HOME` directory:
+Run this:
 
 ```bash
+$ git clone https://github.com/tcnksm/dotfiles ~/dotfiles
+$ cd ~/.dotfiles
 $ rake all
 ```
 
-To unset all dotfiles:
+## Author
 
-```bash
-$ rake clean
-```
+[tcnksm](https://github.com/tcnksm)
