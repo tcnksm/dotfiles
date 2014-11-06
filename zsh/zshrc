@@ -17,20 +17,8 @@ setopt list_packed
 zstyle ':completion:*' list-colors ''
 
 # ------------------------------------
-# Terminal title
-# ------------------------------------
-case "${TERM}" in
-kterm*|xterm)
-    precmd() {
-        echo -ne "\033]0;deeeet@${HOST%%.*}:${PWD}\007"
-    }
-    ;;
-esac
-
-# ------------------------------------
 # Command History
 # ------------------------------------
-
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -57,8 +45,6 @@ bindkey -e
 # ------------------------------------
 # cd
 # ------------------------------------
-
-# cd by directory name
 setopt auto_cd
 
 # Auto directory pushd
@@ -70,49 +56,36 @@ setopt auto_pushd
 # ------------------------------------
 setopt correct
 
-
 # ------------------------------------
 # Oh-my-zsh settings
 # ------------------------------------
 ZSH=~/.oh-my-zsh
-ZSH_THEME="tc"
+# ZSH_THEME="tc"
 plugins=(git ruby gem zsh-syntax-highlighting)
 
+[ ! -d ~/.oh-my-zsh ] && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 [ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # ------------------------------------
-# Global settings
+# Read settings
 # ------------------------------------
-
-[ -f ~/.zsh/zshrc.global ] && source ~/.zsh/zshrc.global
-
-# ------------------------------------
-# Global alias Settings
-# ------------------------------------
-
-[ -f ~/.zsh/zshrc.alias ] && source ~/.zsh/zshrc.alias
-
-# ------------------------------------
-# Function
-# ------------------------------------
-
-[ -f ~/.zsh/zshrc.function ] && source ~/.zsh/zshrc.function
+[ -f ~/.dotfiles/zsh/global      ] && source ~/.dotfiles/zsh/global
+[ -f ~/.dotfiles/zsh/alias       ] && source ~/.dotfiles/zsh/alias
+[ -f ~/.dotfiles/zsh/functions   ] && source ~/.dotfiles/zsh/functions
+[ -f ~/.dotfiles/zsh/docker      ] && source ~/.dotfiles/zsh/docker
+[ -f ~/.dotfiles/zsh/http_status ] && source ~/.dotfiles/zsh/http_status
+[ -f ~/.dotfiles/zsh/percol      ] && source ~/.dotfiles/zsh/percol
+[ -f ~/.dotfiles/zsh/local       ] && source ~/.dotfiles/zsh/local
 
 # ------------------------------------
-# Settings by OS
+# Read OS specific settings
 # ------------------------------------
 case "${OSTYPE}" in
     darwin*)
-	[ -f ~/.zsh/zshrc.osx ] && source ~/.zsh/zshrc.osx
+	[ -f ~/.dotfiles/zsh/osx ] && source ~/.dotfiles/zsh/osx
 	;;
 
     linux*)
-	[ -f ~/.zsh/zshrc.linux ] && source ~/.zsh/zshrc.linux
+	[ -f ~/.dotfiles/zsh/linux ] && source ~/.dotfiles/zsh/linux
 	;;
 esac
-
-# ------------------------------------
-# Local settings
-# ------------------------------------
-[ ! -f ~/.zsh/zshrc.local ] && touch ~/.zsh/zshrc.local
-[ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
