@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 set -e
 
 # Install homebrew packages
-./brewfile.sh
+./homebrew/install.sh
 
 # Install emacs cask
 pushd emacs.d
