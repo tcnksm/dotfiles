@@ -49,13 +49,11 @@ alias bp='bundle package'
 alias bi='bundle install --path vendor/bundle'
 alias bin='bundle install --path vendor/bundle --binstubs .bundle/bin'
 
-
 # ------------------------------------
 # Emacs
 # ------------------------------------
 alias emacs='/usr/local/bin/emacs -nw'
-alias e='emacsclient'
-
+alias e='/usr/local/bin/emacsclient'
 
 # ------------------------------------
 # Tmux

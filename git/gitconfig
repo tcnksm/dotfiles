@@ -16,7 +16,7 @@
   grep = auto
 
 [core]
-  editor = /usr/local/bin/emacs -nw
+  editor = "/usr/local/bin/emacsclient -t" --alternate-editor "/usr/local/bin/emacs -nw"
   
 [merge]
   ff = false
