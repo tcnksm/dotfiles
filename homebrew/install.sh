@@ -108,12 +108,14 @@ apps=(
     # VM    
     virtualbox
     vagrant
+    vagrant-manager
 
     # etc ...
     google-drive
     karabiner
     sketch  
     slate
+    flux
 )
 
 # Install apps to /Applications
@@ -129,6 +131,7 @@ fonts=(
     font-source-code-pro
     font-clear-sans
     font-roboto
+    font-fontawesome
 )
 
 # install fonts
