@@ -33,15 +33,10 @@
 ;; --------------------------------------------------
 (require 'ruby-electric nil t)
 
-;; end の自動挿入
-;; [reference] https://groups.google.com/forum/?fromgroups#!msg/emacs-on-rails/Cuh_x5eCK_M/KDwjY4K6X1YJ
-
-(defun ruby-insert-end () 
-  "Insert \"end\" at point and reindent current line."
-  (interactive) 
-  (insert "end") 
-  (ruby-indent-line t) 
-  (end-of-line))
+;; --------------------------------------------------
+;; ruby-end.el
+;; --------------------------------------------------
+(require 'ruby-end nil t)
 
 ;; --------------------------------------------------
 ;; ruby-block.el

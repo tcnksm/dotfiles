@@ -75,17 +75,17 @@ plugins=(git ruby gem zsh-syntax-highlighting)
 [ -f ~/.dotfiles/zsh/docker      ] && source ~/.dotfiles/zsh/docker
 [ -f ~/.dotfiles/zsh/http_status ] && source ~/.dotfiles/zsh/http_status
 [ -f ~/.dotfiles/zsh/percol      ] && source ~/.dotfiles/zsh/percol
-[ -f ~/.dotfiles/zsh/local       ] && source ~/.dotfiles/zsh/local
+[ -f ~/.local-dotfiles/zsh       ] && source ~/.local-dotfiles/zsh
 
 # ------------------------------------
 # Read OS specific settings
 # ------------------------------------
 case "${OSTYPE}" in
     darwin*)
-	[ -f ~/.dotfiles/zsh/osx ] && source ~/.dotfiles/zsh/osx
+	  [ -f ~/.dotfiles/zsh/osx ] && source ~/.dotfiles/zsh/osx
 	;;
 
     linux*)
-	[ -f ~/.dotfiles/zsh/linux ] && source ~/.dotfiles/zsh/linux
+	  [ -f ~/.dotfiles/zsh/linux ] && source ~/.dotfiles/zsh/linux
 	;;
 esac

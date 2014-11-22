@@ -33,6 +33,7 @@ packages=(
 
     # recent versions of some OS X tools
     homebrew/dupes/grep
+    apple-gcc42
     
     # Shell
     zsh
