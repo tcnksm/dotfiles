@@ -157,7 +157,6 @@
 ;; Don't use C-x C-c
 ;; --------------------------------------------------
 (global-set-key (kbd "C-x C-c") 'helm-recentf)
-(global-set-key (kbd "C-x C-z") 'helm-recentf)
 
 (defalias 'exit 'save-buffers-kill-emacs)
 
