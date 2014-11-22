@@ -143,7 +143,7 @@
 ;; --------------------------------------------------
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
-(global-set-key (kbd "C-c C-u") 'cua-set-rectangle-mark) ;; or C-RET
+(global-set-key (kbd "C-c C-c") 'cua-set-rectangle-mark) ;; or C-RET
 
 
 ;; --------------------------------------------------
@@ -156,7 +156,8 @@
 ;; --------------------------------------------------
 ;; Don't use C-x C-c
 ;; --------------------------------------------------
-;; (global-set-key (kbd "C-x C-c") 'anything-for-files)
+(global-set-key (kbd "C-x C-c") 'helm-recentf)
+(global-set-key (kbd "C-x C-z") 'helm-recentf)
 
 (defalias 'exit 'save-buffers-kill-emacs)
 
