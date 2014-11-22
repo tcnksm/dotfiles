@@ -36,4 +36,5 @@ if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
 fi
 
 # go tools
+info "Install go tools"
 ./go/get.sh
