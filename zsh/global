@@ -3,11 +3,21 @@
 # ====================================
 
 # ------------------------------------
-# general
+# General
 # ------------------------------------
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export PATH=$PATH:~/bin
+
+# ------------------------------------
+# Emacs Cask
+# ------------------------------------
+export PATH=~/.cask/bin:$PATH
+
+# ------------------------------------
+# Heroku toolbelt
+# ------------------------------------
+export PATH="/usr/local/heroku/bin:$PATH"
 
 # ====================================
 # ENVIRONMENT
@@ -24,49 +34,15 @@ export LANG=ja_JP.UTF-8
 export EDITOR='/usr/local/bin/emacs -nw'
 
 # ====================================
-# TOOL
-# ====================================
-
-# ------------------------------------
-# Emacs Cask
-# ------------------------------------
-export PATH=~/.cask/bin:$PATH
-
-# ------------------------------------
-# z
-# ------------------------------------
-if [[ -d ~/.zjump ]]; then
-   _Z_CMD=j
-   source "$HOME/.zjump/z.sh"
-else
-   echo "[Warning] z is not installed" 1>&2
-   # git clone https://github.com/rupa/z.git ~/.zjump
-fi
-
-# ------------------------------------
-# bd
-# ------------------------------------
-if [[ -f ~/.bd.zsh ]]; then
-  source ~/.bd.zsh
-fi
-
-# ------------------------------------
-# Heroku toolbelt
-# ------------------------------------
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# ====================================
-# LANGAGE
+# Language
 # ====================================
 
 # ------------------------------------
 # Ruby
 # ------------------------------------
 if [ -d ~/.rbenv ]; then
-     export PATH="$HOME/.rbenv/bin:$PATH"
-     eval "$(rbenv init - zsh)"
- else
-     echo "[Warning] rbenv is not installed" 1>&2
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init - zsh)"
 fi
 
 # ------------------------------------
@@ -79,7 +55,6 @@ export PATH=$PATH:~/bin
 export GOROOT=`go env GOROOT`
 export PATH=$PATH:$GOROOT/bin
 
-
 # ------------------------------------
 # node.js
 # ------------------------------------
@@ -88,45 +63,19 @@ export PATH=$PATH:$GOROOT/bin
 if [[ -f ~/.nodebrew/nodebrew ]]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
     nodebrew use stable
-else
-    echo "[Warning] nodebrew is not installed" 1>&2
 fi
 
-# ------------------------------------
-# Java
-# ------------------------------------
 
-# Version management (jenv)
-if [[ -f ~/.jenv/bin/jenv-init.sh ]]; then
-   source ~/.jenv/bin/jenv-init.sh
-   source ~/.jenv/commands/completion.sh
-   if [[ -d $HOME/.jenv/candidates/java ]]; then
-       mkdir -p $HOME/.jenv/candidates/java
-   fi
-else
-   echo "[Warning] jenv is not installed" 1>&2
-fi
+# ====================================
+# TOOL
+# ====================================
 
 # ------------------------------------
-# gvm
+# z
 # ------------------------------------
-
-# Version management (gvm)
-if [[ -f ~/.gvm/bin/gvm-init.sh ]]; then
-   source ~/.gvm/bin/gvm-init.sh
-   export PATH="$HOME/.gvm/gradle/current/bin:$PATH"
-else
-   echo "[Warning] gvm is not installed" 1>&2
-fi
-
-# ------------------------------------
-# zaw, https://github.com/zsh-users/zaw
-# ------------------------------------
-
-if [[ -f ~/.zaw/zaw.zsh ]]; then
-   source ~/.zaw/zaw.zsh
-else
-   echo "[Warning] zaw is not installed" 1>&2
+if [[ -d ~/.zjump ]]; then
+   _Z_CMD=j
+   source "$HOME/.zjump/z.sh"
 fi
 
 # ------------------------------------

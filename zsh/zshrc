@@ -63,7 +63,6 @@ ZSH=~/.oh-my-zsh
 ZSH_THEME="beer"
 plugins=(git ruby gem zsh-syntax-highlighting)
 
-[ ! -d ~/.oh-my-zsh ] && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 [ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # ------------------------------------
