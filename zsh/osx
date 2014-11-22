@@ -3,31 +3,23 @@
 # ====================================
 
 # show with color
-alias ls="ls -G"
+alias ls="ls --color"
 
 # show description of files
-alias ll="ls -lG"
+alias ll="ls -l --color"
 
 # show with hidden files
-alias la="ls -AG"
+alias la="ls -A --color"
 
 # show directory with /, executable file with *,
 # simbolic link with @
-alias lf="ls -FG"
+alias lf="ls -F --color"
 
 # ------------------------------------
 # Rmtrash
 # ------------------------------------
 alias rm='rmtrash'
 alias rr='rmtrash *~'
-
-# ------------------------------------
-# Tmux
-# ------------------------------------
-if [ -n "$TMUX" ]; then
-  alias pbcopy="reattach-to-user-namespace pbcopy"
-  alias pbpaste="reattach-to-user-namespace pbpaste"
-fi
 
 # ------------------------------------
 # boot2docker
