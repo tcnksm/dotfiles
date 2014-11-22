@@ -128,6 +128,7 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 10)            ; max display
 (setq recentf-max-saved-items 3000)         ; max save
+(setq recentf-save-file "~/.emacs.d/etc/.cache/recentf")
 
 ;; --------------------------------------------------
 ;; Save hist mode
