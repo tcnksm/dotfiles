@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- [helm-ag](https://github.com/syohex/emacs-helm-ag) - `C-x C-a` or `C-x Cg` to `helm-do-ag`
 - `brewfile.sh` - bashscript to install binaries and App, fonts
 - Alias of HTTP status (refered [Jxck/dotfiles](https://github.com/Jxck/dotfiles/blob/master/zsh/.http_status))
 
