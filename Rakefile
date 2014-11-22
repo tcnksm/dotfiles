@@ -18,7 +18,6 @@ end
 cleans = [
           ".emacs.d",
           ".zshrc",
-          ".oh-my-zsh",
           ".tmux.conf",
           ".gitconfig",
           ".gitignore.global",
