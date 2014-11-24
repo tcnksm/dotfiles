@@ -52,12 +52,8 @@
 ;; [description] irbをemacsから利用する
 ;; [install] (install-elisp https://raw.github.com/ruby/ruby/trunk/misc/inf-ruby.el)
 ;; --------------------------------------------------
-
-(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
-(eval-after-load 'ruby-mode
-  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
-
+(require 'inf-ruby)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
 ;; --------------------------------------------------
 ;; flymake
