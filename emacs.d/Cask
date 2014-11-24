@@ -106,6 +106,7 @@
 (depends-on "ruby-electric")
 (depends-on "ruby-end")
 (depends-on "flymake-ruby")
+(depends-on "inf-ruby")
 
 ;; --------------------------------------------------
 ;; Configuration language
