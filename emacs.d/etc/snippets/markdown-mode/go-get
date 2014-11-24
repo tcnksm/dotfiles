@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: go-get
+# key: go
+# --
+
+To install, use \`go get\`:
+
+\`\`\`bash
+$ go get -d github.com/tcnksm/NAME
+\`\`\`

@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: docker-service
+# key: docker
+# --
+TimeoutStartSec=0
+KillMode=none
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run -rm -name %n
+ExecStop=/usr/bin/docker stop -t 3 %n
