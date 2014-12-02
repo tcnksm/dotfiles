@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: func append
+# key: func
+# contributor : @atotto
+# --
+//
+func ($2) $1() {
+	$0
+}
