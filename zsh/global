@@ -48,6 +48,11 @@ fi
 # ------------------------------------
 # Go
 # ------------------------------------
+if [ -d ~/.gvm ]; then
+  source "$HOME/.gvm/scripts/gvm"
+  gvm use go1.4
+fi
+
 export GOPATH=${HOME}
 export PATH=$PATH:~/bin
 
