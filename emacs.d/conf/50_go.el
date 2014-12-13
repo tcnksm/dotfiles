@@ -22,13 +22,15 @@
 
 ;; --------------------------------------------------
 ;; Keybind
+;; $ go get code.google.com/p/go.tools/cmd/godoc
 ;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; --------------------------------------------------
 (defun go-keybind ()
-  (local-set-key (kbd "M-j")     'godef-jump)      ;; Jump to definition
-  (local-set-key (kbd "M-p")     'go-import-add)   ;; Import package
-  (local-set-key (kbd "M-r")     'go-remove-unused-imports) ;;  Remove unused package
-  (local-set-key (kbd "M-'")     'go-play-region) ;;  Remove unused package
+  (local-set-key (kbd "\C-c d") 'godoc)          ;; Search doc
+  (local-set-key (kbd "\C-c j") 'godef-jump)     ;; Jump to definition
+  (local-set-key (kbd "\C-c p") 'go-import-add)  ;; Import package
+  (local-set-key (kbd "\C-c u") 'go-remove-unused-imports) ;; Remove unused package
+  (local-set-key (kbd "\C-c ,")     'go-play-region) ;;
   )
 
 (add-hook 'go-mode-hook 'go-keybind)
@@ -64,6 +66,7 @@
 ;; --------------------------------------------------
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint nil t)
+(define-key go-mode-map (kbd "\C-c l") 'golint)
 
 ;; --------------------------------------------------
 ;; go-direx
@@ -75,7 +78,6 @@
 ;; --------------------------------------------------
 ;; smartchr
 ;; --------------------------------------------------
-
 (require 'smartchr nil t)
 
 (defun smartchr-go ()
