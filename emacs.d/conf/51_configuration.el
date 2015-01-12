@@ -12,11 +12,10 @@
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 ;; --------------------------------------------------
-;; JSON
+;; TOML
 ;; --------------------------------------------------
-(add-hook 'javascript-mode-hook
-          (lambda ()
-            (setq js-indent-level 2)))
+(require 'toml-mode)
+(add-to-list 'auto-mode-alist '("\\.toml$" . toml-mode))
 
 ;; --------------------------------------------------
 ;; Nginx
@@ -27,6 +26,11 @@
 ;; Vagrant
 ;; --------------------------------------------------
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
+;; --------------------------------------------------
+;; Terraform
+;; --------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.tf$" . ruby-mode))
 
 ;; --------------------------------------------------
 ;; Docker

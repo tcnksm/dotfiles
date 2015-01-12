@@ -113,6 +113,7 @@
 ;; --------------------------------------------------
 (depends-on "feature-mode") ;; Cucumber
 (depends-on "yaml-mode")
+(depends-on "toml-mode")
 (depends-on "nginx-mode")
 (depends-on "dockerfile-mode" :git "https://github.com/spotify/dockerfile-mode")
 
