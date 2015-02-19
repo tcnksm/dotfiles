@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: test-err
+# key: test
+# binding: direct-keybinding
+# --
+if err == nil {
+    t.Fatal("expect error, but nothing is returned")
+}

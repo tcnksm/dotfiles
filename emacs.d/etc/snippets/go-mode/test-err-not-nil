@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: test-err-nil
+# key: err
+# binding: direct-keybinding
+# --
+
+if err != nil {
+    t.Fatal("err: %s",err.Error())
+}
