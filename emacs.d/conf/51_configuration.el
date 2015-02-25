@@ -12,6 +12,12 @@
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 ;; --------------------------------------------------
+;; Serverspec
+;; --------------------------------------------------
+(require 'serverspec)
+(add-hook 'ruby-mode-hook '(lambda () (serverspec 1)))
+
+;; --------------------------------------------------
 ;; TOML
 ;; --------------------------------------------------
 (require 'toml-mode)
