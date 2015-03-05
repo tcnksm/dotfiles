@@ -50,6 +50,7 @@
 
   co  = checkout
   cb  = checkout -b
+  develop = checkout develop
   master = checkout master
 
   d   = diff
