@@ -7,12 +7,17 @@
 ;; --------------------------------------------------
 (require 'go-mode nil t)
 
-
 ;; --------------------------------------------------
 ;; Using command instal by go get
 ;; --------------------------------------------------
 (add-to-list 'exec-path (expand-file-name "~/bin"))
 
+
+;; --------------------------------------------------
+;; Go imports
+;; go get golang.org/x/tools/cmd/goimports
+;; --------------------------------------------------
+(setq gofmt-command "goimports")
 
 ;; --------------------------------------------------
 ;; Arrange source code before saving
@@ -30,7 +35,7 @@
   (local-set-key (kbd "\C-c j") 'godef-jump)     ;; Jump to definition
   (local-set-key (kbd "\C-c p") 'go-import-add)  ;; Import package
   (local-set-key (kbd "\C-c u") 'go-remove-unused-imports) ;; Remove unused package
-  (local-set-key (kbd "\C-c ,")     'go-play-region) ;;
+  (local-set-key (kbd "\C-c ,") 'go-play-region) ;;
   )
 
 (add-hook 'go-mode-hook 'go-keybind)

@@ -5,7 +5,7 @@
 # ------------------------------------
 # Completion
 # ------------------------------------
-fpath=(/usr/local/share/zsh/function ${fpath})
+fpath=(/usr/local/share/zsh/functions ${fpath})
 autoload -U compinit && compinit
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
