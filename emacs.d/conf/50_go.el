@@ -33,6 +33,7 @@
 (defun go-keybind ()
   (local-set-key (kbd "\C-c d") 'godoc)          ;; Search doc
   (local-set-key (kbd "\C-c j") 'godef-jump)     ;; Jump to definition
+  (local-set-key (kbd "\C-c b") 'pop-tag-mark)   ;; Back to jump source
   (local-set-key (kbd "\C-c p") 'go-import-add)  ;; Import package
   (local-set-key (kbd "\C-c u") 'go-remove-unused-imports) ;; Remove unused package
   (local-set-key (kbd "\C-c ,") 'go-play-region) ;;
