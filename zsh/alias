@@ -8,6 +8,7 @@ alias df='df -h'
 alias du='du -h'
 alias lv8='lv -Ou8'
 alias man='env LANG=ja_JP.UTF-8 /usr/bin/man'
+alias cat='ccat'
 
 
 # ------------------------------------
@@ -17,7 +18,6 @@ alias git=hub
 alias gs='git status'
 alias au='git add -u; git status'
 alias gr='git grep -H --heading --break'
-alias gb='git branch'
 alias gd='git diff'
 alias p='git push'
 alias gp='git push'
