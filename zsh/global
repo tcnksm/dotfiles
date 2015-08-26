@@ -48,17 +48,15 @@ fi
 # ------------------------------------
 # Go
 # ------------------------------------
-if [ -d ~/.gvm ]; then
-  source "$HOME/.gvm/scripts/gvm"
-  gvm use go1.4
-fi
+# if [ -d ~/.gvm ]; then
+#   source "$HOME/.gvm/scripts/gvm"
+#   gvm use go1.4
+# fi
 
+export GOVERSION=1.5
+export GOROOT=${HOME}/.go/${GOVERSION}
 export GOPATH=${HOME}
-export PATH=$PATH:~/bin
-
-# For godoc
-export GOROOT=`go env GOROOT`
-export PATH=$PATH:$GOROOT/bin
+export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
 
 # ------------------------------------
 # node.js

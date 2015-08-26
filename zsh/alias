@@ -69,11 +69,6 @@ alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
 alias c='pygmentize -O style=monokai -f console256 -g'
 
 # ------------------------------------
-# Sakura VPS
-# ------------------------------------
-alias sakura="ssh -p 61203 taichi@133.242.140.185"
-
-# ------------------------------------
 # Vagrant
 # ------------------------------------
 alias vs='vagrant global-status'
