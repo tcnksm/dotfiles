@@ -14,7 +14,6 @@
  (lambda (hook)
    (add-hook hook 'flyspell-prog-mode))
  '(
-   go-mode-hook
    ruby-mode-hook
    ))
 

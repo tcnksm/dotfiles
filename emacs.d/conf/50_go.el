@@ -31,12 +31,12 @@
 ;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; --------------------------------------------------
 (defun go-keybind ()
-  (local-set-key (kbd "\C-c d") 'godoc)          ;; Search doc
-  (local-set-key (kbd "\C-c j") 'godef-jump)     ;; Jump to definition
-  (local-set-key (kbd "\C-c b") 'pop-tag-mark)   ;; Back to jump source
-  (local-set-key (kbd "\C-c p") 'go-import-add)  ;; Import package
+  (local-set-key (kbd "\C-c d") 'godoc)               ;; Search doc
+  (local-set-key (kbd "\C-c j") 'godef-jump)          ;; Jump to definition
+  (local-set-key (kbd "\C-c b") 'pop-tag-mark)        ;; Back to jump source
+  (local-set-key (kbd "\C-c p") 'go-import-add)       ;; Import package
   (local-set-key (kbd "\C-c u") 'go-remove-unused-imports) ;; Remove unused package
-  (local-set-key (kbd "\C-c ,") 'go-play-region) ;;
+  (local-set-key (kbd "\C-c ,") 'go-play-region)      ;;
   )
 
 (add-hook 'go-mode-hook 'go-keybind)
@@ -58,6 +58,14 @@
 ;; --------------------------------------------------
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
 (require 'go-flymake nil t)
+
+;; --------------------------------------------------
+;; go oracle
+;; $ go get golang.org/x/tools/cmd/oracle
+;; https://github.com/golang/tools/blob/master/cmd/oracle/oracle.el
+;; --------------------------------------------------
+(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
+
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
