@@ -32,7 +32,8 @@ alias g="gitsh"
 # Own definition
 # ------------------------------------
 alias sss='source ~/.zshrc'
-alias rr='rm -f *~'
+alias ggg='source ~/.go/enable-latest.sh'
+
 alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
