@@ -53,7 +53,7 @@ fi
 #   gvm use go1.4
 # fi
 
-export GOVERSION=1.5
+export GOVERSION=1.5.1
 export GOROOT=${HOME}/.go/${GOVERSION}
 export GOPATH=${HOME}
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
