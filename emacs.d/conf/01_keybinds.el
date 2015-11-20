@@ -17,6 +17,9 @@
 ;; Comment out
 (global-set-key "\C-x\C-x" 'comment-region)
 
+(global-set-key "\C-d" 'copy-region-as-kill)
+(global-set-key "\C-w" 'kill-region)
+
 ;; (global-set-key "\C-xt" 'uncomment-region)
 ;; Un-comment out
 

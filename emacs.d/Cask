@@ -104,6 +104,13 @@
 (depends-on "rust-mode")
 
 ;; --------------------------------------------------
+;; Clojure
+;; --------------------------------------------------
+(depends-on "clojure-mode")
+(depends-on "cider")
+(depends-on "ac-cider")
+
+;; --------------------------------------------------
 ;; Ruby
 ;; --------------------------------------------------
 (depends-on "ruby-mode")
@@ -126,6 +133,7 @@
 (depends-on "toml-mode")
 (depends-on "nginx-mode")
 (depends-on "serverspec")
+(depends-on "hcl-mode")
 (depends-on "dockerfile-mode" :git "https://github.com/spotify/dockerfile-mode")
 
 ;; --------------------------------------------------
