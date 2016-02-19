@@ -18,7 +18,8 @@ alias git=hub
 alias gs='git status'
 alias au='git add -u; git status'
 alias gr='git grep -H --heading --break'
-alias gd='git diff'
+alias gd='git develop'
+alias gm='git master'
 alias p='git push'
 alias gp='git push'
 alias push='git push'
@@ -26,7 +27,6 @@ alias push='git push'
 alias tt='tig'
 alias gist='gist -p'
 alias g="gitsh"
-
 
 # ------------------------------------
 # Own definition
@@ -73,3 +73,8 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 # Vagrant
 # ------------------------------------
 alias vs='vagrant global-status'
+
+# ------------------------------------
+# CF
+# ------------------------------------
+alias cf='LANG=en_US cf'

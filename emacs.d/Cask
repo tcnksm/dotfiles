@@ -143,4 +143,6 @@
 (depends-on "haml-mode")
 (depends-on "scss-mode")
 (depends-on "coffee-mode")
+(depends-on "logstash-conf")
+(depends-on "fireplace")
 

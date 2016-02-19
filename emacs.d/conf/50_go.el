@@ -23,6 +23,7 @@
 ;; Arrange source code before saving
 ;; --------------------------------------------------
 (add-hook 'before-save-hook 'gofmt-before-save)
+;; (add-hook 'after-save-hook 'gotests)
 
 
 ;; --------------------------------------------------
@@ -35,10 +36,9 @@
   (local-set-key (kbd "\C-c j") 'godef-jump)          ;; Jump to definition
   (local-set-key (kbd "\C-c b") 'pop-tag-mark)        ;; Back to jump source
   (local-set-key (kbd "\C-c p") 'go-import-add)       ;; Import package
-  (local-set-key (kbd "\C-c u") 'go-remove-unused-imports) ;; Remove unused package
+  (local-set-key (kbd "\C-c t") 'gotests)             ;; Remove unused package
   (local-set-key (kbd "\C-c ,") 'go-play-region)      ;;
   )
-
 (add-hook 'go-mode-hook 'go-keybind)
 
 
@@ -66,6 +66,10 @@
 ;; --------------------------------------------------
 (load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
 
+;; --------------------------------------------------
+;; gotests
+;; --------------------------------------------------
+(load-file (concat (getenv "GOPATH") "/src/github.com/tcnksm/gotests/editor/emacs/gotests.el"))
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
