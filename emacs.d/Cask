@@ -14,8 +14,8 @@
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "f")
-(depends-on "flycheck")
-(depends-on "flycheck-cask")
+;; (depends-on "flycheck")
+;; (depends-on "flycheck-cask")
 (depends-on "htmlize")
 (depends-on "idle-highlight-mode")
 (depends-on "magit")
@@ -72,8 +72,8 @@
 ;; --------------------------------------------------
 ;; Git
 ;; --------------------------------------------------
-(depends-on "git-commit-mode")
-(depends-on "git-rebase-mode")
+;; (depends-on "git-commit-mode")
+;; (depends-on "git-rebase-mode")
 (depends-on "git-gutter")
 (depends-on "helm-open-github")
 
@@ -107,8 +107,8 @@
 ;; Clojure
 ;; --------------------------------------------------
 (depends-on "clojure-mode")
-(depends-on "cider")
-(depends-on "ac-cider")
+;; (depends-on "cider")
+;; (depends-on "ac-cider")
 
 ;; --------------------------------------------------
 ;; Ruby
