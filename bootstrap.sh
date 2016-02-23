@@ -25,12 +25,16 @@ pushd emacs.d && cask install && popd
 info "---> Setup directory for peco"
 mkdir -p $HOME/.config/peco/
 
+info "---> Install git contrib/completion scripts"
+if [[ ! -d ~/.gitcontrib ]]; then    
+    curl -L --create-dirs -o ~/.gitcontrib/git-completion.zsh \
+         "https://raw.github.com/git/git/master/contrib/completion/git-completion.zsh"
+    curl -L --create-dirs -o ~/.gitcontrib/git-prompt.sh \
+         "https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh"
+fi
+
 info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
 rake setup
-
-# zsh tools
-# info "Install zsh tools"
-# ./zsh/install-tools.sh
 
 # Tmux plugins
 if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
