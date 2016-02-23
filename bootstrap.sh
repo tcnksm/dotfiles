@@ -22,6 +22,9 @@ info "---> Install Homebrew Packages"
 info "---> Install Emacs cask"
 pushd emacs.d && cask install && popd
 
+info "---> Setup directory for peco"
+mkdir -p $HOME/.config/peco/
+
 info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
 rake setup
 
