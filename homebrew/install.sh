@@ -72,7 +72,8 @@ packages=(
     nkf       
     ag
     direnv
-
+    peco
+    
     # Languages
     rbenv            
     ruby-build       
@@ -101,9 +102,6 @@ apps=(
 # Install apps to /Applications
 echo "installing apps..."
 brew cask install --appdir="/Applications" ${apps[@]}
-
-# We need to link it
-brew cask alfred link
 
 # fonts
 fonts=(
