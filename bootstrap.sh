@@ -44,4 +44,4 @@ fi
 
 # go tools
 info "Install go tools"
-./go/get.sh
+./go/gets.sh
