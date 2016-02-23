@@ -16,18 +16,18 @@ error() {
     echo -e "\033[31m$@\033[m" # red
 }
 
-info "Install Homebrew Packages"
+info "---> Install Homebrew Packages"
 ./homebrew/install.sh
 
-info "Install Emacs cask"
+info "---> Install Emacs cask"
 pushd emacs.d && cask install && popd
 
-info "Enable dotfile, make symbolic link to '${HOME}' directory"
+info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
 rake setup
 
 # zsh tools
-info "Install zsh tools"
-./zsh/install-tools.sh
+# info "Install zsh tools"
+# ./zsh/install-tools.sh
 
 # Tmux plugins
 if [[ ! -d  ~/.tmux/plugins/tpm ]]; then

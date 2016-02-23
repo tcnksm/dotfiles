@@ -1,4 +1,4 @@
-# Check for Homebrew,Install if we don't have it
+# Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -78,8 +78,7 @@ packages=(
     ruby-build       
     go               
     python3
-    ghc
-    scala                
+    leiningen 
 )
 
 echo "installing binaries..."
@@ -90,32 +89,13 @@ brew install caskroom/cask/brew-cask
 
 # Apps
 apps=(
-
-    # Launcher
-    alfred
-
-    # Browser
-    google-chrome
-
-    # Terminal
-    iterm2
-    
-    # Communication
-    mailbox
-    slack
-    skype
-
     # VM    
     virtualbox
     vagrant
-    vagrant-manager
 
     # etc ...
     google-drive
     karabiner
-    sketch  
-    slate
-    flux
 )
 
 # Install apps to /Applications
@@ -131,7 +111,6 @@ fonts=(
     font-source-code-pro
     font-clear-sans
     font-roboto
-    font-fontawesome
 )
 
 # install fonts
