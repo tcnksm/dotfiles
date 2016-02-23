@@ -7,9 +7,6 @@ alias rm='rm -i'
 alias df='df -h'
 alias du='du -h'
 alias lv8='lv -Ou8'
-alias man='env LANG=ja_JP.UTF-8 /usr/bin/man'
-alias cat='ccat'
-
 
 # ------------------------------------
 # Git
@@ -17,36 +14,21 @@ alias cat='ccat'
 alias git=hub
 alias gs='git status'
 alias au='git add -u; git status'
-alias gr='git grep -H --heading --break'
 alias gd='git develop'
 alias gm='git master'
-alias p='git push'
 alias gp='git push'
-alias push='git push'
 
 alias tt='tig'
 alias gist='gist -p'
-alias g="gitsh"
 
 # ------------------------------------
 # Own definition
 # ------------------------------------
 alias sss='source ~/.zshrc'
-alias ggg='source ~/.go/enable-latest.sh'
-
-alias u='cd ..'
-alias uu='cd ../..'
-alias uuu='cd ../../..'
-alias uuuu='cd ../../../..'
-
 
 # ------------------------------------
 # Ruby
 # ------------------------------------
-alias rs='rspec'
-alias ra='rake'
-alias b='bundle exec'
-alias bp='bundle package'
 alias bi='bundle install --path vendor/bundle'
 alias bin='bundle install --path vendor/bundle --binstubs .bundle/bin'
 
@@ -62,12 +44,6 @@ alias e='/usr/local/bin/emacsclient -n'
 alias tmux='tmux -2 -f ~/.tmux.conf'
 alias tmux-copy='tmux save-buffer - | pbcopy'
 alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
-
-# ------------------------------------
-# Pygmentize
-# $ sudo pip install pygments
-# ------------------------------------
-alias c='pygmentize -O style=monokai -f console256 -g'
 
 # ------------------------------------
 # Vagrant

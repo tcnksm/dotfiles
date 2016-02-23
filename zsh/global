@@ -62,10 +62,16 @@ if [[ -f ~/.nodebrew/nodebrew ]]; then
     nodebrew use stable
 fi
 
-
 # ====================================
 # TOOL
 # ====================================
+
+# ------------------------------------
+# peco
+# ------------------------------------
+for f (~/.dotfiles/peco/*.zsh) source "${f}"
+bindkey '^r' peco-select-history
+bindkey '^j' peco-ghq
 
 # ------------------------------------
 # direnv

@@ -11,6 +11,7 @@ autoload -U compinit && compinit
 # Asking
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:default' menu select=1
 
 # Compacked complete list display
 setopt list_packed
@@ -62,8 +63,8 @@ setopt correct
 # Prompt
 # ------------------------------------
 [ -f ~/.gitcontrib/git-prompt.sh ] && source ~/.gitcontrib/git-prompt.sh
-PROMPT='🍻  '
-RPROMPT='➜ %~ $(__git_ps1 "[%s]")'
+PROMPT="🍻  "
+RPROMPT="➜ %~ $( __git_ps1 "[%s]")"
 
 
 # ------------------------------------
