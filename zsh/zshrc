@@ -7,6 +7,8 @@
 # ------------------------------------
 fpath=(/usr/local/share/zsh/functions ${fpath})
 autoload -U compinit && compinit
+
+# Asking
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
 
@@ -57,13 +59,12 @@ setopt auto_pushd
 setopt correct
 
 # ------------------------------------
-# Oh-my-zsh settings
+# Prompt
 # ------------------------------------
-ZSH=~/.oh-my-zsh
-ZSH_THEME="beer"
-plugins=(git ruby gem zsh-syntax-highlighting)
+[ -f ~/.gitcontrib/git-prompt.sh ] && source ~/.gitcontrib/git-prompt.sh
+PROMPT='🍻  '
+RPROMPT='➜ %~ $(__git_ps1 "[%s]")'
 
-[ -d ~/.oh-my-zsh ] && source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # ------------------------------------
 # Read settings
