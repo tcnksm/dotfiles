@@ -6,8 +6,8 @@
 # General
 # ------------------------------------
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
-export PATH=$PATH:~/bin
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/src/github.com/tcnksm/scripts/bin
 
 # ------------------------------------
 # Emacs Cask

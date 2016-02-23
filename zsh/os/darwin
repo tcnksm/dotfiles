@@ -1,7 +1,11 @@
 # ====================================
+# General
+# ====================================
+export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+
+# ====================================
 # Alias
 # ====================================
-
 # show with color
 alias ls="ls --color"
 

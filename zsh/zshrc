@@ -70,23 +70,26 @@ RPROMPT="➜ %~ $( __git_ps1 "[%s]")"
 # ------------------------------------
 # Read settings
 # ------------------------------------
-[ -f ~/.dotfiles/zsh/global      ] && source ~/.dotfiles/zsh/global
-[ -f ~/.dotfiles/zsh/alias       ] && source ~/.dotfiles/zsh/alias
-[ -f ~/.dotfiles/zsh/functions   ] && source ~/.dotfiles/zsh/functions
-[ -f ~/.dotfiles/zsh/docker      ] && source ~/.dotfiles/zsh/docker
-[ -f ~/.dotfiles/zsh/http_status ] && source ~/.dotfiles/zsh/http_status
-[ -f ~/.dotfiles/zsh/percol      ] && source ~/.dotfiles/zsh/percol
-[ -f ~/.local-dotfiles/zsh       ] && source ~/.local-dotfiles/zsh
+[ -f ~/.dotfiles/zsh/global    ] && source ~/.dotfiles/zsh/global
+[ -f ~/.dotfiles/zsh/alias     ] && source ~/.dotfiles/zsh/alias
+[ -f ~/.dotfiles/zsh/functions ] && source ~/.dotfiles/zsh/functions
+[ -f ~/.dotfiles/zsh/helper/docker      ] && source ~/.dotfiles/zsh/helper/docker
+[ -f ~/.dotfiles/zsh/helper/http_status ] && source ~/.dotfiles/zsh/helper/http_status
+
+# ------------------------------------
+# Read local settings
+# ------------------------------------
+[ -f ~/.local-dotfiles/zsh ] && source ~/.local-dotfiles/zsh
 
 # ------------------------------------
 # Read OS specific settings
 # ------------------------------------
 case "${OSTYPE}" in
     darwin*)
-	  [ -f ~/.dotfiles/zsh/osx ] && source ~/.dotfiles/zsh/osx
+	  [ -f ~/.dotfiles/zsh/os/darwin ] && source ~/.dotfiles/zsh/os/darwin
 	;;
 
     linux*)
-	  [ -f ~/.dotfiles/zsh/linux ] && source ~/.dotfiles/zsh/linux
+	  [ -f ~/.dotfiles/zsh/os/linux ] && source ~/.dotfiles/zsh/os/linux
 	;;
 esac
