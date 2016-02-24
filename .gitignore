@@ -1,10 +1,8 @@
 emacs.d/elpa/archives/*
 emacs.d/etc/.cache/*
+emacs.d/eshell
 atom/storage/*
 !.gitkeep
 .ruby-versionstrage
 strage
-atom/.node-gyp
-atom/gist-it.token
-atom/compile-cache
 .cask
