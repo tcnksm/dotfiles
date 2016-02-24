@@ -62,10 +62,17 @@ setopt correct
 # ------------------------------------
 # Prompt
 # ------------------------------------
-[ -f ~/.gitcontrib/git-prompt.sh ] && source ~/.gitcontrib/git-prompt.sh
-PROMPT="🍻  "
-RPROMPT="➜ %~ $( __git_ps1 "[%s]")"
+setopt prompt_subst
+setopt prompt_percent
+setopt transient_rprompt
 
+zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
+_vcs_precmd () { vcs_info }  
+add-zsh-hook precmd _vcs_precmd 
+PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f
+🍻  '
 
 # ------------------------------------
 # Read settings

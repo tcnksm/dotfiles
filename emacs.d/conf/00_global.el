@@ -143,7 +143,7 @@
 ;; --------------------------------------------------
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
-(global-set-key (kbd "C-c C-c") 'cua-set-rectangle-mark) ;; or C-RET
+(global-set-key (kbd "C-c c") 'cua-set-rectangle-mark) ;; or C-RET
 
 
 ;; --------------------------------------------------

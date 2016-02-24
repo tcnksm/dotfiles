@@ -1,13 +1,11 @@
 # ------------------------------------
 # Functions
 # ------------------------------------
-
 # excuting after change directry
 chpwd() {
     ls_abbrev
     show_git_status
 }
-
 
 # ls which doesn't show too much file
 ls_abbrev() {
@@ -65,5 +63,3 @@ function do_enter() {
 
 zle -N do_enter
 bindkey '^m' do_enter
-
-function gi() { curl http://www.gitignore.io/api/$@ ;}
