@@ -2,15 +2,26 @@
 
 set -e
 
-go get -u -v github.com/tcnksm/gotests
+PKGS=(
+    # General usage
+    github.com/motemen/ghq
 
-go get -u -v github.com/motemen/ghq
-go get -u -v github.com/motemen/gore
-go get -u -v github.com/k0kubun/pp
+    # Go cmd
+    golang.org/x/tools/cmd/godoc
+    golang.org/x/tools/cmd/vet
+    golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/benchcmp
+    golang.org/x/tools/cmd/present
 
-go get -u -v golang.org/x/tools/cmd/godoc
-go get -u -v golang.org/x/tools/cmd/vet
-go get -u -v golang.org/x/tools/cmd/goimports
-go get -u -v golang.org/x/tools/cmd/benchcmp
-go get -u -v golang.org/x/tools/cmd/present
+    # Golang dev
+    github.com/k0kubun/pp
+    github.com/tools/godep
+    github.com/motemen/gore
+    github.com/tcnksm/ghr
+    github.com/tcnksm/gotests
+)
 
+for pkg in ${PKGS[@]}
+do
+    go get -v $pkg
+done
