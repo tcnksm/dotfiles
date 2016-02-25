@@ -2,6 +2,7 @@ emacs.d/elpa/archives/*
 emacs.d/etc/.cache/*
 emacs.d/eshell
 atom/storage/*
+emacs.d/.mc-lists.el
 !.gitkeep
 .ruby-versionstrage
 strage

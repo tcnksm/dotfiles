@@ -86,7 +86,7 @@ PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f
 # ------------------------------------
 # Read local settings
 # ------------------------------------
-[ -f ~/.local-dotfiles/zsh ] && source ~/.local-dotfiles/zsh
+[ -f ~/.local-dotfiles/zshrc ] && source ~/.local-dotfiles/zshrc
 
 # ------------------------------------
 # Read OS specific settings
