@@ -76,6 +76,7 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd _vcs_precmd 
 PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f
 🍻  '
+RPROMPT=''
 
 # ------------------------------------
 # Read settings
