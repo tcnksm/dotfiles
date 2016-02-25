@@ -66,10 +66,13 @@ setopt prompt_subst
 setopt prompt_percent
 setopt transient_rprompt
 
+autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
-_vcs_precmd () { vcs_info }  
+_vcs_precmd () { vcs_info }
+
+autoload -Uz add-zsh-hook
 add-zsh-hook precmd _vcs_precmd 
 PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f
 🍻  '
