@@ -6,3 +6,9 @@
 ;; Rust mode 
 ;; --------------------------------------------------
 (require 'rust-mode nil t)
+
+;; --------------------------------------------------
+;; Rustfmt
+;; https://github.com/rust-lang-nursery/rustfmt
+;; --------------------------------------------------
+(add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
