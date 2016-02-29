@@ -101,3 +101,5 @@
 
 [docc]
     cmd = more
+[github]
+	oauth-token = 

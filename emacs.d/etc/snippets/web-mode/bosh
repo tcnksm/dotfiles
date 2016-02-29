@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bosh
+# key: bosh
+# --
+<%= p("$1") %>
+
