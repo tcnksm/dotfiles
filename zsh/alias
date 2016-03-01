@@ -54,3 +54,4 @@ alias vs='vagrant global-status'
 # CF
 # ------------------------------------
 alias cf='LANG=en_US cf'
+alias bd='bosh-deploy.sh'
