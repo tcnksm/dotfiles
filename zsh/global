@@ -49,10 +49,16 @@ fi
 # ------------------------------------
 # Go
 # ------------------------------------
-export GOVERSION=1.6.1
+export GOVERSION=1.6.2
 export GOROOT=${HOME}/.go/${GOVERSION}
 export GOPATH=${HOME}
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+
+# ------------------------------------
+# Rust
+# ------------------------------------
+# https://www.rustup.rs/
+source $HOME/.cargo/env
 
 # ------------------------------------
 # node.js
