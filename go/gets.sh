@@ -14,6 +14,10 @@ PKGS=(
     golang.org/x/tools/cmd/present
 
     # Golang dev
+    github.com/nsf/gocode
+    github.com/rogpeppe/godef
+    github.com/dougm/goflymake
+    github.com/jstemmer/gotags
     github.com/k0kubun/pp
     github.com/tools/godep
     github.com/motemen/gore
