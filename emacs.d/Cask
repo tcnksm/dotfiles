@@ -47,9 +47,10 @@
 ;; ==================================================
 
 ;; --------------------------------------------------
-;; Auto-complete
+;; complete
 ;; --------------------------------------------------
-(depends-on "auto-complete")
+;; (depends-on "auto-complete")
+(depends-on "company")
 
 ;; --------------------------------------------------
 ;; Helm
@@ -97,11 +98,14 @@
 (depends-on "go-eldoc")
 (depends-on "go-autocomplete")
 (depends-on "go-direx")
+(depends-on "company-go")
 
 ;; --------------------------------------------------
 ;; Rust
 ;; --------------------------------------------------
 (depends-on "rust-mode")
+(depends-on "racer")
+(depends-on "company-racer")
 
 ;; --------------------------------------------------
 ;; Clojure
