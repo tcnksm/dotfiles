@@ -58,7 +58,8 @@ export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
 # Rust
 # ------------------------------------
 # https://www.rustup.rs/
-source $HOME/.cargo/env
+source $HOME/.cargo/env > /dev/null
+export RUST_SRC_PATH=${HOME}/.rust/src
 
 # ------------------------------------
 # node.js
