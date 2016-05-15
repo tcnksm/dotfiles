@@ -47,9 +47,13 @@
 ;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; $ go get -u github.com/nsf/gocode
 ;; --------------------------------------------------
+
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/"))
-(require 'go-autocomplete nil t)
-(require 'auto-complete-config nil t)
+
+(require 'company-go nil t)
+(add-hook 'go-mode-hook (lambda ()
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
 
 
 ;; --------------------------------------------------
