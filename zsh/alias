@@ -7,6 +7,7 @@ alias rm='rm -i'
 alias df='df -h'
 alias du='du -h'
 alias lv8='lv -Ou8'
+alias ag='ag --ignore-dir vendor'
 
 # ------------------------------------
 # Git

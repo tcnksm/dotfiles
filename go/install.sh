@@ -2,7 +2,7 @@
 
 GOVERSION=${1}
 if [ -z "${GOVERSION}" ]; then
-    GOVERSION=1.6.2
+    GOVERSION=1.7rc3
 fi
 
 if [ -d ${HOME}/.go/${GOVERSION} ]; then
@@ -11,9 +11,8 @@ if [ -d ${HOME}/.go/${GOVERSION} ]; then
 fi
 
 rm -fr ${GOHOME}/pkg
-
 mkdir -p ${HOME}/.go/${GOVERSION}
 curl https://storage.googleapis.com/golang/go${GOVERSION}.darwin-amd64.tar.gz \
     | tar xvzf - -C ${HOME}/.go/${GOVERSION}/ --strip-components=1
-
+echo $GOVERSION > ${HOME}/.go/.goversion
 

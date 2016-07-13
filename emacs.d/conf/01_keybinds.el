@@ -1,15 +1,9 @@
 ;; ==================================================
-;; 
 ;; GLOBAL KEY BIND SETTING
-;;
-;; [description1]
-;;  (define-key キーマップ キーバインド 関数のシンボル)
-;;  (global-set-key キーバインド 関数シンボル)
-;; 
-;; [description2]
-;;  検索順序: (1) マイナーモード (モード名-mode-map) (2) current-local-map (3) global-map 
 ;; ==================================================
 
+;; Move
+(global-set-key "\C-f" 'forward-word)
 
 ;; Delete backward
 (global-set-key "\C-h" 'backward-delete-char)

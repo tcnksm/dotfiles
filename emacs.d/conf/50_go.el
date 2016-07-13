@@ -51,6 +51,8 @@
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/"))
 
 (require 'company-go nil t)
+(setq company-begin-commands '(self-insert-command))
+(setq company-idle-delay .3)
 (add-hook 'go-mode-hook (lambda ()
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
@@ -60,15 +62,19 @@
 ;; Flymake
 ;; $ go get github.com/dougm/goflymake
 ;; --------------------------------------------------
-(add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
-(require 'go-flymake nil t)
+;; (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/dougm/goflymake"))
+;; (require 'go-flymake nil t)
 
 ;; --------------------------------------------------
-;; go oracle
-;; $ go get golang.org/x/tools/cmd/oracle
-;; https://github.com/golang/tools/blob/master/cmd/oracle/oracle.el
+;; guru
 ;; --------------------------------------------------
-(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
+(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/guru/go-guru.el"))
+
+;; --------------------------------------------------
+;; gorename
+;; --------------------------------------------------
+(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/refactor/rename/go-rename.el"))
+
 
 ;; --------------------------------------------------
 ;; gotests
@@ -94,8 +100,10 @@
 ;; go-direx
 ;; go get -u github.com/jstemmer/gotags
 ;; --------------------------------------------------
-(require 'go-direx nil t) ;; Don't need to require, if you install by package.el
+(require 'go-direx nil t)
 (define-key go-mode-map (kbd "C-c C-j") 'go-direx-pop-to-buffer)
+
+(require 'go-rename nil t)
 
 ;; --------------------------------------------------
 ;; smartchr
