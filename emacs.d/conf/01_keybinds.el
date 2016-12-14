@@ -4,6 +4,7 @@
 
 ;; Move
 (global-set-key "\C-f" 'forward-word)
+(global-set-key "\C-b" 'backward-word)
 
 ;; Delete backward
 (global-set-key "\C-h" 'backward-delete-char)
@@ -33,7 +34,7 @@
 (global-set-key "\C-c\C-g" 'goto-line)
 
 ;; Grep
-(global-set-key "\M-C-g" 'grep)
+(global-set-key "\M-g" 'grep)
 
 ;; ;; Chnage window
 ;; (global-set-key "\C-t" 'other-window)

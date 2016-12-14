@@ -23,7 +23,6 @@
 ;; Arrange source code before saving
 ;; --------------------------------------------------
 (add-hook 'before-save-hook 'gofmt-before-save)
-;; (add-hook 'after-save-hook 'gotests)
 
 
 ;; --------------------------------------------------
@@ -47,7 +46,6 @@
 ;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; $ go get -u github.com/nsf/gocode
 ;; --------------------------------------------------
-
 (add-to-list 'load-path (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/"))
 
 (require 'company-go nil t)
@@ -66,14 +64,20 @@
 ;; (require 'go-flymake nil t)
 
 ;; --------------------------------------------------
-;; guru
+;; guru https://github.com/golang/tools/commit/69f6f5b782e1f090edb33f68be67d96673a8059e
 ;; --------------------------------------------------
-(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/guru/go-guru.el"))
+;; (load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/guru/go-guru.el"))
+(require 'go-guru nil t)
+(add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
+(set-face-background 'show-paren-match-face "#f0f8ff") ; change emphasis color
+(set-face-attribute 'go-guru-hl-identifier-face nil
+                     :background "#ffff00")
+
 
 ;; --------------------------------------------------
 ;; gorename
 ;; --------------------------------------------------
-(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/refactor/rename/go-rename.el"))
+;; (load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/refactor/rename/go-rename.el"))
 
 
 ;; --------------------------------------------------

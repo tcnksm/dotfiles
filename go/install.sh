@@ -2,7 +2,7 @@
 
 GOVERSION=${1}
 if [ -z "${GOVERSION}" ]; then
-    GOVERSION=1.7rc3
+    GOVERSION=1.8beta1
 fi
 
 if [ -d ${HOME}/.go/${GOVERSION} ]; then

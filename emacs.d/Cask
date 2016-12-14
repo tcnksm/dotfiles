@@ -99,6 +99,7 @@
 (depends-on "go-autocomplete")
 (depends-on "go-direx")
 (depends-on "company-go")
+(depends-on "go-guru")
 
 ;; --------------------------------------------------
 ;; Rust
