@@ -104,6 +104,3 @@ case "${OSTYPE}" in
 	  [ -f ~/.dotfiles/zsh/os/linux ] && source ~/.dotfiles/zsh/os/linux
 	;;
 esac
-
-### Added by the Bluemix CLI
-source /usr/local/Bluemix/bx/zsh_autocomplete

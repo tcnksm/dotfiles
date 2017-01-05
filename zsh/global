@@ -58,16 +58,16 @@ export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
 # Rust
 # ------------------------------------
 # https://www.rustup.rs/
-source $HOME/.cargo/env > /dev/null
-export RUST_SRC_PATH=${HOME}/.rust/src
+# source $HOME/.cargo/env > /dev/null
+# export RUST_SRC_PATH=${HOME}/.rust/src
 
 # ------------------------------------
 # node.js
 # ------------------------------------
-if [[ -f ~/.nodebrew/nodebrew ]]; then
-    export PATH=$HOME/.nodebrew/current/bin:$PATH
-    nodebrew use stable
-fi
+# if [[ -f ~/.nodebrew/nodebrew ]]; then
+#     export PATH=$HOME/.nodebrew/current/bin:$PATH
+#     nodebrew use stable
+# fi
 
 # ====================================
 # TOOL
