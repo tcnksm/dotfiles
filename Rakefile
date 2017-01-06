@@ -78,6 +78,7 @@ end
 namespace :peco do
   desc "Create symbolic link"
   task :link do
+    sh "mkdir -p $HOME/.config/peco/" 
     symlink_ File.join(PWD, "peco/config.json"), File.join(HOME, ".config/peco/config.json")
   end
 end

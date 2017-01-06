@@ -39,23 +39,17 @@ packages=(
     zsh
     bash
 
-    # Editor
-    emacs
-    cask
-
     # Multiplexe
     tmux
     reattach-to-user-namespace 
 
     # Git
     git   
-    hub   
-    gitsh 
-    gist  
+    hub 
     tig
 
     # Image
-    imagemagick 
+    imagemagick
 
     # Utils
     autoconf
@@ -76,8 +70,7 @@ packages=(
     
     # Languages
     rbenv            
-    ruby-build       
-    go               
+    ruby-build                     
     python3
     leiningen 
 )
@@ -85,30 +78,13 @@ packages=(
 echo "installing binaries..."
 brew install ${packages[@]} && brew cleanup
 
-# Casks
-brew install caskroom/cask/brew-cask
-
-# Apps
-apps=(
-    # VM    
-    virtualbox
-    vagrant
-
-    # etc ...
-    google-drive
-    karabiner
-)
-
-# Install apps to /Applications
-echo "installing apps..."
-brew cask install --appdir="/Applications" ${apps[@]}
-
 # fonts
 fonts=(
     font-m-plus
     font-source-code-pro
     font-clear-sans
     font-roboto
+    font-go
 )
 
 # install fonts

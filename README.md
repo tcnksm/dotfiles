@@ -8,9 +8,9 @@ Your dotfiles are how you personalize your system. These are mine.
 Run this:
 
 ```bash
-$ git clone https://github.com/tcnksm/dotfiles ~/.dotfiles
-$ cd ~/.dotfiles
-$ ./bootstrap.sh
+$ mkdir -p /src/github.com/tcnksm/
+$ cd /src/github.com/tcnksm/
+$ git clone git@github.com:tcnksm/dotfiles.git
 ```
 
 This script will install Homebrew packages and Emacs Casks. And every dotfiles are linked to `$HOME` directory. 

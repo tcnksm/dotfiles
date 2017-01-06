@@ -1,29 +1,36 @@
 #!/bin/bash
 
-cd "$(dirname "$0")"
-
 set -e
 
-info() {
-    echo -e "\033[34m$@\033[m" # blue
-}
+info() { 
+    echo -e "\033[34m$@\033[m" 
+} 
 
-warn() {
-    echo -e "\033[33m$@\033[m" # yellow
-}
+warn() { 
+    echo -e "\033[33m$@\033[m"
+} 
 
-error() {
-    echo -e "\033[31m$@\033[m" # red
-}
+error() { 
+    echo -e "\033[31m$@\033[m"
+} 
+
+DIR=$(pwd)
+
+
+if [[ ! -L $HOME/.dotfiles ]]; then
+    info "---> Link dotfiles into HOME directory"
+    ln -s $DIR $HOME/.dotfiles
+fi
 
 info "---> Install Homebrew Packages"
 ./homebrew/install.sh
 
-info "---> Install Emacs cask"
-pushd emacs.d && cask install && popd
+info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
+rake clean && rake setup
 
-info "---> Setup directory for peco"
-mkdir -p $HOME/.config/peco/
+info "---> Install go tools"
+./go/install.sh
+./go/gets.sh
 
 info "---> Install git contrib/completion scripts"
 if [[ ! -d ~/.gitcontrib ]]; then    
@@ -33,15 +40,13 @@ if [[ ! -d ~/.gitcontrib ]]; then
          "https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh"
 fi
 
-info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
-rake setup
+# info "---> Install Emacs cask"
+# pushd emacs.d && cask install && popd
 
 # Tmux plugins
-if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
-    info "Install tmux-plugin manager"
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+# if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
+#    info "Install tmux-plugin manager"
+#    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# fi
 
-# go tools
-info "Install go tools"
-./go/gets.sh
+
