@@ -6,9 +6,6 @@
 # Alias
 # ====================================
 alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
-alias lf="ls -F --color=auto"
-alias la='ls -lA --color=auto'
 alias open='xdg-open'
 
 # -----------------------------------

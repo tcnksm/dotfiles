@@ -6,18 +6,8 @@ export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 # ====================================
 # Alias
 # ====================================
-# show with color
-alias ls="ls --color"
-
-# show description of files
-alias ll="ls -l --color"
-
 # show with hidden files
 alias la="ls -A --color"
-
-# show directory with /, executable file with *,
-# simbolic link with @
-alias lf="ls -F --color"
 
 # ------------------------------------
 # Rmtrash
