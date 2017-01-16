@@ -69,10 +69,10 @@ packages=(
     peco
     
     # Languages
-    rbenv            
-    ruby-build                     
-    python3
-    leiningen 
+    # rbenv            
+    # ruby-build                     
+    # python3
+    # leiningen 
 )
 
 echo "installing binaries..."

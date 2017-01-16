@@ -7,6 +7,7 @@ export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 # Alias
 # ====================================
 # show with hidden files
+alias ls="ls --color"
 alias la="ls -A --color"
 
 # ------------------------------------
