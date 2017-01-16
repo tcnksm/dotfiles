@@ -67,6 +67,7 @@ packages=(
     ag
     direnv
     peco
+    glide
     
     # Languages
     # rbenv            
