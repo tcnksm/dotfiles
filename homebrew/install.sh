@@ -70,8 +70,9 @@ packages=(
     glide
     
     # Languages
-    # rbenv            
-    # ruby-build                     
+    pyenv
+    rbenv            
+    ruby-build                     
     # python3
     # leiningen 
 )

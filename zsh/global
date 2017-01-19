@@ -62,6 +62,10 @@ export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
 # export RUST_SRC_PATH=${HOME}/.rust/src
 
 # ------------------------------------
+# Python
+# ------------------------------------
+
+# ------------------------------------
 # node.js
 # ------------------------------------
 # if [[ -f ~/.nodebrew/nodebrew ]]; then
