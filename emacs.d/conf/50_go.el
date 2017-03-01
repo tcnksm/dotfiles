@@ -66,7 +66,7 @@
 ;; --------------------------------------------------
 ;; guru https://github.com/golang/tools/commit/69f6f5b782e1f090edb33f68be67d96673a8059e
 ;; --------------------------------------------------
-;; (load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/guru/go-guru.el"))
+(load-file (concat (getenv "GOPATH") "/src/github.com/dominikh/go-mode.el/go-guru.el"))
 (require 'go-guru nil t)
 (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
 (set-face-background 'show-paren-match-face "#f0f8ff") ; change emphasis color
@@ -77,13 +77,13 @@
 ;; --------------------------------------------------
 ;; gorename
 ;; --------------------------------------------------
-;; (load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/refactor/rename/go-rename.el"))
+(load-file (concat (getenv "GOPATH") "/src/github.com/dominikh/go-mode.el/go-rename.el"))
 
 
 ;; --------------------------------------------------
 ;; gotests
 ;; --------------------------------------------------
-(load-file (concat (getenv "GOPATH") "/src/github.com/tcnksm/gotests/editor/emacs/gotests.el"))
+;; (load-file (concat (getenv "GOPATH") "/src/github.com/tcnksm/gotests/editor/emacs/gotests.el"))
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
