@@ -8,8 +8,8 @@ Your dotfiles are how you personalize your system. These are mine.
 Run this:
 
 ```bash
-$ mkdir -p /src/github.com/tcnksm/
-$ cd /src/github.com/tcnksm/
+$ mkdir -p ~/src/github.com/tcnksm/
+$ cd ~/src/github.com/tcnksm/
 $ git clone git@github.com:tcnksm/dotfiles.git
 ```
 

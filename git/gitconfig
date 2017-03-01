@@ -101,9 +101,3 @@
     g = get
     l = look
     ls = list
-
-[docc]
-    cmd = more
-[github]
-	oauth-token = 
-	user = tcnksm
