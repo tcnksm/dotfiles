@@ -1,11 +1,13 @@
-tcnksm does dotfiles [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/tcnksm/dotfiles/blob/master/LICENCE)
+tcnksm does dotfiles
 ====
 
-Your dotfiles are how you personalize your system. These are mine.
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tcnksm/dotfiles/blob/master/LICENCE)
 
-## Install
+Your dotfiles are how you personalize your system. These are mine :rainbow: 
 
-Run this:
+## Setup
+
+Run this :rocket:
 
 ```bash
 $ mkdir -p ~/src/github.com/tcnksm/
@@ -17,4 +19,4 @@ This script will install Homebrew packages and Emacs Casks. And every dotfiles a
 
 ## Author
 
-[tcnksm](https://github.com/tcnksm)
+[Taichi Nakashima](https://github.com/tcnksm)
