@@ -48,6 +48,9 @@ packages=(
     hub 
     tig
 
+    # Emcas
+    cask
+
     # Image
     imagemagick
 
