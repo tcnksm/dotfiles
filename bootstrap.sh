@@ -40,8 +40,8 @@ if [[ ! -d ~/.gitcontrib ]]; then
          "https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh"
 fi
 
-# info "---> Install Emacs cask"
-# pushd emacs.d && cask install && popd
+info "---> Install Emacs cask"
+pushd emacs.d && cask install && popd
 
 # Tmux plugins
 # if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
