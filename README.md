@@ -1,7 +1,7 @@
 tcnksm does dotfiles [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tcnksm/dotfiles/blob/master/LICENCE)
 ====
 
-Your dotfiles are how you personalize your system. These are mine :rainbow: 
+Your dotfiles are how you personalize your system. These are mine :memo:
 
 ## Setup
 
