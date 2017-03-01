@@ -15,6 +15,7 @@ alias ag='ag --ignore-dir vendor'
 alias git=hub
 alias gs='git status'
 alias au='git add -u; git status'
+alias o='git open'
 alias gd='git develop'
 alias gm='git master'
 alias gp='git push'
