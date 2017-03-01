@@ -48,6 +48,9 @@
   b   = branch -a
   br  = branch -r
 
+  # https://github.com/paulirish/git-open
+  o = open
+
   co  = checkout
   cb  = checkout -b
   develop = checkout develop
@@ -103,3 +106,4 @@
     cmd = more
 [github]
 	oauth-token = 
+	user = tcnksm
