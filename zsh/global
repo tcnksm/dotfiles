@@ -53,6 +53,7 @@ export GOVERSION=$(cat ${HOME}/.go/.goversion)
 export GOROOT=${HOME}/.go/${GOVERSION}
 export GOPATH=${HOME}
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
+export PATH=$GOPATH/src/github.com/uber/go-torch/FlameGraph:$PATH
 
 # ------------------------------------
 # Rust
@@ -71,8 +72,8 @@ pyenv shell 2.7.11
 # ------------------------------------
 # PHP
 # ------------------------------------
-export PATH="$HOME/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
+# export PATH="$HOME/.phpenv/bin:$PATH"
+# eval "$(phpenv init -)"
 
 
 # ------------------------------------
@@ -103,3 +104,9 @@ bindkey '^b' peco-git-branch-checkout
 # direnv
 # ------------------------------------
 eval "$(direnv hook zsh)"
+
+# ------------------------------------
+# Google Cloud SDK
+# ------------------------------------
+if [ -f '/Users/tcnksm/dev/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/tcnksm/dev/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/tcnksm/dev/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/tcnksm/dev/google-cloud-sdk/completion.zsh.inc'; fi

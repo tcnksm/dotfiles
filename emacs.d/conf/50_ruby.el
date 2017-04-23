@@ -17,7 +17,7 @@
 ;; ruby template file
 ;; --------------------------------------------------
 (require 'web-mode nil t)
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
 
 
 ;; --------------------------------------------------

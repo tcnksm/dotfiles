@@ -24,7 +24,6 @@
 ;; --------------------------------------------------
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-
 ;; --------------------------------------------------
 ;; Keybind
 ;; $ go get code.google.com/p/go.tools/cmd/godoc

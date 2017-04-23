@@ -133,12 +133,13 @@
 ;; --------------------------------------------------
 ;; Configuration language
 ;; --------------------------------------------------
-(depends-on "feature-mode") ;; Cucumber
 (depends-on "yaml-mode")
 (depends-on "toml-mode")
 (depends-on "nginx-mode")
 (depends-on "serverspec")
 (depends-on "hcl-mode")
+(depends-on "terraform-mode")
+(depends-on "jinja2-mode")
 (depends-on "dockerfile-mode" :git "https://github.com/spotify/dockerfile-mode")
 
 ;; --------------------------------------------------
@@ -148,6 +149,4 @@
 (depends-on "haml-mode")
 (depends-on "scss-mode")
 (depends-on "coffee-mode")
-(depends-on "logstash-conf")
-(depends-on "fireplace")
 

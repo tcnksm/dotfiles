@@ -5,8 +5,20 @@
 ;; --------------------------------------------------
 ;; HCL
 ;; --------------------------------------------------
-(require 'hcl-mode)
-(add-to-list 'auto-mode-alist '("\\.tf$" . hcl-mode))
+(require 'hcl-mode nil t)
+
+;; --------------------------------------------------
+;; Terraform
+;; --------------------------------------------------
+(require 'terraform-mode nil t)
+
+(defun smartchr-tf ()
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{\n`!!'\n}" "{")))
+  (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
+  )
+
+(add-hook 'terraform-mode 'smartchr-tf)
+(terraform-format-on-save-mode t)
 
 ;; --------------------------------------------------
 ;; Yaml
@@ -21,14 +33,20 @@
 ;; --------------------------------------------------
 ;; Serverspec
 ;; --------------------------------------------------
-(require 'serverspec)
-(add-hook 'ruby-mode-hook '(lambda () (serverspec 1)))
+;; (require 'serverspec)
+;; (add-hook 'ruby-mode-hook '(lambda () (serverspec 1)))
 
 ;; --------------------------------------------------
 ;; TOML
 ;; --------------------------------------------------
 (require 'toml-mode)
 (add-to-list 'auto-mode-alist '("\\.toml$" . toml-mode))
+
+;; --------------------------------------------------
+;; Jinja2
+;; --------------------------------------------------
+(require 'jinja2-mode)
+(add-to-list 'auto-mode-alist '("\\.jinja$" . jinja2-mode))
 
 ;; --------------------------------------------------
 ;; Nginx
@@ -39,11 +57,6 @@
 ;; Vagrant
 ;; --------------------------------------------------
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
-
-;; --------------------------------------------------
-;; Terraform
-;; --------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.tf$" . ruby-mode))
 
 ;; --------------------------------------------------
 ;; Docker
