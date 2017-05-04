@@ -89,7 +89,6 @@ fi
 # TOOL
 # ====================================
 PATH=$PATH:$HOME/src/github.com/brendangregg/FlameGraph
-PATH=$PATH:$HOME/dev/protoc-3.1.0-osx-x86_64/bin
 PATH=$PATH:$HOME/dev/go_appengine
 
 # ------------------------------------
