@@ -85,6 +85,7 @@ RPROMPT=''
 [ -f ~/.dotfiles/zsh/alias     ] && source ~/.dotfiles/zsh/alias
 [ -f ~/.dotfiles/zsh/functions ] && source ~/.dotfiles/zsh/functions
 [ -f ~/.dotfiles/zsh/helper/docker      ] && source ~/.dotfiles/zsh/helper/docker
+[ -f ~/.dotfiles/zsh/helper/kubectl      ] && source ~/.dotfiles/zsh/helper/kubectl
 [ -f ~/.dotfiles/zsh/helper/http_status ] && source ~/.dotfiles/zsh/helper/http_status
 
 # ------------------------------------

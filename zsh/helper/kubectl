@@ -1,0 +1,28 @@
+function kubectl-log {
+    local selected=$(kubectl get pods | peco --query "$LBUFFER" | cut -d ' ' -f 1)
+    if [ -n "$selected" ]; then
+        kubectl logs -f ${selected}
+    fi
+}
+
+function kubectl-describe-pod {
+    local selected=$(kubectl get pods | peco --query "$LBUFFER" | cut -d ' ' -f 1)
+    if [ -n "$selected" ]; then
+        kubectl describe pod ${selected}
+    fi
+}
+
+function kubectl-describe-service {
+    local selected=$(kubectl get services | peco --query "$LBUFFER" | cut -d ' ' -f 1)
+    if [ -n "$selected" ]; then
+        kubectl describe service ${selected}
+    fi
+}
+
+alias kl=kubectl-log
+alias kp="kubectl get pods"
+alias ks="kubectl get services"
+alias ki="kubectl get ingress"
+alias kdp=kubectl-describe-pod
+alias kds=kubectl-describe-service
+alias kwp="watch -n 1 kubectl get pods"
