@@ -16,11 +16,11 @@
 ;; --------------------------------------------------
 (require 'smartchr nil t)
 
-(defun smartchr-go ()
+(defun smartchr-protobuf ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "()`!!'" "(")))
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{\n`!!'\n}" "{")))
   (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
   )
 
-(add-hook 'protobuf-mode-hook 'smartchr-go)
+(add-hook 'protobuf-mode-hook 'smartchr-protobuf)
 

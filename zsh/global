@@ -65,9 +65,10 @@ export PATH=$GOPATH/src/github.com/uber/go-torch/FlameGraph:$PATH
 # ------------------------------------
 # Python
 # ------------------------------------
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-pyenv shell 2.7.11
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# pyenv shell 2.7.11
+PATH=/usr/local/anaconda3/bin:$PATH
 
 # ------------------------------------
 # PHP
@@ -90,6 +91,7 @@ fi
 # ====================================
 PATH=$PATH:$HOME/src/github.com/brendangregg/FlameGraph
 PATH=$PATH:$HOME/dev/go_appengine
+PATH=$PATH:$HOME/dev/istio-0.1.6/bin
 
 # ------------------------------------
 # peco
@@ -98,6 +100,7 @@ for f (~/.dotfiles/peco/*.zsh) source "${f}"
 bindkey '^r' peco-select-history
 bindkey '^j' peco-ghq
 bindkey '^b' peco-git-branch-checkout
+bindkey '^x' peco-kubectx
 
 # ------------------------------------
 # direnv
