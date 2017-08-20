@@ -1,13 +1,24 @@
 function kubectl-log {
     local selected=$(kubectl get pods | peco --query "$LBUFFER" | cut -d ' ' -f 1)
     if [ -n "$selected" ]; then
+        print -s "kubectl logs -f ${selected}"
         kubectl logs -f ${selected}
     fi
 }
 
+function kubectl-deployment-stern {
+    local selected=$(kubectl get deployments | peco --query "$LBUFFER" | cut -d ' ' -f 1)
+    if [ -n "$selected" ]; then
+        print -s "stern ${selected}"
+        stern ${selected}
+    fi
+}
+
+
 function kubectl-describe-pod {
     local selected=$(kubectl get pods | peco --query "$LBUFFER" | cut -d ' ' -f 1)
     if [ -n "$selected" ]; then
+        print -s "kubectl describe pod ${selected}"
         kubectl describe pod ${selected}
     fi
 }
@@ -15,14 +26,16 @@ function kubectl-describe-pod {
 function kubectl-describe-service {
     local selected=$(kubectl get services | peco --query "$LBUFFER" | cut -d ' ' -f 1)
     if [ -n "$selected" ]; then
+        print -s "kubectl describe service ${selected}"
         kubectl describe service ${selected}
     fi
 }
 
 alias kl=kubectl-log
 alias kp="kubectl get pods"
+alias kd="kubectl get deployments"
 alias ks="kubectl get services"
 alias ki="kubectl get ingress"
 alias kdp=kubectl-describe-pod
 alias kds=kubectl-describe-service
-alias kwp="watch -n 1 kubectl get pods"
+alias kst=kubectl-deployment-stern

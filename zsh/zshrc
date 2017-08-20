@@ -109,3 +109,7 @@ esac
 # added by travis gem
 [ -f /Users/tcnksm/.travis/travis.sh ] && source /Users/tcnksm/.travis/travis.sh
 
+
+export PATH=$PATH:/Users/tcnksm/.go/bin
+
+export PATH=$PATH:/Users/tcnksm/bin

@@ -93,6 +93,7 @@ PATH=$PATH:$HOME/src/github.com/brendangregg/FlameGraph
 PATH=$PATH:$HOME/dev/go_appengine
 PATH=$PATH:$HOME/dev/istio-0.1.6/bin
 source <(kubectl completion zsh)
+source <(stern --completion=zsh)
 
 # ------------------------------------
 # peco
