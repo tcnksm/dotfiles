@@ -14,11 +14,6 @@ export PATH=$PATH:$HOME/src/github.com/tcnksm/scripts/bin
 # ------------------------------------
 export PATH=~/.cask/bin:$PATH
 
-# ------------------------------------
-# Heroku toolbelt
-# ------------------------------------
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # ====================================
 # ENVIRONMENT
 # ====================================
@@ -54,13 +49,7 @@ export GOROOT=${HOME}/.go/${GOVERSION}
 export GOPATH=${HOME}
 export PATH=${GOROOT}/bin:${GOPATH}/bin:${PATH}
 export PATH=$GOPATH/src/github.com/uber/go-torch/FlameGraph:$PATH
-
-# ------------------------------------
-# Rust
-# ------------------------------------
-# https://www.rustup.rs/
-# source $HOME/.cargo/env > /dev/null
-# export RUST_SRC_PATH=${HOME}/.rust/src
+go version
 
 # ------------------------------------
 # Python
@@ -76,23 +65,24 @@ PATH=/usr/local/anaconda3/bin:$PATH
 # export PATH="$HOME/.phpenv/bin:$PATH"
 # eval "$(phpenv init -)"
 
-
 # ------------------------------------
 # node.js
 # ------------------------------------
-if [[ -f ~/.nodebrew/nodebrew ]]; then
-     export PATH=$HOME/.nodebrew/current/bin:$PATH
-     nodebrew use stable
-fi
-
+# if [[ -f ~/.nodebrew/nodebrew ]]; then
+#      export PATH=$HOME/.nodebrew/current/bin:$PATH
+#      nodebrew use stable
+# fi
 
 # ====================================
 # TOOL
 # ====================================
-PATH=$PATH:$HOME/src/github.com/brendangregg/FlameGraph
 PATH=$PATH:$HOME/dev/go_appengine
 PATH=$PATH:$HOME/dev/istio-0.1.6/bin
-source <(kubectl completion zsh)
+
+
+# ------------------------------------
+# kubectl
+# ------------------------------------
 source <(stern --completion=zsh)
 
 # ------------------------------------
