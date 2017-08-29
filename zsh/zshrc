@@ -74,7 +74,7 @@ _vcs_precmd () { vcs_info }
 
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _vcs_precmd 
-PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f
+PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f `kubectl config current-context`
 🍻  '
 RPROMPT=''
 
