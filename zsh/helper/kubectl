@@ -6,14 +6,13 @@ function kubectl-log {
     fi
 }
 
-function kubectl-deployment-stern {
-    local selected=$(kubectl get deployments | peco --query "$LBUFFER" | cut -d ' ' -f 1)
-    if [ -n "$selected" ]; then
-        print -s "stern ${selected}"
-        stern ${selected}
-    fi
+function peco-stern {
+  local selected=$(kubectl get deployments,daemonsets,statefulset --no-headers | cut -d ' ' -f 1 | peco --query "$LBUFFER" | cut -d '/' -f 2)
+  if [ -n "$selected" ]; then
+    print -s "stern ${selected}" # resiter history
+    stern ${selected}
+  fi
 }
-
 
 function kubectl-describe-pod {
     local selected=$(kubectl get pods | peco --query "$LBUFFER" | cut -d ' ' -f 1)
@@ -31,11 +30,17 @@ function kubectl-describe-service {
     fi
 }
 
+alias kg="kubectl get"
+alias kd="kubectl describe"
+
+alias kgp="kubectl get pods"
+alias kgd="kubectl get deployments"
+alias kgr="kubectl get replicaset"
+alias kgs="kubectl get services"
+alias kge="kubectl get endpoints"
+alias kgi="kubectl get ingress"
+
 alias kl=kubectl-log
-alias kp="kubectl get pods"
-alias kd="kubectl get deployments"
-alias ks="kubectl get services"
-alias ki="kubectl get ingress"
 alias kdp=kubectl-describe-pod
 alias kds=kubectl-describe-service
-alias kst=kubectl-deployment-stern
+alias kst=peco-stern
