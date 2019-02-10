@@ -28,10 +28,6 @@ info "---> Install Homebrew Packages"
 info "---> Enable dotfile, make symbolic link to '${HOME}' directory"
 rake clean && rake setup
 
-info "---> Install go tools"
-./go/install.sh
-./go/gets.sh
-
 info "---> Install git contrib/completion scripts"
 if [[ ! -d ~/.gitcontrib ]]; then    
     curl -L --create-dirs -o ~/.gitcontrib/git-completion.zsh \
@@ -42,11 +38,3 @@ fi
 
 info "---> Install Emacs cask"
 pushd emacs.d && cask install && popd
-
-# Tmux plugins
-# if [[ ! -d  ~/.tmux/plugins/tpm ]]; then
-#    info "Install tmux-plugin manager"
-#    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# fi
-
-

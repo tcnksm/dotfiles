@@ -2,7 +2,7 @@
 # General
 # ------------------------------------
 fpath=(/usr/local/share/zsh/functions ${fpath})
-for f (~/src/github.com/tcnksm/dotfiles/zsh/functions/*.zsh) source "${f}"
+for f (~/src/github.com/tcnksm/dotfiles/zsh/function/*.zsh) source "${f}"
 
 # ------------------------------------
 # Bind key
@@ -96,8 +96,6 @@ alias emacs='/usr/local/bin/emacs -nw'
 alias e='/usr/local/bin/emacsclient -n'
 
 alias tmux='tmux -2 -f ~/.tmux.conf'
-alias tmux-copy='tmux save-buffer - | pbcopy'
-alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
 
 alias sss='source ~/.zshrc'
 

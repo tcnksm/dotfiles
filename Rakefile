@@ -48,26 +48,6 @@ namespace :emacs do
   end
 end
 
-namespace :zsh do
-  desc "Create symbolic link to HOME/.zshrc"
-  task :link do
-
-    # If `.zshrc` is already exist, backup it
-    if File.exist?(File.join(HOME, ".zshrc")) && !File.symlink?(File.join(HOME, ".zshrc"))
-      mv File.join(HOME, ".zshrc"), File.join(HOME, ".zshrc.org")
-    end
-
-    symlink_ File.join(PWD, "zsh/zshrc"), File.join(HOME, ".zshrc")      
-  end
-end
-
-namespace :git do
-  desc "Create symbolic link to HOME"
-  task :link do    
-    same_name_symlinks File.join(PWD, "git"), ["gitconfig", "gitignore.global"]
-  end
-end
-
 namespace :tmux do  
   desc "Create symblic link to HOME"
   task :link do
