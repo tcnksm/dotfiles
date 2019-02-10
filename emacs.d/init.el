@@ -12,11 +12,6 @@
 (setq inhibit-startup-message t)   ; inhibits the startup screen
 
 ;; --------------------------------------------------
-;; Color
-;; --------------------------------------------------
-(require 'color-theme-sanityinc-tomorrow nil t)
-
-;; --------------------------------------------------
 ;; Font
 ;; --------------------------------------------------
 (set-face-attribute 'default nil
@@ -202,7 +197,6 @@
 ;; ==================================================
 (require 'highlight-symbol nil t)
 (global-set-key (kbd "C-]") 'highlight-symbol-next)
-;; (global-set-key (kbd "C-[") 'highlight-symbol-prev)
 
 ;; ==================================================
 ;; Undo/Redo
@@ -227,71 +221,45 @@
 ;; ==================================================
 ;; helm.el
 ;; ==================================================
-;; (require 'helm-config)
-;; (helm-mode 1)
+(require 'helm-config)
+(helm-mode 1)
 
 ;; -------------------------------------------------
 ;; Keybind (run)
 ;; -------------------------------------------------
-;; (global-set-key (kbd "M-y")     'helm-show-kill-ring)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files) 
-;; (global-set-key (kbd "C-x C-b") 'helm-buffers-list) ;; C-x b is also
-;; (global-set-key (kbd "C-x C-r") 'helm-recentf)
-;; (global-set-key (kbd "C-x C-z") 'helm-resume)
-;; (global-set-key (kbd "C-x C-g") 'helm-do-ag)
-;; (global-set-key (kbd "C-x C-h") 'helm-ghq)
+(global-set-key (kbd "C-x C-f") 'helm-find-files) 
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-k") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-g") 'helm-do-ag)
+(global-set-key (kbd "C-x C-j") 'helm-ghq)
+(global-set-key (kbd "C-x C-o") 'helm-occur)
 
 ;; -------------------------------------------------
 ;; Keybind (while executing helm)
 ;; -------------------------------------------------
-;; (define-key helm-read-file-map  (kbd "C-h") 'delete-backward-char)
-;; (define-key helm-read-file-map  (kbd "TAB") 'helm-execute-persistent-action)
+(define-key helm-read-file-map  (kbd "C-h") 'delete-backward-char)
+(define-key helm-read-file-map  (kbd "TAB") 'helm-execute-persistent-action)
 
-;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-;; (define-key helm-find-files-map (kbd "C-f") 'helm-execute-persistent-action)
-;; (define-key helm-find-files-map (kbd "C-j") 'helm-execute-persistent-action)
-
-;; -------------------------------------------------
-;; Occur
-;; -------------------------------------------------
-;; (global-set-key (kbd "C-x C-o")          'helm-occur)
-;; (define-key isearch-mode-map (kbd "C-o") 'helm-occur-from-isearch)
-
-;; -------------------------------------------------
-;; Eshell history search
-;; -------------------------------------------------
-;; (add-hook 'eshell-mode-hook
-;;          (lambda ()
-;;            (eshell-cmpl-initialize)
-;;            (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)
-;;            (define-key eshell-mode-map (kbd "C-x C-e") 'helm-eshell-history)))
-
-
-;; -------------------------------------------------
-;; Etc
-;; -------------------------------------------------
-;; (setq helm-ff-auto-update-initial-value nil)
-;; (add-to-list 'helm-for-files-preferred-list 'helm-source-ghq)
+(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-f") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-j") 'helm-execute-persistent-action)
 
 ;; ==================================================
-;; company
+;; Company
 ;; ==================================================
-;; (require 'company nil t)
-;; (global-company-mode t)
+(require 'company nil t)
+(global-company-mode t)
 
-;; --------------------------------------------------
-;; General settings
-;; --------------------------------------------------
-;; (setq company-idle-delay 0.2)
-;; (setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.2)
+(setq company-minimum-prefix-length 1)
 
 ;; --------------------------------------------------
 ;; Keybind at showing candidates
 ;; --------------------------------------------------
-;; (define-key company-active-map (kbd "C-n") 'company-select-next)
-;; (define-key company-active-map (kbd "C-p") 'company-select-previous)
-;; (define-key company-search-map (kbd "C-n") 'company-select-next)
-;; (define-key company-search-map (kbd "C-p") 'company-select-previous)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-select-next)
+(define-key company-search-map (kbd "C-p") 'company-select-previous)
 
 ;; ==================================================
 ;; GO 
@@ -323,17 +291,14 @@
 ;; --------------------------------------------------
 ;; Complete
 ;; --------------------------------------------------
-;; (require 'company-go nil t)
-;; (setq company-begin-commands '(self-insert-command))
-;; (setq company-idle-delay .3)
-;; (add-hook 'go-mode-hook (lambda ()
-;;                           (set (make-local-variable 'company-backends) '(company-go))
-;;                          (company-mode)))
+(require 'company-go nil t)
+
+(add-hook 'go-mode-hook (lambda ()
+                           (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
 
 ;; --------------------------------------------------
 ;; Keybind
-;; $ go get code.google.com/p/go.tools/cmd/godoc
-;; $ go get code.google.com/p/rog-go/exp/cmd/godef
 ;; --------------------------------------------------
 (defun go-keybind ()
   (local-set-key (kbd "\C-c j") 'godef-jump)          ;; Jump to definition
