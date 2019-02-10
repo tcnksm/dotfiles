@@ -40,6 +40,7 @@ formula=(
     direnv
     peco   
     hugo
+    terraform
 )
 brew install ${formula[@]} && brew cleanup
 
