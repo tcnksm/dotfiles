@@ -1,7 +1,7 @@
 function _show-git-status() {
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
         git status -sb
+        echo
     fi
     return 0
 }
@@ -43,7 +43,6 @@ function _enter-list-files() {
     echo 
 
     _show-git-status
-    echo 
     
     zle reset-prompt
     return 0
