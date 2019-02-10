@@ -36,8 +36,10 @@ formula=(
     imagemagick
     rmtrash       
     ag
+    jq
     direnv
     peco   
+    hugo
 )
 brew install ${formula[@]} && brew cleanup
 
