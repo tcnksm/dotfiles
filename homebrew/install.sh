@@ -30,6 +30,7 @@ formula=(
     git   
     hub 
     tig
+    emacs
     cask
     imagemagick
     rmtrash       
