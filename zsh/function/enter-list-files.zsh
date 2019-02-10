@@ -38,9 +38,13 @@ function _enter-list-files() {
         zle accept-line
         return 0
     fi
-    echo
+
     _ls-abbrev
+    echo 
+
     _show-git-status
+    echo 
+    
     zle reset-prompt
     return 0
 }

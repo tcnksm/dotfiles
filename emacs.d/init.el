@@ -8,8 +8,8 @@
 (require 'cask "/usr/local/opt/cask/cask.el") 
 (cask-initialize)
 
-(setq initial-scratch-message nil) ; do not show starting message
-(setq inhibit-startup-message t)   ; inhibits the startup screen
+(setq initial-scratch-message nil) 
+(setq inhibit-startup-message t)  
 
 ;; --------------------------------------------------
 ;; Font
@@ -21,25 +21,25 @@
 ;; --------------------------------------------------
 ;; Mode line
 ;; --------------------------------------------------
-(size-indication-mode t)           ; show file size
-(setq display-time-24hr-fomat t)   ; set time 24 fomat
-(setq display-time-day-and-date t) ; display day and date
-(display-time-mode t)              ; display time
-(setq line-number-mode t)          ; show line number
-(setq column-number-mode t)        ; show column number
-(fset 'yes-or-no-p 'y-or-n-p)      ; "yes or no " to "y or n"
+(size-indication-mode t)           
+(setq display-time-24hr-fomat t)   
+(setq display-time-day-and-date t) 
+(display-time-mode t)              
+(setq line-number-mode t)          
+(setq column-number-mode t)        
+(fset 'yes-or-no-p 'y-or-n-p)      
 
 ;; --------------------------------------------------
 ;; Display
 ;; --------------------------------------------------
 (show-paren-mode 1)
-(global-linum-mode 0)                                    ; show line number at left side 
-(menu-bar-mode -1)                                       ; do not show 'menu bar'
-(setq frame-title-format (format "%%f" (system-name)))   ; show file path at title bar
+(global-linum-mode 0)                                   
+(menu-bar-mode -1)                                      
+(setq frame-title-format (format "%%f" (system-name)))  
 
 (when window-system
-  (tool-bar-mode nil)                                    ; do not show 'tool bar'
-  (set-scroll-bar-mode nil)                              ; do not 'show scroll bar'
+  (tool-bar-mode nil)                                   
+  (set-scroll-bar-mode nil)                             
   )
 
 ;; --------------------------------------------------
@@ -82,8 +82,8 @@
 ;; --------------------------------------------------
 ;; Completion
 ;; --------------------------------------------------
-(setq completion-ignore-case t)                  ; dont distinguish characutor case
-(setq read-file-name-completion-ignore-case t)   ; dont distinguish characutor case
+(setq completion-ignore-case t)                  
+(setq read-file-name-completion-ignore-case t)   
 
 ;; --------------------------------------------------
 ;; Paren mode
@@ -97,8 +97,8 @@
 ;; recentf mode
 ;; --------------------------------------------------
 (recentf-mode t)
-(setq recentf-max-menu-items 10)            ; max display
-(setq recentf-max-saved-items 3000)         ; max save
+(setq recentf-max-menu-items 10)            
+(setq recentf-max-saved-items 3000)         
 (setq recentf-save-file "/tmp/recentf")
 
 ;; --------------------------------------------------
@@ -113,7 +113,7 @@
 ;; --------------------------------------------------
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
-(global-set-key (kbd "C-c c") 'cua-set-rectangle-mark) ;; or C-RET
+(global-set-key (kbd "C-c c") 'cua-set-rectangle-mark) 
 
 ;; --------------------------------------------------
 ;; Uniquify
@@ -208,7 +208,7 @@
 ;; Remain after emacs is closed
 ;; --------------------------------------------------
 (require 'undohist nil t)
-(setq undohist-directory "~/.emacs.d/etc/.cache/undohist")
+(setq undohist-directory "/tmp/undohist")
 (undohist-initialize)
 
 ;; --------------------------------------------------
