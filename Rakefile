@@ -47,10 +47,3 @@ namespace :emacs do
     symlink_ File.join(PWD, "emacs.d"), File.join(HOME,".emacs.d")
   end
 end
-
-namespace :tmux do  
-  desc "Create symblic link to HOME"
-  task :link do
-    same_name_symlinks File.join(PWD, "tmux"), ["tmux.conf"]
-  end
-end

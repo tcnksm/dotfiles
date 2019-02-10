@@ -10,19 +10,14 @@
 (setq initial-scratch-message nil) ; do not show starting message
 (setq inhibit-startup-message t)   ; inhibits the startup screen
 
-
 ;; --------------------------------------------------
 ;; Color
 ;; --------------------------------------------------
-;; Tomorrow
-;; M-x color-theme-sanityinc-tomorrow-eighties
 (require 'color-theme-sanityinc-tomorrow nil t)
-
 
 ;; --------------------------------------------------
 ;; Font
 ;; --------------------------------------------------
-
 ;; English
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
@@ -30,13 +25,6 @@
 
 ;; Japanese
 (set-default-font "VL Gothic-11")
-
-
-;; --------------------------------------------------
-;; Window size
-;; --------------------------------------------------
-(setq initial-frame-alist '((width . 160) (height . 50) (top . 22)(left . 0)))
-
 
 ;; --------------------------------------------------
 ;; Mode line
@@ -62,7 +50,6 @@
   (set-scroll-bar-mode nil)                              ; do not 'show scroll bar'
   )
 
-
 ;; --------------------------------------------------
 ;; Cursor
 ;; --------------------------------------------------
@@ -75,14 +62,12 @@
 ;; --------------------------------------------------
 ;; Encoding
 ;; --------------------------------------------------
-(set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
 (setq default-buffer-file-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
-
 
 ;; --------------------------------------------------
 ;; Backup file
@@ -102,8 +87,8 @@
 ;; --------------------------------------------------
 ;; indent
 ;; --------------------------------------------------
-(setq-default indent-tabs-mode nil)
-(custom-set-variables '(tab-width 4))
+;; (setq-default indent-tabs-mode nil)
+;; (custom-set-variables '(tab-width 4))
 
 
 ;; --------------------------------------------------
@@ -111,8 +96,6 @@
 ;; --------------------------------------------------
 (setq completion-ignore-case t)                  ; dont distinguish characutor case
 (setq read-file-name-completion-ignore-case t)   ; dont distinguish characutor case
-;; (partial-completion-mode t)                      ; partial complettion
-
 
 ;; --------------------------------------------------
 ;; paren mode
@@ -138,7 +121,6 @@
 (setq history-length 3000)
 (setq savehist-file "~/.emacs.d/etc/.cache/history")
 
-
 ;; --------------------------------------------------
 ;; Cua mode
 ;; --------------------------------------------------
@@ -158,7 +140,6 @@
 ;; Don't use C-x C-c
 ;; --------------------------------------------------
 (global-set-key (kbd "C-x C-c") 'helm-recentf)
-
 (defalias 'exit 'save-buffers-kill-emacs)
 
 ;; --------------------------------------------------
@@ -172,7 +153,6 @@
 ;; --------------------------------------------------
 ;; Copy by mouse drag
 ;; --------------------------------------------------
-
 (setq select-active-regions nil)
 (setq mouse-drag-copy-region t)
 (setq x-select-enable-primary t)
@@ -181,14 +161,67 @@
 ;; --------------------------------------------------
 ;; Excutable start with '#!' 
 ;; --------------------------------------------------
-
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
 ;; --------------------------------------------------
 ;; Show all "eval" result
 ;; --------------------------------------------------
-
 (setq eval-expression-print-length nil)
 
+;; ==================================================
+;; Keybind
+;; ==================================================
+;; Move
+(global-set-key "\C-f" 'forward-word)
+(global-set-key "\C-b" 'backward-word)
 
+;; Delete backward
+(global-set-key "\C-h" 'backward-delete-char)
+
+;; Comment out
+(global-set-key "\C-x\C-x" 'comment-region)
+
+(global-set-key "\C-d" 'copy-region-as-kill)
+(global-set-key "\C-w" 'kill-region)
+
+;; (global-set-key "\C-xt" 'uncomment-region)
+;; Un-comment out
+
+;; Replace once
+(global-set-key "\C-cr" 'replace-string)
+
+;; Replace interactively
+(global-set-key "\C-cq" 'query-replace)
+
+;; Auto indent
+(global-set-key "\C-m" 'newline-and-indent)          
+
+;; New line
+(global-set-key "\C-j" 'newline)
+
+;; Move by line number
+(global-set-key "\C-c\C-g" 'goto-line)
+
+;; Grep
+(global-set-key "\M-g" 'grep)
+
+;; ==================================================
+;; company
+;; ==================================================
+;; (require 'company nil t)
+;; (global-company-mode t)
+
+;; --------------------------------------------------
+;; General settings
+;; --------------------------------------------------
+;; (setq company-idle-delay 0.2)
+;; (setq company-minimum-prefix-length 1)
+
+;; --------------------------------------------------
+;; Keybind at showing candidates
+;; --------------------------------------------------
+;; (define-key company-active-map (kbd "C-n") 'company-select-next)
+;; (define-key company-active-map (kbd "C-p") 'company-select-previous)
+;; (define-key company-search-map (kbd "C-n") 'company-select-next)
+;; (define-key company-search-map (kbd "C-p") 'company-select-previous)

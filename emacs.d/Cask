@@ -5,148 +5,34 @@
 (source melpa)
 
 ;; ==================================================
-;; Default
-;; ==================================================
-(depends-on "bind-key")
-(depends-on "cask")
-(depends-on "dash")
-(depends-on "drag-stuff")
-(depends-on "exec-path-from-shell")
-(depends-on "expand-region")
-(depends-on "f")
-;; (depends-on "flycheck")
-;; (depends-on "flycheck-cask")
-(depends-on "htmlize")
-(depends-on "idle-highlight-mode")
-(depends-on "magit")
-(depends-on "multiple-cursors")
-(depends-on "nyan-mode")
-(depends-on "pallet")
-(depends-on "popwin")
-(depends-on "prodigy")
-(depends-on "projectile")
-(depends-on "s")
-(depends-on "smartparens")
-(depends-on "smex")
-(depends-on "use-package")
-(depends-on "web-mode")
-(depends-on "yasnippet")
-
-;; ==================================================
 ;; General
 ;; ==================================================
-
-;; --------------------------------------------------
-;; Color
-;; --------------------------------------------------
+(depends-on "cask")
 (depends-on "color-theme-sanityinc-tomorrow")
-
-
-;; ==================================================
-;; Util
-;; ==================================================
-
-;; --------------------------------------------------
-;; complete
-;; --------------------------------------------------
-;; (depends-on "auto-complete")
 (depends-on "company")
-
-;; --------------------------------------------------
-;; Helm
-;; --------------------------------------------------
+(depends-on "company-quickhelp")
 (depends-on "helm")
 (depends-on "helm-ghq")
 (depends-on "helm-ag")
-
-;; --------------------------------------------------
-;; undo
-;; --------------------------------------------------
 (depends-on "undo-tree")
 (depends-on "undohist")
-
-;; --------------------------------------------------
-;; direx
-;; --------------------------------------------------
 (depends-on "direx")
-
-;; --------------------------------------------------
-;; Git
-;; --------------------------------------------------
-;; (depends-on "git-commit-mode")
-;; (depends-on "git-rebase-mode")
 (depends-on "git-gutter")
-(depends-on "helm-open-github")
-
-;; --------------------------------------------------
-;; etc
-;; --------------------------------------------------
-(depends-on "smartrep")
-(depends-on "popup")
-(depends-on "highlight-symbol")
-(depends-on "pcache")
-(depends-on "logito")
-
-;; ==================================================
-;; Language
-;; ==================================================
+(depends-on "smartchr" :git "git@github.com:imakado/emacs-smartchr.git")
 
 ;; --------------------------------------------------
 ;; Golang
 ;; --------------------------------------------------
 (depends-on "go-mode")
-(depends-on "go-eldoc")
-(depends-on "go-autocomplete")
-(depends-on "go-direx")
-(depends-on "company-go")
-(depends-on "go-guru")
-
-;; --------------------------------------------------
-;; Rust
-;; --------------------------------------------------
-(depends-on "rust-mode")
-(depends-on "racer")
-(depends-on "company-racer")
-
-;; --------------------------------------------------
-;; Clojure
-;; --------------------------------------------------
-(depends-on "clojure-mode")
-;; (depends-on "cider")
-;; (depends-on "ac-cider")
-
-;; --------------------------------------------------
-;; Ruby
-;; --------------------------------------------------
-(depends-on "ruby-mode")
-(depends-on "ruby-block")
-(depends-on "ruby-electric")
-(depends-on "ruby-end")
-(depends-on "flymake-ruby")
-(depends-on "inf-ruby")
-
-;; --------------------------------------------------
-;; PHP
-;; --------------------------------------------------
-(depends-on "php-mode")
+;; (depends-on "company-go")
+;; (depends-on "go-guru")
 
 ;; --------------------------------------------------
 ;; Configuration language
 ;; --------------------------------------------------
+(depends-on "markdown-mode")
 (depends-on "yaml-mode")
 (depends-on "toml-mode")
-(depends-on "nginx-mode")
-(depends-on "serverspec")
 (depends-on "hcl-mode")
 (depends-on "terraform-mode")
-(depends-on "jinja2-mode")
-(depends-on "dockerfile-mode" :git "https://github.com/spotify/dockerfile-mode")
-
-;; --------------------------------------------------
-;; etc
-;; --------------------------------------------------
-(depends-on "markdown-mode")
-(depends-on "haml-mode")
-(depends-on "scss-mode")
-(depends-on "coffee-mode")
-
+(depends-on "dockerfile-mode")

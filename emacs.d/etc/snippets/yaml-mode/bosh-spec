@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bosh-spec
-# key: bosh
-# --
-  $1:
-      description: ""
-      default: ""

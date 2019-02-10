@@ -16,6 +16,11 @@ do
   fi  
 done
 
+if [ ! -d ${HOME}/.emacs.d ]; then
+  echo "[INFO] Place ${HOME}/.emacs.d"  
+  ln -s ${DIR}/emacs.d ${HOME}/.emacs.d
+fi
+
 if [ ! -f ${HOME}/.config/peco/config.json ]; then
   echo "[INFO] Place ${HOME}/.config/peco/config.json"
   mkdir -p $HOME/.config/peco
