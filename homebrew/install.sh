@@ -32,6 +32,7 @@ formula=(
     tig
     emacs
     cask
+    go
     imagemagick
     rmtrash       
     ag
