@@ -77,7 +77,7 @@ export GOPATH=${HOME}
 # ------------------------------------
 # Alias
 # ------------------------------------
-alias ls="ls -A -G"
+alias ls="ls -G"
 alias rm='rmtrash'
 
 alias git=hub

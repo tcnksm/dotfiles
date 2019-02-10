@@ -14,6 +14,7 @@
 (depends-on "helm")
 (depends-on "helm-ghq")
 (depends-on "helm-ag")
+(depends-on "highlight-symbol")
 (depends-on "undo-tree")
 (depends-on "undohist")
 (depends-on "direx")
@@ -24,8 +25,10 @@
 ;; Golang
 ;; --------------------------------------------------
 (depends-on "go-mode")
-;; (depends-on "company-go")
-;; (depends-on "go-guru")
+(depends-on "go-rename")
+(depends-on "go-eldoc")
+(depends-on "company-go")
+(depends-on "go-guru")
 
 ;; --------------------------------------------------
 ;; Configuration language
@@ -33,6 +36,7 @@
 (depends-on "markdown-mode")
 (depends-on "yaml-mode")
 (depends-on "toml-mode")
+(depends-on "protobuf-mode")
 (depends-on "hcl-mode")
 (depends-on "terraform-mode")
 (depends-on "dockerfile-mode")

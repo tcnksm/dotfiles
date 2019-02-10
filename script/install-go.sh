@@ -11,6 +11,7 @@ PKGS=(
     github.com/mdempsky/gocode
     github.com/rogpeppe/godef    
     golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/gorename
     golang.org/x/tools/cmd/benchcmp
     golang.org/x/tools/cmd/present
     golang.org/x/tools/cmd/guru
