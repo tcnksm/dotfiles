@@ -4,13 +4,6 @@
 [user]
   name = tcnksm
   email = nsd22843@gmail.com
-
-[credential]
-  helper = osxkeychain  
-
-[github]
-	oauth-token = 
-	user = tcnksm        
   
 [color]
   status = auto
@@ -21,6 +14,7 @@
 
 [core]
   editor = "/usr/local/bin/emacsclient -t" --alternate-editor "/usr/local/bin/emacs -nw"
+	excludesfile = ~/.gitignore_global
   
 [merge]
   ff = false
