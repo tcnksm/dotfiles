@@ -1,5 +1,4 @@
-# Search the command history
-function peco-select-history() {
+function _peco-select-command-history() {
     local tac
     if which tac > /dev/null; then
         tac="tac"
@@ -13,4 +12,4 @@ function peco-select-history() {
     CURSOR=$#BUFFER
     zle clear-screen
 }
-zle -N peco-select-history
+zle -N peco-select-command-history _peco-select-command-history

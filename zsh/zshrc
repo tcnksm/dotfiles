@@ -1,107 +1,108 @@
-# ====================================
-# .zshrc
-# ====================================
+# ------------------------------------
+# General
+# ------------------------------------
+fpath=(/usr/local/share/zsh/functions ${fpath})
+for f (~/src/github.com/tcnksm/dotfiles/zsh/functions/*.zsh) source "${f}"
+
+# ------------------------------------
+# Bind key
+# ------------------------------------
+bindkey -e
+
+bindkey '^r' peco-select-command-history
+bindkey '^j' peco-ghq-change-directory
+bindkey '^c' peco-cdr-change-directory
+bindkey '^b' peco-git-checkout-branch
+bindkey '^x' peco-k8s-change-context
+bindkey '^n' peco-k8s-change-namespace
+bindkey '^m' enter-list-files
 
 # ------------------------------------
 # Completion
 # ------------------------------------
-fpath=(/usr/local/share/zsh/functions ${fpath})
 autoload -U compinit && compinit
-
-# Asking
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:default' menu select=1
-
-# Compacked complete list display
-setopt list_packed
-
-# Coloring complete list display
-zstyle ':completion:*' list-colors ''
+setopt AUTO_LIST
 
 # ------------------------------------
-# Command History
+# Hooks
 # ------------------------------------
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
-# Ignore duplication command history list
-setopt hist_ignore_dups
-
-# Share command history data
-setopt share_history
-
-# Historical backward/forward search
-# with linehead string binded to ^P/^N
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-
-# ------------------------------------
-# Key bind (emacs)
-# ------------------------------------
-bindkey -e
-
-# ------------------------------------
-# cd
-# ------------------------------------
-setopt auto_cd
-
-# Auto directory pushd
-# that you can get dirs list by cd -[tab]
-setopt auto_pushd
-
-# ------------------------------------
-# Correct miss typing command
-# ------------------------------------
-setopt correct
+chpwd() {
+    _ls-abbrev
+    _show-git-status
+}
 
 # ------------------------------------
 # Prompt
 # ------------------------------------
-setopt prompt_subst
-setopt prompt_percent
-setopt transient_rprompt
+setopt PROMPT_SUBST
+setopt PROMPT_PERCENT
+setopt TRANSIENT_RPROMPT
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
 
-_vcs_precmd () { vcs_info }
+# https://github.com/jonmosco/kube-ps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd _vcs_precmd 
-PROMPT='%~ %F{yellow}${vcs_info_msg_0_}%f `kubectl config current-context`
-🍻  '
 RPROMPT=''
+PROMPT='%~ %F{yello}${vcs_info_msg_0_}%f `kube_ps1`
+> '
 
 # ------------------------------------
-# Read settings
+# Options
 # ------------------------------------
-[ -f ~/.dotfiles/zsh/global    ] && source ~/.dotfiles/zsh/global
-[ -f ~/.dotfiles/zsh/alias     ] && source ~/.dotfiles/zsh/alias
-[ -f ~/.dotfiles/zsh/functions ] && source ~/.dotfiles/zsh/functions
-[ -f ~/.dotfiles/zsh/helper/docker      ] && source ~/.dotfiles/zsh/helper/docker
-[ -f ~/.dotfiles/zsh/helper/kubectl      ] && source ~/.dotfiles/zsh/helper/kubectl
-[ -f ~/.dotfiles/zsh/helper/http_status ] && source ~/.dotfiles/zsh/helper/http_status
+
+# Changing Directories
+setopt AUTO_CD
+setopt AUTO_PUSHD
+
+# History
+setopt APPEND_HISTORY
+
+# Input/Output
+setopt CORRECT
+setopt INTERACTIVE_COMMENTS
 
 # ------------------------------------
-# Read local settings
+# Environmental variables
 # ------------------------------------
-[ -f ~/.localrc ] && source ~/.localrc
+export PATH=$HOME/bin:$PATH
+export PATH=~/.cask/bin:$PATH
+
+export EDITOR='/usr/local/bin/emacs -nw'
+export GOPATH=${HOME}
 
 # ------------------------------------
-# Read OS specific settings
+# Alias
 # ------------------------------------
-case "${OSTYPE}" in
-    darwin*)
-	  [ -f ~/.dotfiles/zsh/os/darwin ] && source ~/.dotfiles/zsh/os/darwin
-	;;
+alias ls="ls -A -G"
+alias rm='rmtrash'
 
-    linux*)
-	  [ -f ~/.dotfiles/zsh/os/linux ] && source ~/.dotfiles/zsh/os/linux
-	;;
-esac
+alias git=hub
+alias gs='git status'
+alias au='git add -u; git status'
+alias o='git open'
+alias tt='tig'
+
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias kdp=_peco-k8s-describe-pod
+alias kl=_peco-k8s-view-pod-logs
+alias kst=_peco-k8s-stern
+
+alias emacs='/usr/local/bin/emacs -nw'
+alias e='/usr/local/bin/emacsclient -n'
+
+alias tmux='tmux -2 -f ~/.tmux.conf'
+alias tmux-copy='tmux save-buffer - | pbcopy'
+alias tmux-paste='pbpaste | tmux load-buffer - && tmux paste-buffer'
+
+alias sss='source ~/.zshrc'
+
+# ------------------------------------
+# Settings
+# ------------------------------------
+eval "$(direnv hook zsh)"
+source <(stern --completion=zsh)

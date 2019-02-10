@@ -15,7 +15,7 @@ if [ "${ANS}" = "Y" ]; then
 fi
 
 # https://formulae.brew.sh/formula/
-echo "[IFO] Installing fomula"
+echo "[INFO] Installing fomulas"
 formula=(
     coreutils
     findutils  
@@ -41,11 +41,14 @@ formula=(
     peco   
     hugo
     terraform
+    kubectx
+    kube-ps1
+    stern
 )
 brew install ${formula[@]} && brew cleanup
 
 # https://github.com/Homebrew/homebrew-cask
-echo "[Install] Installing casks"
+echo "[INFO] Installing casks"
 casks=(
      google-cloud-sdk
      visual-studio-code

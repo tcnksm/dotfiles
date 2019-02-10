@@ -74,18 +74,3 @@ namespace :tmux do
     same_name_symlinks File.join(PWD, "tmux"), ["tmux.conf"]
   end
 end
-
-namespace :peco do
-  desc "Create symbolic link"
-  task :link do
-    sh "mkdir -p $HOME/.config/peco/" 
-    symlink_ File.join(PWD, "peco/config.json"), File.join(HOME, ".config/peco/config.json")
-  end
-end
-
-namespace :etc do
-  task :link do
-    etcs  =  Dir.glob("etc" +  "/*").map{|path| File.basename(path)}
-    same_name_symlinks File.join(PWD, "etc"), etcs
-  end
-end

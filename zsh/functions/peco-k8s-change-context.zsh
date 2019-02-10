@@ -1,5 +1,4 @@
-# Change directory to the repo where fetched by peco
-function peco-kubectx() {
+function _peco-k8s-change-context() {
     local selected_ctx=$(kubectx | peco --query "$LBUFFER")
     if [ -n "$selected_ctx" ]; then
         BUFFER="kubectx ${selected_ctx}"
@@ -7,4 +6,4 @@ function peco-kubectx() {
     fi
     zle clear-screen
 }
-zle -N peco-kubectx
+zle -N peco-k8s-change-context _peco-k8s-change-context

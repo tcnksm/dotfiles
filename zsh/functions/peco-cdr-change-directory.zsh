@@ -1,5 +1,5 @@
-# Change directory where I visited before
-function peco-cdr () {
+autoload -U chpwd_recent_dirs cdr
+function _peco-cdr-change-directory () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
@@ -7,4 +7,4 @@ function peco-cdr () {
     fi
     zle clear-screen
 }
-zle -N peco-cdr
+zle -N peco-cdr-change-directory _peco-cdr-change-directory

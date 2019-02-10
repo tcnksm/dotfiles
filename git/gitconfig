@@ -6,7 +6,11 @@
   email = nsd22843@gmail.com
 
 [credential]
-  helper = osxkeychain          
+  helper = osxkeychain  
+
+[github]
+	oauth-token = 
+	user = tcnksm        
   
 [color]
   status = auto
@@ -32,79 +36,20 @@
 
 [alias]
   s   = status
-  st  = status
-  ss  = status -s
-  sh  = show
-  so  = remote show origin
-
-  a   = add
-  ad  = add
   au  = !git add -u && git status
-  c   = commit
   ca  = commit --amend
   cm  = commit -m
-  cmb = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\";}; f"
 
-  b   = branch -a
-  br  = branch -r
-
-  # https://github.com/paulirish/git-open
-  o = open
-
-  co  = checkout
-  cb  = checkout -b
-  develop = checkout develop
-  master = checkout master
-
-  d   = diff
+  d   = diff HEAD~
   ds  = diff --staged
-  dn  = diff --name-only
   dm  = diff master
-  d1  = diff HEAD~
-  d2  = diff HEAD~~
-  d3  = diff HEAD~~~
-  d4  = diff HEAD~~~~
-  d5  = diff HEAD~~~~~
-
-
-  l   = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
-  ll  = log --stat --abbrev-commit
-  l1  = log --stat --abbrev-commit -n 1
-
-
-  gr  = grep
-  gn  = grep -n
-
-  p   = push
-  pb  = !git push -u origin $(git branch -a | grep '^*' | cut -b 3-);
-  pom = push -u origin master
-
-  td  = !git for-each-ref --sort=taggerdate refs/tags
 
   # http://blog.blindgaenger.net/advanced_git_aliases.html
   this   = !git init && git add . && git commit -m \"Initial commit\"
-  cmb    = "!f () { git commit -m \"$1 ($(git branch -a | grep '^*' | cut -b 3-))\" $2;}; f"
   rr     = !git ls-files -z --deleted | xargs -0 git rm
-  alias  = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
-  ignore = "!ignore () { echo $1 >> .gitignore;}; ignore"
-  github = !git remote add origin https://github.com/tcnksm/$1.git && git push -u origin master
-  now    = rev-parse --abbrev-ref HEAD
-
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
 
 [ghq]
     root = ~/src
-
-[ghq "alias"]
-    g = get
-    l = look
-    ls = list
-
-[github]
-	oauth-token = 
-	user = tcnksm
     
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*

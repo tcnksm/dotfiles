@@ -1,16 +1,12 @@
-# ------------------------------------
-# Functions
-# ------------------------------------
-# excuting after change directry
-chpwd() {
-    ls_abbrev
-    show_git_status
+function _show-git-status() {
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+        echo
+        git status -sb
+    fi
+    return 0
 }
 
-# ls which doesn't show too much file
-ls_abbrev() {
-    # -C : Force multi-column output.
-    # -F : Append indicator (one of */=>@|) to entries.
+function _ls-abbrev() {
     local cmd_ls='ls'
     local -a opt_ls
     opt_ls=('-CF' '--color=always')
@@ -37,29 +33,16 @@ ls_abbrev() {
     fi
 }
 
-function show_git_status() {
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        git status -sb
-    fi
-    return 0
-}
-
-function do_enter() {
+function _enter-list-files() {
     if [ -n "$BUFFER" ]; then
         zle accept-line
         return 0
     fi
     echo
-    ls_abbrev
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        git status -sb
-        echo
-    fi
+    _ls-abbrev
+    _show-git-status
     zle reset-prompt
     return 0
 }
 
-zle -N do_enter
-bindkey '^m' do_enter
+zle -N enter-list-files _enter-list-files

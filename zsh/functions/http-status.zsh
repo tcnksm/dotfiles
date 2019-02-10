@@ -1,7 +1,3 @@
-# ------------------------------------
-# HTTP status
-# https://tools.ietf.org/html/rfc7231#section-6.1
-# ------------------------------------
 alias "100"="echo 'Continue'"
 alias "101"="echo 'Switching Protocols'"
 alias "200"="echo 'OK'"

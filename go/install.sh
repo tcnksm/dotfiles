@@ -1,18 +1,22 @@
 #!/bin/bash
 
-GOVERSION=${1}
-if [ -z "${GOVERSION}" ]; then
-    GOVERSION=1.9
-fi
+set -e
 
-if [ -d ${HOME}/.go/${GOVERSION} ]; then
-    echo "${GOVERSION} is already installed"
-    exit 1
-fi
+PKGS=(
+    # General
+    github.com/motemen/ghq
 
-rm -fr ${GOHOME}/pkg
-mkdir -p ${HOME}/.go/${GOVERSION}
-curl https://storage.googleapis.com/golang/go${GOVERSION}.darwin-amd64.tar.gz \
-    | tar xvzf - -C ${HOME}/.go/${GOVERSION}/ --strip-components=1
-echo $GOVERSION > ${HOME}/.go/.goversion
+    # Go development
+    github.com/davidrjenni/reftools/cmd/fillstruct
+    github.com/mdempsky/gocode
+    github.com/rogpeppe/godef    
+    golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/benchcmp
+    golang.org/x/tools/cmd/present
+    golang.org/x/tools/cmd/guru
+)
 
+for pkg in ${PKGS[@]}
+do
+    go get -u -v $pkg
+done

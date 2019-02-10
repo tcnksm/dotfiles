@@ -1,4 +1,4 @@
-function peco-git-branch-checkout () {
+function _peco-git-checkout-branch () {
     local selected_branch_name="$(git branch -a | peco | tr -d ' ')"
         case "$selected_branch_name" in
                 *-\>* )
@@ -12,4 +12,4 @@ function peco-git-branch-checkout () {
         fi
         zle clear-screen
 }
-zle -N peco-git-branch-checkout
+zle -N peco-git-checkout-branch _peco-git-checkout-branch
