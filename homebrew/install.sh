@@ -1,97 +1,48 @@
-# Check for Homebrew, install if we don't have it
+# Check for Homebrew installation and if not exist install 
 if test ! $(which brew); then
-    echo "Installing homebrew..."
+    echo "[INFO] Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# Update homebrew recipes
 printf "Update recipes? [Y/n]: " && read ANS
 if [ "${ANS}" = "Y" ]; then
     brew update
 fi
 
-# Upgrade all
 printf "Upgrade? [Y/n]: " && read ANS
 if [ "${ANS}" = "Y" ]; then
     brew upgrade
 fi
 
-# Add Repository
-brew tap homebrew/dupes
-brew tap homebrew/versions   
-brew tap homebrew/binary     
-brew tap thoughtbot/formulae
-brew tap caskroom/fonts
-
-packages=(
-
-    # GNU core utilities (those that come with OS X are outdated)
+# https://formulae.brew.sh/formula/
+echo "[IFO] Installing fomula"
+formula=(
     coreutils
-
-    # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-    findutils
-
-    # recent versions of some OS X tools
-    homebrew/dupes/grep
-    apple-gcc42
-    
-    # Shell
+    findutils  
+    proctools
+    grep
+    curl
+    wget
+    tree
     zsh
     bash
-
-    # Multiplexe
     tmux
-    reattach-to-user-namespace 
-
-    # Git
     git   
     hub 
     tig
-
-    # Emcas
     cask
-
-    # Image
     imagemagick
-
-    # Utils
-    autoconf
-    proctools 
-    automake  
     rmtrash       
-    wget      
-    curl          
-    tree      
-    openssl   
-    libyaml   
-    readline  
-    markdown  
-    nkf       
     ag
     direnv
-    peco
-    glide
-    
-    # Languages
-    pyenv
-    rbenv            
-    ruby-build                     
-    # python3
-    # leiningen 
+    peco   
 )
+brew install ${formula[@]} && brew cleanup
 
-echo "installing binaries..."
-brew install ${packages[@]} && brew cleanup
-
-# fonts
-fonts=(
-    font-m-plus
-    font-source-code-pro
-    font-clear-sans
-    font-roboto
-    font-go
+# https://github.com/Homebrew/homebrew-cask
+echo "[Install] Installing casks"
+casks=(
+     google-cloud-sdk
+     visual-studio-code
 )
-
-# install fonts
-echo "installing fonts..."
-brew cask install ${fonts[@]}
+brew cask install ${casks[@]} && brew cleanup
