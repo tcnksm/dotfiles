@@ -11,17 +11,35 @@ bindkey -e
 
 bindkey '^r' peco-select-command-history
 bindkey '^j' peco-ghq-change-directory
-bindkey '^c' peco-cdr-change-directory
+bindkey '^h' peco-cdr-change-directory
 bindkey '^b' peco-git-checkout-branch
 bindkey '^x' peco-k8s-change-context
-bindkey '^n' peco-k8s-change-namespace
+bindkey '^]' peco-k8s-change-namespace
 bindkey '^m' enter-list-files
 
 # ------------------------------------
 # Completion
 # ------------------------------------
 autoload -U compinit && compinit
+
 setopt AUTO_LIST
+setopt LIST_PACKED
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:default' menu select=1
+
+# ------------------------------------
+# History
+# ------------------------------------
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+autoload history-search-end
 
 # ------------------------------------
 # Hooks
@@ -48,7 +66,7 @@ source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
 RPROMPT=''
 PROMPT='%~ %F{yello}${vcs_info_msg_0_}%f `kube_ps1`
-> '
+$ '
 
 # ------------------------------------
 # Options
@@ -57,9 +75,6 @@ PROMPT='%~ %F{yello}${vcs_info_msg_0_}%f `kube_ps1`
 # Changing Directories
 setopt AUTO_CD
 setopt AUTO_PUSHD
-
-# History
-setopt APPEND_HISTORY
 
 # Input/Output
 setopt CORRECT
@@ -73,6 +88,7 @@ export PATH=~/.cask/bin:$PATH
 
 export EDITOR='/usr/local/bin/emacs -nw'
 export GOPATH=${HOME}
+export PATH=$PATH:/usr/local/kubebuilder/bin
 
 # ------------------------------------
 # Alias
@@ -82,6 +98,7 @@ alias rm='rmtrash'
 
 alias git=hub
 alias gs='git status'
+alias gm='git checkout master'
 alias au='git add -u; git status'
 alias o='git open'
 alias tt='tig'
