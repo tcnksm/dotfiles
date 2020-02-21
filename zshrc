@@ -39,7 +39,13 @@ SAVEHIST=100000
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 
+# Historical backward/forward search
+# with linehead string binded to ^P/^N
 autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
 
 # ------------------------------------
 # Hooks
