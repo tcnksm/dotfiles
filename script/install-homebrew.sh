@@ -44,6 +44,7 @@ formula=(
     kubectx
     kube-ps1
     stern
+    github/gh/gh
 )
 brew install ${formula[@]} && brew cleanup
 
