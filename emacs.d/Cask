@@ -25,9 +25,12 @@
 ;; Golang
 ;; --------------------------------------------------
 (depends-on "go-mode")
+(depends-on "lsp-mode")
+(depends-on "lsp-ui")
 (depends-on "go-rename")
 (depends-on "go-eldoc")
 (depends-on "company-go")
+(depends-on "company-lsp")
 (depends-on "go-guru")
 
 ;; --------------------------------------------------

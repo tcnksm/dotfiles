@@ -77,7 +77,15 @@
 ;; Indent
 ;; --------------------------------------------------
 (setq-default indent-tabs-mode nil)
-(custom-set-variables '(tab-width 4))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (lsp-mode yaml-mode undohist undo-tree toml-mode terraform-mode smartchr protobuf-mode markdown-mode highlight-symbol helm-ghq helm-ag go-rename go-guru go-eldoc git-gutter dockerfile-mode direx company-quickhelp company-go color-theme-sanityinc-tomorrow cask)))
+ '(tab-width 4))
 
 ;; --------------------------------------------------
 ;; Completion
@@ -190,7 +198,7 @@
 ;; git-gutter
 ;; ==================================================
 (require 'git-gutter nil t)
-(global-git-gutter-mode t)
+;; (global-git-gutter-mode t)
 
 ;; ==================================================
 ;; Highlight symbol
@@ -269,6 +277,10 @@
 ;; Go mode 
 ;; --------------------------------------------------
 (require 'go-mode nil t)
+(require 'lsp-mode nil t)
+(require 'lsp-ui nil t)
+
+(add-hook 'go-mode-hook 'lsp-deferred)
 (add-to-list 'exec-path (expand-file-name "~/bin"))
 
 ;; --------------------------------------------------
@@ -280,7 +292,10 @@
 ;; --------------------------------------------------
 ;; Go fmt before saving
 ;; --------------------------------------------------
-(add-hook 'before-save-hook 'gofmt-before-save)
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
@@ -292,16 +307,18 @@
 ;; Complete
 ;; --------------------------------------------------
 (require 'company-go nil t)
+(require 'company-lsp nil t)
 
 (add-hook 'go-mode-hook (lambda ()
-                           (set (make-local-variable 'company-backends) '(company-go))
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (set (make-local-variable 'company-backends) '(company-lsp))
                           (company-mode)))
 
 ;; --------------------------------------------------
 ;; Keybind
 ;; --------------------------------------------------
 (defun go-keybind ()
-  (local-set-key (kbd "\C-c j") 'godef-jump)          ;; Jump to definition
+  (local-set-key (kbd "\C-c j") 'lsp-find-definition)          ;; Jump to definition
   (local-set-key (kbd "\C-c b") 'pop-tag-mark)        ;; Back to jump source
   )
 (add-hook 'go-mode-hook 'go-keybind)
@@ -382,3 +399,9 @@
 ;; Systemd
 ;; --------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.service$" . conf-mode))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

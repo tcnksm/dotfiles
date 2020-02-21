@@ -2,4 +2,5 @@ emacs.d/elpa/archives/*
 emacs.d/etc/.cache/*
 emacs.d/eshell
 emacs.d/.mc-lists.el
+emacs.d/.lsp-session-*
 .cask
