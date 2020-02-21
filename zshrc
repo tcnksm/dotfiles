@@ -100,7 +100,7 @@ alias git=hub
 alias gs='git status'
 alias gm='git checkout master'
 alias au='git add -u; git status'
-alias o='git open'
+alias o='gh pr view'
 alias tt='tig'
 
 alias kg="kubectl get"
