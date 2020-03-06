@@ -2,7 +2,7 @@
 # General
 # ------------------------------------
 fpath=(/usr/local/share/zsh/functions ${fpath})
-for f (~/src/github.com/tcnksm/dotfiles/zsh/function/*.zsh) source "${f}"
+for f (~/gopath/src/github.com/tcnksm/dotfiles/zsh/function/*.zsh) source "${f}"
 
 # ------------------------------------
 # Bind key
@@ -89,11 +89,11 @@ setopt INTERACTIVE_COMMENTS
 # ------------------------------------
 # Environmental variables
 # ------------------------------------
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/gopath/bin:$PATH
 export PATH=~/.cask/bin:$PATH
 
 export EDITOR='/usr/local/bin/emacs -nw'
-export GOPATH=${HOME}
+export GOPATH=${HOME}/gopath
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
 # ------------------------------------

@@ -55,3 +55,4 @@ casks=(
      visual-studio-code
 )
 brew cask install ${casks[@]} && brew cleanup
+

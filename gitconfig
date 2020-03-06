@@ -47,3 +47,5 @@
     
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
