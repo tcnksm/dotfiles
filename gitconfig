@@ -13,8 +13,8 @@
   grep = auto
 
 [core]
-  editor = "/usr/local/bin/emacsclient -t" --alternate-editor "/usr/local/bin/emacs -nw"
-	excludesfile = ~/.gitignore_global
+  editor = /usr/local/bin/emacsclient -t --alternate-editor "/usr/local/bin/emacs -nw"
+  excludesfile = ~/.gitignore_global
   
 [merge]
   ff = false
@@ -43,7 +43,7 @@
   rr     = !git ls-files -z --deleted | xargs -0 git rm
 
 [ghq]
-    root = ~/src
+    root = ~/gopath/src
     
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*

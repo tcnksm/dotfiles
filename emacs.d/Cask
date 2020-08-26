@@ -19,6 +19,7 @@
 (depends-on "undohist")
 (depends-on "direx")
 (depends-on "git-gutter")
+(depends-on "magit")
 (depends-on "smartchr" :git "git@github.com:imakado/emacs-smartchr.git")
 
 ;; --------------------------------------------------
@@ -32,6 +33,11 @@
 (depends-on "company-go")
 (depends-on "company-lsp")
 (depends-on "go-guru")
+
+;; --------------------------------------------------
+;; Javascript
+;; --------------------------------------------------
+(depends-on "typescript-mode")
 
 ;; --------------------------------------------------
 ;; Configuration language

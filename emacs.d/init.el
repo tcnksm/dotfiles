@@ -198,7 +198,14 @@
 ;; git-gutter
 ;; ==================================================
 (require 'git-gutter nil t)
-;; (global-git-gutter-mode t)
+(global-git-gutter-mode t)
+
+;; ==================================================
+;; magit
+;; ==================================================
+(require 'magit nil t)
+(global-git-gutter-mode t)
+
 
 ;; ==================================================
 ;; Highlight symbol
@@ -278,10 +285,10 @@
 ;; --------------------------------------------------
 (require 'go-mode nil t)
 (require 'lsp-mode nil t)
-(require 'lsp-ui nil t)
+;; (require 'lsp-ui nil t)
 
 (add-hook 'go-mode-hook 'lsp-deferred)
-(add-to-list 'exec-path (expand-file-name "~/bin"))
+(add-to-list 'exec-path (expand-file-name "~/gopath/bin"))
 
 ;; --------------------------------------------------
 ;; Go imports
@@ -292,11 +299,11 @@
 ;; --------------------------------------------------
 ;; Go fmt before saving
 ;; --------------------------------------------------
-(add-hook 'before-save-hook 'gofmt-before-save)
-;; (defun lsp-go-install-save-hooks ()
-;;   (add-hook 'before-save-hook #'lsp-format-buffer t t)
-;;   (add-hook 'before-save-hook #'lsp-organize-imports t t))
-;; (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+;; (add-hook 'before-save-hook 'gofmt-before-save)
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; --------------------------------------------------
 ;; Eldoc, show arguments type
@@ -320,7 +327,7 @@
 ;; --------------------------------------------------
 (defun go-keybind ()
   (local-set-key (kbd "\C-c j") 'lsp-find-definition)          ;; Jump to definition
-  (local-set-key (kbd "\C-c b") 'pop-tag-mark)        ;; Back to jump source
+  (local-set-key (kbd "\C-c b") 'pop-tag-mark)                 ;; Back to jump source
   )
 (add-hook 'go-mode-hook 'go-keybind)
 
@@ -341,6 +348,13 @@
   (local-set-key (kbd "[") (smartchr '("[`!!']" "[")))
   )
 (add-hook 'go-mode-hook 'smartchr-go)
+
+;; ==================================================
+;; Javascript 
+;; ==================================================
+(require 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
 ;; ==================================================
 ;; Configuration language
