@@ -1,7 +1,7 @@
 # Check for Homebrew installation and if not exist install 
 if test ! $(which brew); then
     echo "[INFO] Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 printf "Update recipes? [Y/n]: " && read ANS
@@ -54,6 +54,8 @@ casks=(
      google-cloud-sdk
      visual-studio-code
      raycast
+     warp
+     notion
 )
-brew cask install ${casks[@]} && brew cleanup
+brew install --cask ${casks[@]} && brew cleanup
 
