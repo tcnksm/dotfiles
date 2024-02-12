@@ -136,3 +136,5 @@ export GPG_TTY=$(tty)
 eval "$(direnv hook zsh)"
 source <(stern --completion=zsh)
 
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

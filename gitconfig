@@ -4,7 +4,7 @@
 [user]
   name = tcnksm
   email = taichi@hey.com
-  signingkey = C948091B591750CE
+  # signingkey = C948091B591750CE
   
 [color]
   status = auto
@@ -51,6 +51,6 @@
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
 [commit]
-	gpgsign = true
+	gpgsign = false
 [init]
 	defaultBranch = main
