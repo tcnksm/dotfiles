@@ -116,6 +116,7 @@ alias kd="kubectl describe"
 
 # VSCode
 alias v='/opt/homebrew/bin/code -r'
+alias e='/opt/homebrew/bin/code -r'
 
 # Tmux
 alias tmux='tmux -2 -f ~/.tmux.conf'
