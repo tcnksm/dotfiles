@@ -73,4 +73,3 @@ casks=(
      sunsama
 )
 brew install --cask ${casks[@]} && brew cleanup
-
