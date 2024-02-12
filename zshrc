@@ -1,6 +1,7 @@
 # ------------------------------------
 # General
 # ------------------------------------
+eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath=(/usr/local/share/zsh/functions ${fpath})
 for f (~/src/github.com/tcnksm/dotfiles/zsh/function/*.zsh) source "${f}"
 
