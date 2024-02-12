@@ -38,13 +38,12 @@ formula=(
     ag
     jq
     direnv
-    peco   
-    hugo
+    peco
     terraform
     kubectx
     kube-ps1
     stern
-    github/gh/gh
+    gh
 )
 brew install ${formula[@]} && brew cleanup
 
@@ -56,6 +55,10 @@ casks=(
      raycast
      warp
      notion
+     grammarly-desktop
+     cleanshot
+     slack
+     tailscale
 )
 brew install --cask ${casks[@]} && brew cleanup
 
