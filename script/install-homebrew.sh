@@ -53,6 +53,7 @@ echo "[INFO] Installing casks"
 casks=(
      google-cloud-sdk
      visual-studio-code
+     raycast
 )
 brew cask install ${casks[@]} && brew cleanup
 

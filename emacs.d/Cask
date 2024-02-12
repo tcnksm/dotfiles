@@ -31,7 +31,6 @@
 (depends-on "go-rename")
 (depends-on "go-eldoc")
 (depends-on "company-go")
-(depends-on "company-lsp")
 (depends-on "go-guru")
 
 ;; --------------------------------------------------
@@ -49,3 +48,6 @@
 (depends-on "hcl-mode")
 (depends-on "terraform-mode")
 (depends-on "dockerfile-mode")
+(depends-on "rego-mode")
+(depends-on "json-mode")
+(depends-on "cue-mode" :git "git@github.com:phaer/cue-mode.el.git")

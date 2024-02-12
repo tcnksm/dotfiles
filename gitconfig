@@ -3,7 +3,8 @@
 
 [user]
   name = tcnksm
-  email = nsd22843@gmail.com
+  email = taichi@hey.com
+  signingkey = C948091B591750CE
   
 [color]
   status = auto
@@ -32,7 +33,7 @@
   s   = status
   au  = !git add -u && git status
   ca  = commit --amend
-  cm  = commit -m
+  cm  = commit -S -m
 
   d   = diff HEAD~
   ds  = diff --staged
@@ -49,3 +50,7 @@
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main

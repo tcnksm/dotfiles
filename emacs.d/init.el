@@ -7,6 +7,7 @@
 ;; --------------------------------------------------
 (require 'cask "/usr/local/opt/cask/cask.el") 
 (cask-initialize)
+(setq warning-suppress-log-types '((package reinitialization)))
 
 (setq initial-scratch-message nil) 
 (setq inhibit-startup-message t)  
@@ -84,7 +85,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-mode yaml-mode undohist undo-tree toml-mode terraform-mode smartchr protobuf-mode markdown-mode highlight-symbol helm-ghq helm-ag go-rename go-guru go-eldoc git-gutter dockerfile-mode direx company-quickhelp company-go color-theme-sanityinc-tomorrow cask)))
+    (lsp-mode yaml-mode undohist undo-tree toml-mode terraform-mode smartchr protobuf-mode markdown-mode highlight-symbol helm-ghq helm-ag go-rename go-guru go-eldoc git-gutter dockerfile-mode direx company-quickhelp company-go color-theme-sanityinc-tomorrow cask rego-mode)))
  '(tab-width 4))
 
 ;; --------------------------------------------------
@@ -197,13 +198,8 @@
 ;; ==================================================
 ;; git-gutter
 ;; ==================================================
-(require 'git-gutter nil t)
-(global-git-gutter-mode t)
-
-;; ==================================================
-;; magit
-;; ==================================================
 (require 'magit nil t)
+(require 'git-gutter nil t)
 (global-git-gutter-mode t)
 
 
@@ -315,11 +311,9 @@
 ;; Complete
 ;; --------------------------------------------------
 (require 'company-go nil t)
-(require 'company-lsp nil t)
 
 (add-hook 'go-mode-hook (lambda ()
                           (set (make-local-variable 'company-backends) '(company-go))
-                          (set (make-local-variable 'company-backends) '(company-lsp))
                           (company-mode)))
 
 ;; --------------------------------------------------
@@ -350,11 +344,28 @@
 (add-hook 'go-mode-hook 'smartchr-go)
 
 ;; ==================================================
+;; Shell
+;; ==================================================
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
+
+;; ==================================================
 ;; Javascript 
 ;; ==================================================
 (require 'typescript-mode)
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(setq typescript-indent-level 2)
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
+(setq js-indent-level 2)
+
+(add-hook 'css-mode-hook
+          (lambda ()
+            (setq css-indent-offset 2)
+            )
+          )
 
 ;; ==================================================
 ;; Configuration language
@@ -386,6 +397,18 @@
 (add-to-list 'auto-mode-alist '("spec" . yaml-mode))
 
 ;; --------------------------------------------------
+;; JSON
+;; --------------------------------------------------
+(require 'json-mode nil t)
+
+;; --------------------------------------------------
+;; CUE
+;; --------------------------------------------------
+;; https://github.com/phaer/cue-mode.el/blob/master/cue-mode.el
+(require 'cue-mode nil t)
+(add-to-list 'auto-mode-alist '("\\.cue\\'" . cue-mode))
+
+;; --------------------------------------------------
 ;; TOML
 ;; --------------------------------------------------
 (require 'toml-mode nil t)
@@ -410,6 +433,12 @@
 (require 'dockerfile-mode nil t)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
+;; --------------------------------------------------
+;; Rego
+;; --------------------------------------------------
+(require 'rego-mode nil t)
+(add-to-list 'auto-mode-alist '("\\.rego$" . rego-mode))
+=
 ;; --------------------------------------------------
 ;; Systemd
 ;; --------------------------------------------------
