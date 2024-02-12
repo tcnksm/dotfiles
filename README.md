@@ -3,7 +3,7 @@ tcnksm does dotfiles [![MIT License](http://img.shields.io/badge/license-MIT-blu
 
 Your dotfiles are how you personalize your system. These are mine :memo:
 
-## Setup
+## Clone
 
 Add a new SSH key to your GitHub account 🔐:
 
@@ -20,6 +20,11 @@ Clone this repository:
 $ mkdir -p ~/src/github.com/tcnksm/
 $ cd ~/src/github.com/tcnksm/
 $ git clone git@github.com:tcnksm/dotfiles.git
+```
+
+## Setup
+
+```bash
 ```
 
 ## Author

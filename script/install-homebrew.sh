@@ -52,15 +52,24 @@ brew install ${formula[@]} && brew cleanup
 echo "[INFO] Installing casks"
 casks=(
      google-cloud-sdk
+     # Login with GitHub
      visual-studio-code
+     # Login with GitHub
      raycast
      iterm2
+     # Login with GitHub
      warp
+     # Login with Google
      notion
+     # Login with Google
      grammarly-desktop
+     # Login with API Token (in mail)
      cleanshot
+     # Login with Google and mail
      slack
+     # Login with Google
      tailscale
+     # Login with Google
      sunsama
 )
 brew install --cask ${casks[@]} && brew cleanup
