@@ -20,6 +20,7 @@ formula=(
     coreutils
     findutils  
     proctools
+    gnupg
     grep
     curl
     wget
