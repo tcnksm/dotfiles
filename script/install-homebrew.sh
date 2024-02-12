@@ -34,7 +34,7 @@ formula=(
     cask
     go
     imagemagick
-    rmtrash       
+    trash       
     ag
     jq
     direnv
@@ -52,13 +52,14 @@ echo "[INFO] Installing casks"
 casks=(
      google-cloud-sdk
      visual-studio-code
-     raycast
+     # raycast
      warp
      notion
      grammarly-desktop
      cleanshot
      slack
      tailscale
+     # Sunsama
 )
 brew install --cask ${casks[@]} && brew cleanup
 
