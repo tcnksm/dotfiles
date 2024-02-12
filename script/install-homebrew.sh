@@ -54,6 +54,7 @@ casks=(
      google-cloud-sdk
      visual-studio-code
      raycast
+     iterm2
      warp
      notion
      grammarly-desktop
