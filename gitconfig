@@ -44,7 +44,7 @@
   rr     = !git ls-files -z --deleted | xargs -0 git rm
 
 [ghq]
-    root = ~/gopath/src
+    root = ~/src
     
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*

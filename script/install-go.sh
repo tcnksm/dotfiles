@@ -4,7 +4,7 @@ set -e
 
 PKGS=(
     # General
-    github.com/motemen/ghq@latest
+    github.com/x-motemen/ghq@latest
 
     # Go development
     # github.com/davidrjenni/reftools/cmd/fillstruct
@@ -19,5 +19,5 @@ PKGS=(
 
 for pkg in ${PKGS[@]}
 do
-    go install -u -v $pkg
+    go install -v $pkg
 done
