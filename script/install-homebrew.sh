@@ -45,6 +45,7 @@ formula=(
     kube-ps1
     stern
     gh
+    aquaproj/aqua/aqua
 )
 brew install ${formula[@]} && brew cleanup
 
