@@ -76,8 +76,7 @@ casks=(
      # Login with Google
      tailscale
      # Login with Google
-     sunsama
-
-     
+     sunsama     
 )
+
 brew install --cask ${casks[@]} && brew cleanup
