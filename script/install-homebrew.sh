@@ -52,6 +52,8 @@ brew install ${formula[@]} && brew cleanup
 echo "[INFO] Installing casks"
 casks=(
      google-cloud-sdk
+     docker
+
      # Login with GitHub
      visual-studio-code
      # Login with GitHub

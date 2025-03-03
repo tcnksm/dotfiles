@@ -4,7 +4,7 @@
 [user]
   name = tcnksm
   email = taichi@hey.com
-  # signingkey = C948091B591750CE
+  signingkey = 3AFAB3D6A776A83E
   
 [color]
   status = auto
@@ -14,7 +14,7 @@
   grep = auto
 
 [core]
-  editor = /usr/local/bin/emacsclient -t --alternate-editor "/usr/local/bin/emacs -nw"
+  editor = /usr/bin/vi #/usr/local/bin/emacsclient -t --alternate-editor "/usr/local/bin/emacs -nw"
   excludesfile = ~/.gitignore_global
   
 [merge]
