@@ -4,3 +4,4 @@ emacs.d/eshell
 emacs.d/.mc-lists.el
 emacs.d/.lsp-session-*
 .cask
+*.code-workspace
