@@ -58,6 +58,8 @@ casks=(
 
      # Login with GitHub
      visual-studio-code
+     visual-studio-code@insiders
+     
      # Login with GitHub
      raycast
      iterm2
@@ -75,5 +77,7 @@ casks=(
      tailscale
      # Login with Google
      sunsama
+
+     
 )
 brew install --cask ${casks[@]} && brew cleanup
