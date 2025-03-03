@@ -103,8 +103,8 @@ alias sss='source ~/.zshrc'
 # Git 
 alias git=hub
 alias gs='git status'
-alias gm='git checkout master'
-alias gmm='git checkout main'
+alias gmm='git checkout master'
+alias gm='git checkout main'
 alias au='git add -u; git status'
 alias o='git-open'
 alias tt='tig'
