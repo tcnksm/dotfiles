@@ -46,6 +46,7 @@ formula=(
     stern
     gh
     aquaproj/aqua/aqua
+    llm
 )
 brew install ${formula[@]} && brew cleanup
 
