@@ -115,8 +115,8 @@ alias kg="kubectl get"
 alias kd="kubectl describe"
 
 # VSCode
-alias v='/opt/homebrew/bin/code -r'
-alias e='/opt/homebrew/bin/code -r'
+alias v='/opt/homebrew/bin/code-insiders -r'
+alias e='/opt/homebrew/bin/code-insiders -r'
 
 # Tmux
 alias tmux='tmux -2 -f ~/.tmux.conf'
@@ -127,3 +127,6 @@ alias tmux='tmux -2 -f ~/.tmux.conf'
 export GPG_TTY=$(tty)
 eval "$(direnv hook zsh)"
 source <(stern --completion=zsh)
+
+# https://github.com/github/gh-copilot
+eval "$(gh copilot alias -- zsh)"
