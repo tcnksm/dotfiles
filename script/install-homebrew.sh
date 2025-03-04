@@ -74,6 +74,8 @@ if [ "$INSTALL_CASKS" = true ]; then
          # Login with GitHub
          visual-studio-code
          visual-studio-code@insiders
+
+         cursor
          
          # Login with GitHub
          raycast
