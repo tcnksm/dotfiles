@@ -118,6 +118,9 @@ alias kd="kubectl describe"
 alias v='/opt/homebrew/bin/code-insiders -r'
 alias e='/opt/homebrew/bin/code-insiders -r'
 
+# Cursor
+alias c='/opt/homebrew/bin/cursor -r'
+
 # Tmux
 alias tmux='tmux -2 -f ~/.tmux.conf'
 
