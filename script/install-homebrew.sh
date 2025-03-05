@@ -60,6 +60,7 @@ if [ "$INSTALL_FORMULAS" = true ]; then
         gh
         aquaproj/aqua/aqua
         llm
+        uv
     )
     brew install ${formula[@]} && brew cleanup
 fi
