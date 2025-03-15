@@ -76,11 +76,13 @@ if [ "$INSTALL_CASKS" = true ]; then
          visual-studio-code
          visual-studio-code@insiders
 
+        # Login with GitHub
          cursor
          
          # Login with GitHub
          raycast
          iterm2
+         
          # Login with GitHub
          warp
          # Login with Google
@@ -94,7 +96,10 @@ if [ "$INSTALL_CASKS" = true ]; then
          # Login with Google
          tailscale
          # Login with Google
-         sunsama     
+         sunsama   
+
+        # Login with Google 
+         arc      
     )
 
     brew install --cask ${casks[@]} && brew cleanup
