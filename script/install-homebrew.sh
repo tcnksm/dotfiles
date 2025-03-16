@@ -1,8 +1,27 @@
 #!/bin/bash
 
+# Help function to display usage
+show_help() {
+    echo "Usage: $(basename "$0") [OPTION]"
+    echo "Install Homebrew packages and casks."
+    echo
+    echo "Options:"
+    echo "  --help     Display this help message"
+    echo "  --cask     Only install Cask packages"
+    echo "  --formula  Only install Formula packages"
+    echo
+    echo "Without options, both formulas and casks will be installed."
+}
+
 # Parse command line arguments
 INSTALL_FORMULAS=true
 INSTALL_CASKS=true
+
+# Check for help argument first
+if [[ "$1" == "--help" ]]; then
+    show_help
+    exit 0
+fi
 
 # If --cask is specified, only install casks
 if [[ "$1" == "--cask" ]]; then
