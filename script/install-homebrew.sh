@@ -10,6 +10,12 @@ if [[ "$1" == "--cask" ]]; then
     INSTALL_CASKS=true
 fi
 
+# If --formula is specified, only install formulas
+if [[ "$1" == "--formula" ]]; then
+    INSTALL_FORMULAS=true
+    INSTALL_CASKS=false
+fi
+
 # Check for Homebrew installation and if not exist install 
 if test ! $(which brew); then
     echo "[INFO] Installing homebrew..."
