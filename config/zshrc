@@ -91,7 +91,9 @@ export PATH=~/.cask/bin:$PATH
 export EDITOR='/opt/homebrew/bin/code -r'
 export GOPATH=${HOME}
 
-# source $HOME/.cargo/env
+# Claude Code
+export ANTHROPIC_AUTH_TOKEN=$LITELLM_API_KEY
+ANTHROPIC_BASE_URL="https://litellm.mercari.in"
 
 # ------------------------------------
 # Alias
@@ -134,3 +136,4 @@ source <(stern --completion=zsh)
 
 # https://github.com/github/gh-copilot
 eval "$(gh copilot alias -- zsh)"
+
