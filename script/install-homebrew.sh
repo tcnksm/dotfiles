@@ -110,10 +110,10 @@ if [ "$INSTALL_CASKS" = true ]; then
          
          # Login with GitHub
          raycast
-         iterm2
          
          # Login with GitHub
          warp
+         ghostty
          # Login with Google
          notion
          # Login with Google
