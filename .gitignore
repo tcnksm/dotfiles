@@ -5,4 +5,5 @@ emacs.d/.mc-lists.el
 emacs.d/.lsp-session-*
 .cask
 *.code-workspace
-.cursor/mcp.json
+*.local.json
+*.local.md
