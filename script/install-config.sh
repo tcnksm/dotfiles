@@ -20,3 +20,10 @@ if [ ! -f ${HOME}/.config/peco/config.json ]; then
   mkdir -p $HOME/.config/peco
   ln -sf ${DIR}/peco-config.json ${HOME}/.config/peco/config.json
 fi
+
+if [ ! -f ${HOME}/.claude/settings.json ]; then
+  echo "[INFO] Place ${HOME}/.claude/settings.json"
+  mkdir -p $HOME/.claude
+  ln -sf ${DIR}/settings.json ${HOME}/.claude/settings.json
+fi
+
