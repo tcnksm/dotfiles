@@ -13,3 +13,8 @@
 *.xcworkspace/*
 !*.xcworkspace/contents.xcworkspacedata
 
+
+*.code-workspace
+*.local.json
+*.local.md
+

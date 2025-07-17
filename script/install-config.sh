@@ -3,7 +3,7 @@ DIR=$(cd $(dirname ${0})/.. && pwd)/config/
 CONFIGS=(
   zshrc
   gitconfig
-  gitignore_global
+  gitignore
   tmux.conf
 )
 

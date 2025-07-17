@@ -15,7 +15,7 @@
 
 [core]
   editor = /usr/bin/vi #/usr/local/bin/emacsclient -t --alternate-editor "/usr/local/bin/emacs -nw"
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore
   
 [merge]
   ff = false
