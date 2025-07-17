@@ -14,7 +14,7 @@
   grep = auto
 
 [core]
-  editor = /usr/bin/vi #/usr/local/bin/emacsclient -t --alternate-editor "/usr/local/bin/emacs -nw"
+  editor = /opt/homebrew/bin/cursor -r
   excludesfile = ~/.gitignore
   
 [merge]
@@ -48,9 +48,12 @@
     
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
+
 [commit]
-	gpgsign = false
+	gpgsign = true
+
 [init]
 	defaultBranch = main
