@@ -27,6 +27,11 @@ if [ ! -f ${HOME}/.claude/settings.json ]; then
   ln -sf ${DIR}/claude/settings.json ${HOME}/.claude/settings.json
 fi
 
+if [ ! -d ${HOME}/.claude/commands ]; then
+  echo "[INFO] Place ${HOME}/.claude/commands"
+  ln -sfn ${DIR}/claude/commands ${HOME}/.claude/commands
+fi
+
 if [ ! -f ${HOME}/.gnupg/gpg-agent.conf ]; then  
   echo "[INFO] Place ${HOME}/.gnupg/gpg-agent.conf"
   echo "[INFO] Run 'gpgconf --kill gpg-agent' to reload the config"
