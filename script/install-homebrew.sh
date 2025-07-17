@@ -87,6 +87,7 @@ if [ "$INSTALL_FORMULAS" = true ]; then
         aquaproj/aqua/aqua
         llm
         uv
+        pinentry-mac
     )
     brew install ${formula[@]} && brew cleanup
 fi
