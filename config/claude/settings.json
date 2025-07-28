@@ -103,16 +103,13 @@
     ]
   },
   "hooks": {
-    "Notification": [
+    "PreToolUse": [
       {
+        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "jq '.' >> ~/.claude/log/hooks_notification.log"
-          },
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/notification.sh"
+            "command": "jq '.' >> ~/.claude/log/hooks_pretooluse.log"
           }
         ]
       }
@@ -128,6 +125,40 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/gofmt.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq '.' >> ~/.claude/log/hooks_notification.log"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notification.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq '.' >> ~/.claude/log/hooks_userpromptsubmit.log"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq '.' >> ~/.claude/log/hooks_stop.log"
           }
         ]
       }
