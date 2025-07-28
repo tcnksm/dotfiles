@@ -88,6 +88,8 @@ if [ "$INSTALL_FORMULAS" = true ]; then
         llm
         uv
         pinentry-mac
+        terminal-notifier
+        ripgrep
     )
     brew install ${formula[@]} && brew cleanup
 fi
@@ -120,7 +122,8 @@ if [ "$INSTALL_CASKS" = true ]; then
          # Login with Google
          grammarly-desktop
          # Login with API Token (in mail)
-         cleanshot
+         # cleanshot
+
          # Login with Google and mail
          slack
          # Login with Google
