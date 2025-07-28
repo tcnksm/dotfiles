@@ -21,16 +21,7 @@ if [ ! -f ${HOME}/.config/peco/config.json ]; then
   ln -sf ${DIR}/peco-config.json ${HOME}/.config/peco/config.json
 fi
 
-if [ ! -f ${HOME}/.claude/settings.json ]; then
-  echo "[INFO] Place ${HOME}/.claude/settings.json"
-  mkdir -p $HOME/.claude
-  ln -sf ${DIR}/claude/settings.json ${HOME}/.claude/settings.json
-fi
 
-if [ ! -d ${HOME}/.claude/commands ]; then
-  echo "[INFO] Place ${HOME}/.claude/commands"
-  ln -sfn ${DIR}/claude/commands ${HOME}/.claude/commands
-fi
 
 if [ ! -f ${HOME}/.gnupg/gpg-agent.conf ]; then  
   echo "[INFO] Place ${HOME}/.gnupg/gpg-agent.conf"
