@@ -112,6 +112,15 @@
             "command": "jq '.' >> ~/.claude/log/hooks_pretooluse.log"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/validate_command.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [
