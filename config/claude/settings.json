@@ -5,8 +5,6 @@
       "LS(**)",
       "Glob(**)",
       "Read(~/src/**)",
-      "Edit(~/src/**)",
-      "MultiEdit(~/src/**)",
       "WebSearch(**)",
       "WebFetch(domain:readwise.io)",
       "WebFetch(domain:docs.anthropic.com)",
