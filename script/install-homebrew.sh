@@ -81,8 +81,6 @@ if [ "$INSTALL_FORMULAS" = true ]; then
         peco
         terraform
         kubectx
-        kube-ps1
-        stern
         gh
         aquaproj/aqua/aqua
         llm
@@ -101,10 +99,6 @@ if [ "$INSTALL_CASKS" = true ]; then
          google-cloud-sdk
          docker
 
-         # Login with GitHub
-         visual-studio-code
-         visual-studio-code@insiders
-
         # Login with GitHub
          cursor
 
@@ -115,24 +109,27 @@ if [ "$INSTALL_CASKS" = true ]; then
          raycast
          
          # Login with GitHub
-         warp
+         # warp
          ghostty
          # Login with Google
          notion
          # Login with Google
-         grammarly-desktop
+         # grammarly-desktop
+
          # Login with API Token (in mail)
          # cleanshot
 
          # Login with Google and mail
-         slack
+         # slack
+
          # Login with Google
-         tailscale
+         # tailscale
+
          # Login with Google
          sunsama   
 
         # Login with Google 
-         arc      
+        # arc      
     )
 
     brew install --cask ${casks[@]} && brew cleanup
