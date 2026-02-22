@@ -1,0 +1,11 @@
+# Window size configuration
+window-width = 114
+window-height = 62
+
+# Font size
+font-size = 16
+
+# Window position (pixels from top-left)
+window-position-x = 2300
+window-position-y = 0
+keybind = shift+enter=text:\n
