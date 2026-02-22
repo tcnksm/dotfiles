@@ -1,26 +1,31 @@
 DIR=$(cd $(dirname ${0})/.. && pwd)/config/
 
-CONFIGS=(
+HOME_CONFIGS=(
   zshrc
   gitconfig
   gitignore
   tmux.conf
 )
 
-for CONFIG in ${CONFIGS[@]}
+for CONFIG in ${HOME_CONFIGS[@]}
 do
   if [ ! -f ${HOME}/.${CONFIG} ]; then
     echo "[INFO] Place ${HOME}/.${CONFIG}"
-    ln -sf ${DIR}/${CONFIG} ${HOME}/.${CONFIG}
+    ln -sf ${DIR}/home/${CONFIG} ${HOME}/.${CONFIG}
   fi  
 done
 
 if [ ! -f ${HOME}/.config/peco/config.json ]; then
   echo "[INFO] Place ${HOME}/.config/peco/config.json"
   mkdir -p $HOME/.config/peco
-  ln -sf ${DIR}/peco-config.json ${HOME}/.config/peco/config.json
+  ln -sf ${DIR}/peco/config.json ${HOME}/.config/peco/config.json
 fi
 
+if [ ! -f ${HOME}/.config/ghostty/config ]; then
+  echo "[INFO] Place ${HOME}/.config/ghostty/config"
+  mkdir -p $HOME/.config/ghostty
+  ln -sf ${DIR}/ghostty/config ${HOME}/.config/ghostty/config
+fi
 
 
 if [ ! -f ${HOME}/.gnupg/gpg-agent.conf ]; then  

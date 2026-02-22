@@ -90,6 +90,7 @@ export PATH=~/.cask/bin:$PATH
 
 export EDITOR='/opt/homebrew/bin/code -r'
 export GOPATH=${HOME}
+export XDG_CONFIG_HOME=${HOME}/.config
 
 # source $HOME/.cargo/env
 
