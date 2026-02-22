@@ -104,6 +104,7 @@ if [ "$INSTALL_CASKS" = true ]; then
 
         # Login with GitHub
          claude
+         claude-code
          
          # Login with GitHub
          raycast

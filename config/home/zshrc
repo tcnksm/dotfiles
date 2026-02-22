@@ -131,7 +131,5 @@ alias tmux='tmux -2 -f ~/.tmux.conf'
 # ------------------------------------
 export GPG_TTY=$(tty)
 eval "$(direnv hook zsh)"
-source <(stern --completion=zsh)
 
-# https://github.com/github/gh-copilot
-eval "$(gh copilot alias -- zsh)"
+
