@@ -5,6 +5,7 @@
       "LS(**)",
       "Glob(**)",
       "Read(~/src/**)",
+      "Edit(~/.claude/**)",
       "WebFetch(domain:readwise.io)",
       "WebFetch(domain:docs.anthropic.com)",
       "WebFetch(domain:llm.datasette.io)",
@@ -172,5 +173,8 @@
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }

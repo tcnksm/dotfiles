@@ -112,8 +112,12 @@ if [ "$INSTALL_CASKS" = true ]; then
          # Login with GitHub
          # warp
          ghostty
+         conductor   
+
          # Login with Google
          notion
+         notion-calendar
+ 
          # Login with Google
          # grammarly-desktop
 
@@ -127,10 +131,10 @@ if [ "$INSTALL_CASKS" = true ]; then
          # tailscale
 
          # Login with Google
-         sunsama   
+         # sunsama   
 
-        # Login with Google 
-        # arc      
+         # Login with Google 
+         # arc      
     )
 
     brew install --cask ${casks[@]} && brew cleanup
