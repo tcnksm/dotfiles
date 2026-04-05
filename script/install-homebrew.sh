@@ -119,22 +119,24 @@ if [ "$INSTALL_CASKS" = true ]; then
          notion-calendar
  
          # Login with Google
-         # grammarly-desktop
+         grammarly-desktop
 
          # Login with API Token (in mail)
-         # cleanshot
+         cleanshot
 
          # Login with Google and mail
-         # slack
+         slack
 
          # Login with Google
-         # tailscale
+         tailscale
 
          # Login with Google
          # sunsama   
 
          # Login with Google 
-         # arc      
+         arc
+
+         1password
     )
 
     brew install --cask ${casks[@]} && brew cleanup
