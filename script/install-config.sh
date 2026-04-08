@@ -28,6 +28,17 @@ if [ ! -f ${HOME}/.config/ghostty/config ]; then
 fi
 
 
+if [ ! -d ${HOME}/.emacs.d ]; then
+  echo "[INFO] Place ${HOME}/.emacs.d"
+  ln -sf ${DIR}/emacs.d ${HOME}/.emacs.d
+fi
+
+if [ ! -f ${HOME}/Library/Application\ Support/Cursor/User/settings.json ]; then
+  echo "[INFO] Place settings on ${HOME}/Library/Application\ Support/Cursor/User"
+  ln -sf ${DIR}/cursor/settings.json ${HOME}/Library/Application\ Support/Cursor/User/settings.json
+  ln -sf ${DIR}/cursor/keybindings.json ${HOME}/Library/Application\ Support/Cursor/User/keybindings.json
+fi
+
 if [ ! -f ${HOME}/.gnupg/gpg-agent.conf ]; then  
   echo "[INFO] Place ${HOME}/.gnupg/gpg-agent.conf"
   echo "[INFO] Run 'gpgconf --kill gpg-agent' to reload the config"

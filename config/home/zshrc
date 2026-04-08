@@ -117,7 +117,13 @@ alias kd="kubectl describe"
 
 # Cursor / VSCode
 alias v='/opt/homebrew/bin/cursor -r'
-alias e='/opt/homebrew/bin/cursor -r'
+function e() {
+  if emacsclient -e nil &>/dev/null; then
+    emacsclient -n "$@"
+  else
+    emacs -nw "$@"
+  fi
+}
 alias vi='/opt/homebrew/bin/code-insiders -r'
 
 # Cursor

@@ -1,0 +1,48 @@
+{
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "smartchr.definitions": {
+    "go": {
+      "+": ["+", " + ", " += ", " ++ "],
+      "-": ["-", " - ", " -= ", " -- "],
+      "=": ["=", " = ", " := ", " != ", " == "],
+      ";": ["; ", ";"],
+      ">": [" > ", " -> ", ">"],
+      "<": [" < ", " <- ", "<"]
+    }
+  },
+  "files.autoSave": "onFocusChange",
+  
+  "editor.formatOnSave": true,
+  "workbench.editor.autoLockGroups": {
+    "terminalEditor": false
+  },
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "window.zoomLevel": 2,
+  "git.confirmSync": false,
+  "editor.accessibilitySupport": "off",
+
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "go.trace.server": "messages",
+  "go.useLanguageServer": true,
+  "go.toolsManagement.autoUpdate": true,
+  "go.inlayHints.compositeLiteralTypes": true,
+  "gopls": {
+    "build.directoryFilters": ["-node_modules"],
+    "ui.semanticTokens": true
+  }
+}
+
